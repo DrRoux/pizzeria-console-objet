@@ -9,7 +9,7 @@ public class PizzeriaAdminConsoleApp
 	
 	public static void main(String[] args) 
 	{
-		int choice = 0;
+		String choice = "0";
 		questionUser = new Scanner (System.in);
 		
 		Pizza [] tableauPizza = new Pizza [100];
@@ -22,8 +22,9 @@ public class PizzeriaAdminConsoleApp
 		tableauPizza[6] = new Pizza ("ORI",  "L’orientale",  13.50);
 		tableauPizza[7] = new Pizza ("IND",  "L’indienne", 	 14.00);
 		int tailleTableau = 8;
+		boolean sortiBoucle = false;
 		
-		while (choice != 99)
+		while (sortiBoucle == false)
 		{
 			System.out.println("***** Pizzeria Administration *****");
 			System.out.println("1.  Lister les pizzas ");
@@ -33,9 +34,9 @@ public class PizzeriaAdminConsoleApp
 			System.out.println("99. Quitter l'application");
 			System.out.println("\nVeuillez saisir votre choix : ");
 			
-			choice = questionUser.nextInt();
+			choice = questionUser.nextLine();
 			
-			if (choice == 1)
+			if (Integer.parseInt(choice) == 1)
 			{
 				System.out.println("Liste des pizzas : ");
 				
@@ -45,34 +46,52 @@ public class PizzeriaAdminConsoleApp
 				
 				System.out.println(" ");	
 			}
-			else if (choice == 2)
+			else if (Integer.parseInt(choice) == 2)
 			{
 				System.out.println("Ajout d'une nouvelle pizza : ");
 				tableauPizza[tailleTableau] = new Pizza ();
 				tableauPizza[tailleTableau].modifPizza();
+				tailleTableau++;
 			}
-			else if (choice == 3)
+			else if (Integer.parseInt(choice) == 3)
 			{
 				System.out.println("Mise à jour d'une pizza : ");
 				System.out.println("Veuillez choisir le code de la pizza à modifier : ");
-				choice = questionUser.nextInt();
-				tableauPizza[choice].modifPizza();
+				choice = questionUser.nextLine().toUpperCase();
+				System.out.println(choice);
+				
+				for (Pizza pizza : tableauPizza)
+				{
+					if (pizza != null)
+						if (pizza.getCode().equals(choice))
+							pizza.modifPizza ();
+				}
 			}
-			else if (choice == 4)
+			else if (Integer.parseInt(choice) == 4)
 			{
 				System.out.println("Suppression d'une pizza : ");
 				System.out.println("Veuillez choisir le code de la pizza à supprimer : ");
-				choice = questionUser.nextInt();
-				tableauPizza[choice] = null;
+				choice = questionUser.nextLine().toUpperCase();
+				System.out.println(choice);
+				
+				for (int i = 0; i < tableauPizza.length; i++)
+				{
+					if (tableauPizza[i] != null)
+						if (tableauPizza[i].getCode().equals(choice))
+							tableauPizza[i] = null;
+				}
+				
 			}
-			else if (choice == 99)
+			else if (Integer.parseInt(choice) == 99)
 			{
 				System.out.println("Aurevoir :(");
+				sortiBoucle = true;
 			}
 			else
 			{
 				System.out.println("Choix invalide, veuillez recommencer !");
 			}
+			
 		}
 	}
 

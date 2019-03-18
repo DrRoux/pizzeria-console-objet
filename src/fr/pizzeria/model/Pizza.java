@@ -88,15 +88,16 @@ public class Pizza
 		
 		System.out.println("Veuillez saisir le code :");
 		String choiceString = questionUser.nextLine();
-		setCode (choiceString);
+		setCode (choiceString.toUpperCase());
 		
 		System.out.println("Veuillez saisir le nom (sans espace):");
 		choiceString = questionUser.nextLine();
 		setLibelle (choiceString);
 		
 		System.out.println("Veuillez saisir le prix :");
-		double choicePrice = questionUser.nextDouble();
+		choiceString = questionUser.nextLine();
+		double choicePrice = Double.parseDouble(choiceString);
 		setPrix (choicePrice);
-		
 	}
+
 }
