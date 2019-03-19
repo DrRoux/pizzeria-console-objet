@@ -1,19 +1,25 @@
 package fr.pizzeria.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import fr.pizzeria.model.Pizza;
+import fr.pizzeria.dao.gestionFichier;
 
 /**
  * @author BIRABEN-BIANCHI Hugo
  *
  */
-public class PizzaMemDao implements IPizzaDao
+public class PizzaFileDao implements IPizzaDao
 {
 	private Pizza [] tabPizza;
+	private gestionFichier gestionFichier;
 	
-	public PizzaMemDao ()
+	public PizzaFileDao ()
 	{
 		tabPizza = new Pizza [100];
-		initialisation ();
+		gestionFichier = new gestionFichier ();
+		lecture ();
 	}
 	
 	public void initialisation ()
@@ -49,6 +55,7 @@ public class PizzaMemDao implements IPizzaDao
 				tabPizza[i].modifPizza (pizza);
 				break;
 			}
+		ecriture ();
 	}
 
 	@Override
@@ -58,6 +65,7 @@ public class PizzaMemDao implements IPizzaDao
 			if (p != null)
 				if (p.getCode().equals(pizza.getCode()))
 					pizza.modifPizza (pizza);
+		ecriture ();
 	}
 
 	@Override
@@ -76,6 +84,7 @@ public class PizzaMemDao implements IPizzaDao
 				tabPizza[i+1] = null;
 			}
 		}
+		ecriture ();
 	}
 
 	@Override
@@ -101,5 +110,30 @@ public class PizzaMemDao implements IPizzaDao
 			}
 		
 		return exist;
+	}
+	
+	public void ecriture () 
+	{
+		List <String> listString = new ArrayList<String> ();
+		
+		for (Pizza pizza : tabPizza)
+			if (pizza != null)
+				listString.add(pizza.toSave());
+		
+		gestionFichier.ecriture(listString);
+	}
+	
+	public void lecture ()
+	{
+		List <String> listString = gestionFichier.lecture();
+		
+		for (String s : listString)
+		{
+			String [] pizza = s.split(",");
+			tabPizza[Integer.parseInt(pizza[0])] = new Pizza (Integer.parseInt(pizza[0]), pizza[1], pizza[2], Double.parseDouble(pizza[3]));
+			Pizza.setNbPizza(Integer.parseInt(pizza[0]));
+		}
+		
+		
 	}
 }

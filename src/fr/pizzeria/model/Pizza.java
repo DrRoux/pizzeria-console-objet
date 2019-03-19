@@ -39,7 +39,7 @@ public class Pizza
 	public Pizza (String code, String libelle, double prix) 
 	{
 		super();
-		this.code = code;
+		this.code = code.toUpperCase();
 		this.libelle = libelle;
 		this.prix = prix;
 		
@@ -58,7 +58,7 @@ public class Pizza
 	{
 		super();
 		this.id = id;
-		this.code = code;
+		this.code = code.toUpperCase();
 		this.libelle = libelle;
 		this.prix = prix;
 	}
@@ -74,44 +74,100 @@ public class Pizza
 	{
 		return (code + " -> " + libelle + " (" + prix + " €) ");
 	}
+	
+	public String toSave ()
+	{
+		return (id + "," + code + "," + libelle + "," + prix);
+	}
 
-	public int getId() 
+	/**
+	 * Getter
+	 * @return the id
+	 */
+	public int getId()
 	{
 		return id;
 	}
 
-	public void setId(int id) 
+	/**
+	 * Setter
+	 * @param id the id to set
+	 */
+	public void setId(int id)
 	{
 		this.id = id;
 	}
 
-	public String getCode() 
+	/**
+	 * Getter
+	 * @return the code
+	 */
+	public String getCode()
 	{
 		return code;
 	}
 
-	public void setCode(String code) 
+	/**
+	 * Setter
+	 * @param code the code to set
+	 */
+	public void setCode(String code)
 	{
-		this.code = code.toUpperCase();
+		this.code = code;
 	}
 
-	public String getLibelle() 
+	/**
+	 * Getter
+	 * @return the libelle
+	 */
+	public String getLibelle()
 	{
 		return libelle;
 	}
 
-	public void setLibelle(String libelle) 
+	/**
+	 * Setter
+	 * @param libelle the libelle to set
+	 */
+	public void setLibelle(String libelle)
 	{
 		this.libelle = libelle;
 	}
 
-	public double getPrix() 
+	/**
+	 * Getter
+	 * @return the prix
+	 */
+	public double getPrix()
 	{
 		return prix;
 	}
 
-	public void setPrix(double prix) 
+	/**
+	 * Setter
+	 * @param prix the prix to set
+	 */
+	public void setPrix(double prix)
 	{
 		this.prix = prix;
 	}
+
+	/**
+	 * Getter
+	 * @return the nbPizza
+	 */
+	public static int getNbPizza()
+	{
+		return nbPizza;
+	}
+
+	/**
+	 * @param nbPizza2
+	 */
+	public static void setNbPizza(int nbPizza)
+	{
+		Pizza.nbPizza = nbPizza;
+		
+	}
+
 }

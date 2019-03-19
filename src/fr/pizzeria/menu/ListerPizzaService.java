@@ -4,9 +4,10 @@
 package fr.pizzeria.menu;
 
 import java.util.Scanner;
+import fr.pizzeria.model.Pizza;;
 
 /**
- * @author hugo-
+ * @author BIRABEN-BIANCHI Hugo
  *
  */
 public class ListerPizzaService extends MenuService
@@ -16,7 +17,12 @@ public class ListerPizzaService extends MenuService
 	public void executeUC(Scanner scanner)
 	{
 		System.out.println("Liste des pizzas : ");
-		gestionnairePizza.displayList ();
+		
+		Pizza [] pizzas = gestionnairePizza.findAllPizzas();
+		for (Pizza pi : pizzas)
+			if (pi != null)
+				System.out.println(pi);
+		
 		System.out.println(" ");	
 	}
 

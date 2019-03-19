@@ -2,9 +2,7 @@ package fr.pizzeria.console;
 
 import java.util.Scanner;
 
-import fr.pizzeria.dao.PizzaMemDao;
-import fr.pizzeria.menu.*;
-import fr.pizzeria.model.*;
+import fr.pizzeria.menu.MenuFactory;
 
 public class PizzeriaAdminConsoleApp 
 {
@@ -15,10 +13,8 @@ public class PizzeriaAdminConsoleApp
 	{
 		String choice = "0";
 		questionUser = new Scanner (System.in);
-		ListerPizzaService list = new ListerPizzaService ();
-		AjouterPizzaService ajout = new AjouterPizzaService ();
-		ModifierPizzaService modif = new ModifierPizzaService ();
-		SupprimerPizzaService suppr = new SupprimerPizzaService ();
+		
+		MenuFactory menu = new MenuFactory ();
 		
 		boolean sortiBoucle = false;
 		
@@ -36,19 +32,19 @@ public class PizzeriaAdminConsoleApp
 			
 			if (Integer.parseInt(choice) == 1)
 			{
-				list.executeUC(questionUser);
+				menu.create("list").executeUC(questionUser);
 			}
 			else if (Integer.parseInt(choice) == 2)
 			{
-				ajout.executeUC(questionUser);
+				menu.create("ajout").executeUC(questionUser);
 			}
 			else if (Integer.parseInt(choice) == 3)
 			{
-				modif.executeUC(questionUser);
+				menu.create("modif").executeUC(questionUser);
 			}
 			else if (Integer.parseInt(choice) == 4)
 			{
-				suppr.executeUC(questionUser);			
+				menu.create("suppr").executeUC(questionUser);			
 			}
 			else if (Integer.parseInt(choice) == 99)
 			{
