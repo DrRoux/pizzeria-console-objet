@@ -3,18 +3,22 @@ package fr.pizzeria.console;
 import java.util.Scanner;
 
 import fr.pizzeria.dao.PizzaMemDao;
+import fr.pizzeria.menu.*;
 import fr.pizzeria.model.*;
 
 public class PizzeriaAdminConsoleApp 
 {
 	private static Scanner questionUser;
-	private static PizzaMemDao gestionnairePizza;
+	
 	
 	public static void main(String[] args) 
 	{
 		String choice = "0";
 		questionUser = new Scanner (System.in);
-		gestionnairePizza = new PizzaMemDao ();
+		ListerPizzaService list = new ListerPizzaService ();
+		AjouterPizzaService ajout = new AjouterPizzaService ();
+		ModifierPizzaService modif = new ModifierPizzaService ();
+		SupprimerPizzaService suppr = new SupprimerPizzaService ();
 		
 		boolean sortiBoucle = false;
 		
@@ -32,55 +36,19 @@ public class PizzeriaAdminConsoleApp
 			
 			if (Integer.parseInt(choice) == 1)
 			{
-				System.out.println("Liste des pizzas : ");
-				gestionnairePizza.displayList ();
-				System.out.println(" ");	
+				list.executeUC(questionUser);
 			}
 			else if (Integer.parseInt(choice) == 2)
 			{
-				System.out.println("Ajout d'une nouvelle pizza : ");
-				
-				System.out.println("Veuillez saisir le code :");
-				String choiceCode = questionUser.nextLine();
-				
-				System.out.println("Veuillez saisir le nom (sans espace):");
-				String choiceLibelle = questionUser.nextLine();
-				
-				System.out.println("Veuillez saisir le prix :");
-				String choiceTempString = questionUser.nextLine();
-				double choicePrice = Double.parseDouble(choiceTempString);
-				
-				gestionnairePizza.saveNewPizza(new Pizza (choiceCode, choiceLibelle, choicePrice));
-				
+				ajout.executeUC(questionUser);
 			}
 			else if (Integer.parseInt(choice) == 3)
 			{
-				System.out.println("Mise à jour d'une pizza : ");
-				System.out.println("Veuillez choisir le code de la pizza à modifier : ");
-				choice = questionUser.nextLine();
-				System.out.println(choice);
-				
-				System.out.println("Veuillez saisir le code :");
-				String choiceCode = questionUser.nextLine();
-				
-				System.out.println("Veuillez saisir le nom (sans espace):");
-				String choiceLibelle = questionUser.nextLine();
-				
-				System.out.println("Veuillez saisir le prix :");
-				String choiceTempString = questionUser.nextLine();
-				double choicePrice = Double.parseDouble(choiceTempString);
-				
-				gestionnairePizza.updatePizza(choice, new Pizza (choiceCode, choiceLibelle, choicePrice));
-				
+				modif.executeUC(questionUser);
 			}
 			else if (Integer.parseInt(choice) == 4)
 			{
-				System.out.println("Suppression d'une pizza : ");
-				System.out.println("Veuillez choisir le code de la pizza à supprimer : ");
-				choice = questionUser.nextLine();
-				System.out.println(choice);
-				
-				gestionnairePizza.deletePizza(choice);				
+				suppr.executeUC(questionUser);			
 			}
 			else if (Integer.parseInt(choice) == 99)
 			{
