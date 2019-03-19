@@ -84,7 +84,7 @@ public class PizzeriaAdminConsoleApp
 			}
 			else if (Integer.parseInt(choice) == 99)
 			{
-				System.out.println("Aurevoir :(");
+				System.out.println("Aurevoir ☻");
 				sortiBoucle = true;
 			}
 			else
@@ -95,6 +95,7 @@ public class PizzeriaAdminConsoleApp
 		}
 		
 		questionUser.close ();
+		System.out.println("FIN DE L'APPLICATION AVEC SUCCES !");
 	}
 
 }

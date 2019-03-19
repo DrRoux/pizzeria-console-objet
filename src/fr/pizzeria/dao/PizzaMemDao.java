@@ -42,7 +42,13 @@ public class PizzaMemDao implements IPizzaDao
 	@Override
 	public void saveNewPizza(Pizza pizza)
 	{
-		pizza.modifPizza (pizza);
+		for (int i = 0; i < tabPizza.length; i++)
+			if (tabPizza[i] == null)
+			{
+				tabPizza[i] = new Pizza ();
+				tabPizza[i].modifPizza (pizza);
+				break;
+			}
 	}
 
 	@Override
