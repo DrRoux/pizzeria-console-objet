@@ -42,7 +42,7 @@ public class PizzeriaAdminConsoleApp
 				
 				for (Pizza pizza : tableauPizza)
 					if (pizza != null)
-						pizza.affichage();
+						System.out.println(pizza);
 				
 				System.out.println(" ");	
 			}
@@ -93,6 +93,8 @@ public class PizzeriaAdminConsoleApp
 			}
 			
 		}
+		
+		questionUser.close ();
 	}
 
 }

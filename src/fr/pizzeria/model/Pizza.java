@@ -2,14 +2,27 @@ package fr.pizzeria.model;
 
 import java.util.Scanner;
 
+/**
+ * Cette classe représente une Pizza
+ * @author BIRABEN-BIANCHI Hugo
+ */
 public class Pizza 
 {
-	static int nbPizza = 0;
-	int id;
-	String code;
-	String libelle;
-	double prix;
+	/** nbPizza : static int */
+	private static int nbPizza = 0;
+	/** id : int */
+	private int id;
+	/** code : String */
+	private String code;
+	/** libelle : String */
+	private String libelle;
+	/** prix : double */
+	private double prix;
 	
+	
+	/**
+	 * Default Constructor
+	 */
 	public Pizza () 
 	{
 		super ();
@@ -17,6 +30,12 @@ public class Pizza
 		nbPizza++;
 	}
 	
+	/** 
+	 * Constructor
+	 * @param code : code en majuscule en maximum 4 lettres
+	 * @param libelle : nom de la pizza
+	 * @param prix : prix en €
+	 */
 	public Pizza (String code, String libelle, double prix) 
 	{
 		super();
@@ -28,6 +47,13 @@ public class Pizza
 		nbPizza++;
 	}
 	
+	/**
+	 * Constructor
+	 * @param id : id
+	 * @param code : code en majuscule en maximum 4 lettres
+	 * @param libelle : nom de la pizza
+	 * @param prix : prix en €
+	 */
 	public Pizza (int id, String code, String libelle, double prix) 
 	{
 		super();
@@ -37,6 +63,31 @@ public class Pizza
 		this.prix = prix;
 	}
 	
+	public void modifPizza ()
+	{
+		Scanner questionUser = new Scanner (System.in);
+		
+		System.out.println("Veuillez saisir le code :");
+		String choiceString = questionUser.nextLine();
+		setCode (choiceString.toUpperCase());
+		
+		System.out.println("Veuillez saisir le nom (sans espace):");
+		choiceString = questionUser.nextLine();
+		setLibelle (choiceString);
+		
+		System.out.println("Veuillez saisir le prix :");
+		choiceString = questionUser.nextLine();
+		double choicePrice = Double.parseDouble(choiceString);
+		setPrix (choicePrice);
+		
+		questionUser.close ();
+	}
+	
+	public String toString ()
+	{
+		return (code + " -> " + libelle + " (" + prix + " €) ");
+	}
+
 	public int getId() 
 	{
 		return id;
@@ -77,27 +128,11 @@ public class Pizza
 		this.prix = prix;
 	}
 	
+	/*
+	 * Suppression de la méthode affichage au profit de toString
 	public void affichage ()
 	{
 		System.out.println(code + " -> " + libelle + " (" + prix + " €) ");
 	}
-	
-	public void modifPizza ()
-	{
-		Scanner questionUser = new Scanner (System.in);
-		
-		System.out.println("Veuillez saisir le code :");
-		String choiceString = questionUser.nextLine();
-		setCode (choiceString.toUpperCase());
-		
-		System.out.println("Veuillez saisir le nom (sans espace):");
-		choiceString = questionUser.nextLine();
-		setLibelle (choiceString);
-		
-		System.out.println("Veuillez saisir le prix :");
-		choiceString = questionUser.nextLine();
-		double choicePrice = Double.parseDouble(choiceString);
-		setPrix (choicePrice);
-	}
-
+	*/
 }
