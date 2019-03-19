@@ -63,24 +63,11 @@ public class Pizza
 		this.prix = prix;
 	}
 	
-	public void modifPizza ()
+	public void modifPizza (Pizza pizza)
 	{
-		Scanner questionUser = new Scanner (System.in);
-		
-		System.out.println("Veuillez saisir le code :");
-		String choiceString = questionUser.nextLine();
-		setCode (choiceString.toUpperCase());
-		
-		System.out.println("Veuillez saisir le nom (sans espace):");
-		choiceString = questionUser.nextLine();
-		setLibelle (choiceString);
-		
-		System.out.println("Veuillez saisir le prix :");
-		choiceString = questionUser.nextLine();
-		double choicePrice = Double.parseDouble(choiceString);
-		setPrix (choicePrice);
-		
-		questionUser.close ();
+		setCode (pizza.getCode());
+		setLibelle (pizza.getLibelle());
+		setPrix (pizza.getPrix());
 	}
 	
 	public String toString ()
@@ -105,7 +92,7 @@ public class Pizza
 
 	public void setCode(String code) 
 	{
-		this.code = code;
+		this.code = code.toUpperCase();
 	}
 
 	public String getLibelle() 
@@ -127,12 +114,4 @@ public class Pizza
 	{
 		this.prix = prix;
 	}
-	
-	/*
-	 * Suppression de la méthode affichage au profit de toString
-	public void affichage ()
-	{
-		System.out.println(code + " -> " + libelle + " (" + prix + " €) ");
-	}
-	*/
 }

@@ -1,27 +1,21 @@
 package fr.pizzeria.console;
 
 import java.util.Scanner;
-import fr.pizzeria.model.Pizza;
+
+import fr.pizzeria.dao.PizzaMemDao;
+import fr.pizzeria.model.*;
 
 public class PizzeriaAdminConsoleApp 
 {
 	private static Scanner questionUser;
+	private static PizzaMemDao gestionnairePizza;
 	
 	public static void main(String[] args) 
 	{
 		String choice = "0";
 		questionUser = new Scanner (System.in);
+		gestionnairePizza = new PizzaMemDao ();
 		
-		Pizza [] tableauPizza = new Pizza [100];
-		tableauPizza[0] = new Pizza ("PEP",  "Pépéroni", 	 12.50);
-		tableauPizza[1] = new Pizza ("MAR",  "Margherita", 	 14.00);
-		tableauPizza[2] = new Pizza ("REIN", "La Reine", 	 11.50);
-		tableauPizza[3] = new Pizza ("FRO",  "La 4 Fromage", 12.00);
-		tableauPizza[4] = new Pizza ("CAN",  "La cannibale", 12.50);
-		tableauPizza[5] = new Pizza ("SAV",  "La savoyarde", 13.00);
-		tableauPizza[6] = new Pizza ("ORI",  "L’orientale",  13.50);
-		tableauPizza[7] = new Pizza ("IND",  "L’indienne", 	 14.00);
-		int tailleTableau = 8;
 		boolean sortiBoucle = false;
 		
 		while (sortiBoucle == false)
@@ -39,48 +33,54 @@ public class PizzeriaAdminConsoleApp
 			if (Integer.parseInt(choice) == 1)
 			{
 				System.out.println("Liste des pizzas : ");
-				
-				for (Pizza pizza : tableauPizza)
-					if (pizza != null)
-						System.out.println(pizza);
-				
+				gestionnairePizza.displayList ();
 				System.out.println(" ");	
 			}
 			else if (Integer.parseInt(choice) == 2)
 			{
 				System.out.println("Ajout d'une nouvelle pizza : ");
-				tableauPizza[tailleTableau] = new Pizza ();
-				tableauPizza[tailleTableau].modifPizza();
-				tailleTableau++;
+				
+				System.out.println("Veuillez saisir le code :");
+				String choiceCode = questionUser.nextLine();
+				
+				System.out.println("Veuillez saisir le nom (sans espace):");
+				String choiceLibelle = questionUser.nextLine();
+				
+				System.out.println("Veuillez saisir le prix :");
+				String choiceTempString = questionUser.nextLine();
+				double choicePrice = Double.parseDouble(choiceTempString);
+				
+				gestionnairePizza.saveNewPizza(new Pizza (choiceCode, choiceLibelle, choicePrice));
+				
 			}
 			else if (Integer.parseInt(choice) == 3)
 			{
 				System.out.println("Mise à jour d'une pizza : ");
 				System.out.println("Veuillez choisir le code de la pizza à modifier : ");
-				choice = questionUser.nextLine().toUpperCase();
+				choice = questionUser.nextLine();
 				System.out.println(choice);
 				
-				for (Pizza pizza : tableauPizza)
-				{
-					if (pizza != null)
-						if (pizza.getCode().equals(choice))
-							pizza.modifPizza ();
-				}
+				System.out.println("Veuillez saisir le code :");
+				String choiceCode = questionUser.nextLine();
+				
+				System.out.println("Veuillez saisir le nom (sans espace):");
+				String choiceLibelle = questionUser.nextLine();
+				
+				System.out.println("Veuillez saisir le prix :");
+				String choiceTempString = questionUser.nextLine();
+				double choicePrice = Double.parseDouble(choiceTempString);
+				
+				gestionnairePizza.updatePizza(choice, new Pizza (choiceCode, choiceLibelle, choicePrice));
+				
 			}
 			else if (Integer.parseInt(choice) == 4)
 			{
 				System.out.println("Suppression d'une pizza : ");
 				System.out.println("Veuillez choisir le code de la pizza à supprimer : ");
-				choice = questionUser.nextLine().toUpperCase();
+				choice = questionUser.nextLine();
 				System.out.println(choice);
 				
-				for (int i = 0; i < tableauPizza.length; i++)
-				{
-					if (tableauPizza[i] != null)
-						if (tableauPizza[i].getCode().equals(choice))
-							tableauPizza[i] = null;
-				}
-				
+				gestionnairePizza.deletePizza(choice);				
 			}
 			else if (Integer.parseInt(choice) == 99)
 			{
