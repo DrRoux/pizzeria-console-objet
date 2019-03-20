@@ -9,8 +9,10 @@ import java.util.*;
 import fr.pizzeria.exception.TechnicalException;
 
 /**
+ * Cette classe permet d'ouvrir, de lire et décrire dans un fichier
+ * Elle est utilisée pour sauvegarder de manière persistante les données
+ * de notre application
  * @author BIRABEN-BIANCHI Hugo
- *
  */
 public class gestionFichier
 {
@@ -18,20 +20,32 @@ public class gestionFichier
 	public PrintWriter fileWriter;
 	public BufferedReader fileReader;
 	
+	
+	/**
+	 * Constructor by default
+	 * Use a "save.txt" file
+	 */
 	public gestionFichier ()
 	{
 		try
 		{
-			file = new File ("C:\\Users\\hugo-\\Documents\\save.txt");
+			// file = new File ("C:\\Users\\hugo-\\Documents\\save.txt");
+			file = new File ("save.txt");
 			
 			if (file.exists () == false)
 				file.createNewFile ();
-		} catch (IOException e)
+		} 
+		catch (IOException e)
 		{
 			throw new TechnicalException(e);
 		}
 	}
 	
+	/**
+	 * ecriture : Prend une List <String> 
+	 * pour écrire dans un fichier ligne par ligne
+	 * @param listString
+	 */
 	public void ecriture (List <String> listString)
 	{
 		try
@@ -43,12 +57,18 @@ public class gestionFichier
 			
 			fileWriter.flush ();
 			fileWriter.close ();
-		} catch (IOException e)
+		} 
+		catch (IOException e)
 		{
 			throw new TechnicalException(e);
 		}
 	}
 	
+	/**
+	 * lecture : Retourne une List <String> 
+	 * contenant un fichier entier ligne par ligne
+	 * @return
+	 */
 	public List <String> lecture () 
 	{
 		try
@@ -64,7 +84,8 @@ public class gestionFichier
 			
 			fileReader.close ();
 			return records;
-		} catch (IOException e)
+		} 
+		catch (IOException e)
 		{
 			throw new TechnicalException(e);
 		} 

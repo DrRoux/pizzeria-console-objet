@@ -1,8 +1,9 @@
 package fr.pizzeria.menu;
 
 /**
+ * Cette classe permet d'instancier les types de menu
+ * selon une clé String
  * @author BIRABEN-BIANCHI Hugo
- *
  */
 public class MenuFactory
 {

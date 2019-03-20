@@ -4,10 +4,14 @@ import java.util.Scanner;
 
 import fr.pizzeria.menu.MenuFactory;
 
+/**
+ * Cette classe permet de gérer le menu d'affichage
+ * de l'application.
+ * @author BIRABEN-BIANCHI Hugo
+ */
 public class PizzeriaAdminConsoleApp 
 {
 	private static Scanner questionUser;
-	
 	
 	public static void main(String[] args) 
 	{

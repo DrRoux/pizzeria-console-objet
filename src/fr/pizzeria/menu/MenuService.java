@@ -7,7 +7,6 @@ import fr.pizzeria.dao.PizzaFileDao;
 
 /**
  * @author BIRABEN-BIANCHI Hugo
- *
  */
 public abstract class MenuService  
 {

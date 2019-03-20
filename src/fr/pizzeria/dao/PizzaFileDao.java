@@ -7,8 +7,9 @@ import fr.pizzeria.model.Pizza;
 import fr.pizzeria.dao.gestionFichier;
 
 /**
+ * Classe permettant la gestion des Pizza comme une véritable
+ * BDD avec écriture dans un fichier pour la persistance des données
  * @author BIRABEN-BIANCHI Hugo
- *
  */
 public class PizzaFileDao implements IPizzaDao
 {

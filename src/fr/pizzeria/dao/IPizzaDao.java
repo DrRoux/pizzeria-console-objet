@@ -3,6 +3,7 @@ package fr.pizzeria.dao;
 import fr.pizzeria.model.Pizza;
 
 /**
+ * Interface de gestion des données
  * @author BIRABEN-BIANCHI Hugo
  */
 public interface IPizzaDao

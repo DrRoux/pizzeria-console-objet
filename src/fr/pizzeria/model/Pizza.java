@@ -1,7 +1,5 @@
 package fr.pizzeria.model;
 
-import java.util.Scanner;
-
 /**
  * Cette classe représente une Pizza
  * @author BIRABEN-BIANCHI Hugo
@@ -63,6 +61,10 @@ public class Pizza
 		this.prix = prix;
 	}
 	
+	/**
+	 * Fonction permettant de modifier une pizza
+	 * @param pizza
+	 */
 	public void modifPizza (Pizza pizza)
 	{
 		setCode (pizza.getCode());
@@ -70,11 +72,22 @@ public class Pizza
 		setPrix (pizza.getPrix());
 	}
 	
+	
+	/**
+	 * Surcharge de la méthode toString de Object
+	 * afin de pouvoir afficher l'objet Pizza normalement.
+	 * @see java.lang.Object#toString()
+	 */
 	public String toString ()
 	{
 		return (code + " -> " + libelle + " (" + prix + " €) ");
 	}
 	
+	/**
+	 * Fonction permettant un formatage particulier afin de l'enregistrer
+	 * dans un fichier .txt pour la persistance des données.
+	 * @return
+	 */
 	public String toSave ()
 	{
 		return (id + "," + code + "," + libelle + "," + prix);
