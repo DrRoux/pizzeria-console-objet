@@ -11,7 +11,8 @@ import java.lang.annotation.*;
 @Target (ElementType.FIELD)
 public @interface ToString
 {
-	String separateur() default "";
+	String separateurAv() default "";
+	String separateurAp() default "";
 	boolean upperCase() default false;
 	boolean display () default true;
 }

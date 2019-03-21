@@ -37,9 +37,10 @@ public class StringUtils <T>
 						ToString annotation = f.getAnnotation(ToString.class);
 						boolean uppercase = annotation.upperCase ();
 						boolean display = annotation.display ();
-						String separateur = annotation.separateur();
+						String separateurAv = annotation.separateurAv();
+						String separateurAp = annotation.separateurAp();
 						
-						retour += separateur;
+						retour += separateurAv;
 						if (display == true)
 						{
 							if (uppercase == true)
@@ -47,6 +48,7 @@ public class StringUtils <T>
 							else
 								retour += f.get(attribut);
 						}
+						retour += separateurAp;
 						
 					} 
 					catch (IllegalArgumentException e)

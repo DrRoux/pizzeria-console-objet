@@ -27,8 +27,13 @@ public class ListerPizzaService extends MenuService
 		{
 			s.setAttribut(pi);
 			System.out.println(s);
-			//System.out.println(pi);
 		}
+		
+		System.out.println( " ---------------- ");
+		
+		for (Pizza pi : pizzas)
+			System.out.println(pi);
+		
 				
 		
 		System.out.println(" ");	

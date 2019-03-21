@@ -17,19 +17,17 @@ public class Pizza
 	private int id;
 	
 	/** code : String */
-	@ToString(separateur="")
 	private String code;
 	
 	/** libelle : String */
-	@ToString(separateur=" -> ", upperCase=true)
+	@ToString(upperCase=true)
 	private String libelle;
 	
 	/** prix : double */
-	@ToString(separateur=" (", upperCase=true)
+	@ToString(separateurAv=" -> (", separateurAp = " €)",upperCase=true)
 	private double prix;
 	
 	/** cP : CategoriePizza */
-	@ToString(separateur=") ", display=false)
 	private CategoriePizza cP;
 	
 	/**
