@@ -14,21 +14,23 @@ public class Pizza
 	private static int nbPizza = 0;
 	
 	/** id : int */
-	@ToString(separateur="", upperCase=false)
 	private int id;
 	
 	/** code : String */
-	@ToString(separateur=" - ", upperCase=false)
+	@ToString(separateur="")
 	private String code;
 	
 	/** libelle : String */
 	@ToString(separateur=" -> ", upperCase=true)
 	private String libelle;
-	/** prix : double */
-	private double prix;
-	/** cP : CategoriePizza */
-	private CategoriePizza cP;
 	
+	/** prix : double */
+	@ToString(separateur=" (", upperCase=true)
+	private double prix;
+	
+	/** cP : CategoriePizza */
+	@ToString(separateur=") ", display=false)
+	private CategoriePizza cP;
 	
 	/**
 	 * Default Constructor
@@ -125,44 +127,7 @@ public class Pizza
 	 */
 	public String toString ()
 	{
-		
-		Class classe = getClass ();
-		Field [] fields = classe.getDeclaredFields();
-		String retour = "";
-		
-		for (Field f : fields)
-		{
-				if (f.isAnnotationPresent(ToString.class))
-				{
-					try
-					{
-						//System.out.println(f.getName ());
-						ToString annotation = f.getAnnotation(ToString.class);
-						boolean uppercase = annotation.upperCase ();
-						String separateur = annotation.separateur();
-						
-						retour += separateur;
-						if (uppercase == true)
-							retour += f.get(this).toString ().toUpperCase();
-						else
-							retour += f.get(this);
-						
-					} 
-					catch (IllegalArgumentException e)
-					{
-						e.printStackTrace();
-					}
-					catch (IllegalAccessException e)
-					{
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-		}
-		
-		return retour;
-		
-		//return (code + " -> " + libelle + " (" + prix + " €) - " + cP.getNom());
+		return (code + " -> " + libelle + " (" + prix + " €) - " + cP.getNom());
 	}
 	
 	/**

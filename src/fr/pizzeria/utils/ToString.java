@@ -13,4 +13,5 @@ public @interface ToString
 {
 	String separateur() default "";
 	boolean upperCase() default false;
+	boolean display () default true;
 }
