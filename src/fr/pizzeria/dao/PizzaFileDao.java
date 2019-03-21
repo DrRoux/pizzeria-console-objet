@@ -3,6 +3,7 @@ package fr.pizzeria.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 import fr.pizzeria.dao.gestionFichier;
 
@@ -21,24 +22,24 @@ public class PizzaFileDao implements IPizzaDao
 		tabPizza = new ArrayList <Pizza> ();
 		gestionFichier = new gestionFichier ();
 		
-		lecture ();
-		
-		/*
+		//*
 		initialisation ();
 		ecriture ();
 		//*/
+		
+		lecture ();
 	}
 	
 	public void initialisation ()
 	{
-		tabPizza.add(new Pizza ("PEP",  "Pépéroni", 	 12.50));
-		tabPizza.add(new Pizza ("MAR",  "Margherita", 	 14.00));
-		tabPizza.add(new Pizza ("REIN", "La Reine", 	 11.50));
-		tabPizza.add(new Pizza ("FRO",  "La 4 Fromage",  12.00));
-		tabPizza.add(new Pizza ("CAN",  "La cannibale",  12.50));
-		tabPizza.add(new Pizza ("SAV",  "La savoyarde",  13.00));
-		tabPizza.add(new Pizza ("ORI",  "L’orientale",   13.50));
-		tabPizza.add(new Pizza ("IND",  "L’indienne", 	 14.00));
+		tabPizza.add(new Pizza ("PEP",  "Pépéroni", 	 12.50, CategoriePizza.INCONNU));
+		tabPizza.add(new Pizza ("MAR",  "Margherita", 	 14.00, CategoriePizza.SANS_VIANDE));
+		tabPizza.add(new Pizza ("REIN", "La Reine", 	 11.50, CategoriePizza.VIANDE));
+		tabPizza.add(new Pizza ("FRO",  "La 4 Fromage",  12.00, CategoriePizza.SANS_VIANDE));
+		tabPizza.add(new Pizza ("CAN",  "La cannibale",  12.50, CategoriePizza.VIANDE));
+		tabPizza.add(new Pizza ("SAV",  "La savoyarde",  13.00, CategoriePizza.INCONNU));
+		tabPizza.add(new Pizza ("ORI",  "L’orientale",   13.50, CategoriePizza.INCONNU));
+		tabPizza.add(new Pizza ("IND",  "L’indienne", 	 14.00, CategoriePizza.INCONNU));
 	}
 
 	@Override
@@ -127,7 +128,7 @@ public class PizzaFileDao implements IPizzaDao
 		for (String s : listString)
 		{
 			String [] pizza = s.split(",");
-			tabPizza.add(new Pizza (Integer.parseInt(pizza[0]), pizza[1], pizza[2], Double.parseDouble(pizza[3])));
+			tabPizza.add(new Pizza (Integer.parseInt(pizza[0]), pizza[1], pizza[2], Double.parseDouble(pizza[3]), CategoriePizza.valueOf(pizza[4].toUpperCase())));
 			maxNbPizza = Integer.parseInt(pizza[0]);
 		}
 		

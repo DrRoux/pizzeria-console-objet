@@ -16,6 +16,8 @@ public class Pizza
 	private String libelle;
 	/** prix : double */
 	private double prix;
+	/** cP : CategoriePizza */
+	private CategoriePizza cP;
 	
 	
 	/**
@@ -26,6 +28,7 @@ public class Pizza
 		super ();
 		this.id = nbPizza;
 		nbPizza++;
+		cP = CategoriePizza.INCONNU;
 	}
 	
 	/** 
@@ -40,6 +43,20 @@ public class Pizza
 		this.code = code.toUpperCase();
 		this.libelle = libelle;
 		this.prix = prix;
+		cP = CategoriePizza.INCONNU;
+		
+		this.id = nbPizza;
+		nbPizza++;
+		
+	}
+	
+	public Pizza (String code, String libelle, double prix, CategoriePizza cP) 
+	{
+		super();
+		this.code = code.toUpperCase();
+		this.libelle = libelle;
+		this.prix = prix;
+		this.cP = cP;
 		
 		this.id = nbPizza;
 		nbPizza++;
@@ -52,13 +69,31 @@ public class Pizza
 	 * @param libelle : nom de la pizza
 	 * @param prix : prix en €
 	 */
-	public Pizza (int id, String code, String libelle, double prix) 
+	public Pizza (int id, String code, String libelle, double prix)  
 	{
 		super();
 		this.id = id;
 		this.code = code.toUpperCase();
 		this.libelle = libelle;
 		this.prix = prix;
+		cP = CategoriePizza.INCONNU;
+	}
+	
+	/**
+	 * Constructor
+	 * @param id : id
+	 * @param code : code en majuscule en maximum 4 lettres
+	 * @param libelle : nom de la pizza
+	 * @param prix : prix en €
+	 */
+	public Pizza (int id, String code, String libelle, double prix, CategoriePizza cP)  
+	{
+		super();
+		this.id = id;
+		this.code = code.toUpperCase();
+		this.libelle = libelle;
+		this.prix = prix;
+		this.cP = cP;
 	}
 	
 	/**
@@ -80,7 +115,7 @@ public class Pizza
 	 */
 	public String toString ()
 	{
-		return (code + " -> " + libelle + " (" + prix + " €) ");
+		return (code + " -> " + libelle + " (" + prix + " €) - " + cP.getNom());
 	}
 	
 	/**
@@ -90,7 +125,7 @@ public class Pizza
 	 */
 	public String toSave ()
 	{
-		return (id + "," + code + "," + libelle + "," + prix);
+		return (id + "," + code + "," + libelle + "," + prix + "," + cP.getNom());
 	}
 
 	/**
@@ -181,6 +216,16 @@ public class Pizza
 	{
 		Pizza.nbPizza = nbPizza;
 		
+	}
+
+	public CategoriePizza getcP()
+	{
+		return cP;
+	}
+
+	public void setcP(CategoriePizza cP)
+	{
+		this.cP = cP;
 	}
 
 }
