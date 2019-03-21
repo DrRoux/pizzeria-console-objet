@@ -4,22 +4,27 @@
 package fr.pizzeria.menu;
 
 import java.util.Scanner;
-
+import fr.pizzeria.exception.*;
 import fr.pizzeria.model.Pizza;
 
 /**
- * @author hugo-
+ * @author BIRABEN-BIANCHI Hugo
  *
  */
 public class ModifierPizzaService extends MenuService
 {
 	
 	@Override
-	public void executeUC(Scanner scanner)
+	public void executeUC(Scanner scanner) throws UpdatePizzaException
 	{
-		System.out.println("Mise à jour d'une pizza : ");
-		System.out.println("Veuillez choisir le code de la pizza à modifier : ");
-		String choice = scanner.nextLine();
+		String choice = null;
+		System.out.println("Modification d'une pizza : ");
+		
+		while (gestionnairePizza.pizzaExists(choice) == false)
+		{	
+			System.out.println("Veuillez choisir le code de la pizza à modifier : ");
+			choice = scanner.nextLine().toUpperCase();
+		}
 		
 		System.out.println("Veuillez saisir le code :");
 		String choiceCode = scanner.nextLine();

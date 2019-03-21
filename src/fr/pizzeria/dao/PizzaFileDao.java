@@ -13,35 +13,36 @@ import fr.pizzeria.dao.gestionFichier;
  */
 public class PizzaFileDao implements IPizzaDao
 {
-	private Pizza [] tabPizza;
+	private List <Pizza> tabPizza;
 	private gestionFichier gestionFichier;
 	
 	public PizzaFileDao ()
 	{
-		tabPizza = new Pizza [100];
+		tabPizza = new ArrayList <Pizza> ();
 		gestionFichier = new gestionFichier ();
+		
 		lecture ();
+		
+		/*
+		initialisation ();
+		ecriture ();
+		//*/
 	}
 	
 	public void initialisation ()
 	{
-		if (tabPizza.length > 8)
-		{
-			tabPizza[0] = new Pizza ("PEP",  "Pépéroni", 	 12.50);
-			tabPizza[1] = new Pizza ("MAR",  "Margherita", 	 14.00);
-			tabPizza[2] = new Pizza ("REIN", "La Reine", 	 11.50);
-			tabPizza[3] = new Pizza ("FRO",  "La 4 Fromage", 12.00);
-			tabPizza[4] = new Pizza ("CAN",  "La cannibale", 12.50);
-			tabPizza[5] = new Pizza ("SAV",  "La savoyarde", 13.00);
-			tabPizza[6] = new Pizza ("ORI",  "L’orientale",  13.50);
-			tabPizza[7] = new Pizza ("IND",  "L’indienne", 	 14.00);
-		}
-		else
-			System.out.println("Taille du tableau insuffisante pour l'initialisation !");
+		tabPizza.add(new Pizza ("PEP",  "Pépéroni", 	 12.50));
+		tabPizza.add(new Pizza ("MAR",  "Margherita", 	 14.00));
+		tabPizza.add(new Pizza ("REIN", "La Reine", 	 11.50));
+		tabPizza.add(new Pizza ("FRO",  "La 4 Fromage",  12.00));
+		tabPizza.add(new Pizza ("CAN",  "La cannibale",  12.50));
+		tabPizza.add(new Pizza ("SAV",  "La savoyarde",  13.00));
+		tabPizza.add(new Pizza ("ORI",  "L’orientale",   13.50));
+		tabPizza.add(new Pizza ("IND",  "L’indienne", 	 14.00));
 	}
 
 	@Override
-	public Pizza[] findAllPizzas()
+	public List <Pizza> findAllPizzas()
 	{
 		return tabPizza;
 	}
@@ -49,13 +50,8 @@ public class PizzaFileDao implements IPizzaDao
 	@Override
 	public void saveNewPizza(Pizza pizza)
 	{
-		for (int i = 0; i < tabPizza.length; i++)
-			if (tabPizza[i] == null)
-			{
-				tabPizza[i] = new Pizza ();
-				tabPizza[i].modifPizza (pizza);
-				break;
-			}
+		tabPizza.add(new Pizza ());
+		tabPizza.get(tabPizza.size ()-1).modifPizza (pizza);
 		ecriture ();
 	}
 
@@ -63,26 +59,25 @@ public class PizzaFileDao implements IPizzaDao
 	public void updatePizza(String codePizza, Pizza pizza)
 	{
 		for (Pizza p : tabPizza)
-			if (p != null)
-				if (p.getCode().equals(pizza.getCode()))
-					pizza.modifPizza (pizza);
+			if (p.getCode().equals(codePizza))
+				p.modifPizza (pizza);
+		
 		ecriture ();
 	}
 
 	@Override
 	public void deletePizza(String codePizza)
 	{
-		for (int i = 0; i < tabPizza.length; i++)
+		for (int i = 0; i < tabPizza.size (); i++)
 		{
-			if (tabPizza[i] != null)	
-				if (tabPizza[i].getCode().equals(codePizza.toUpperCase()))
-					tabPizza[i] = null;
+			if (tabPizza.get(i) != null)	
+				if (tabPizza.get(i).getCode().equals(codePizza.toUpperCase()))
+					tabPizza.set(i, null);
 			
-			if (tabPizza[i] == null && i < tabPizza.length-1 && tabPizza[i+1] != null)
+			if (tabPizza.get(i) == null && (i < tabPizza.size ()-1) && tabPizza.get(i+1) != null)
 			{
-				tabPizza[i] = tabPizza[i+1];
-				// tabPizza[i].setId(i); Modification ou non de l'ID ? Permet de garder une trace du nombre de Pizza créées même si supprimées.
-				tabPizza[i+1] = null;
+				tabPizza.set(i, tabPizza.get(i+1));
+				tabPizza.set(i+1, null);
 			}
 		}
 		ecriture ();
@@ -128,13 +123,14 @@ public class PizzaFileDao implements IPizzaDao
 	{
 		List <String> listString = gestionFichier.lecture();
 		
+		int maxNbPizza = 0;		
 		for (String s : listString)
 		{
 			String [] pizza = s.split(",");
-			tabPizza[Integer.parseInt(pizza[0])] = new Pizza (Integer.parseInt(pizza[0]), pizza[1], pizza[2], Double.parseDouble(pizza[3]));
-			Pizza.setNbPizza(Integer.parseInt(pizza[0]));
+			tabPizza.add(new Pizza (Integer.parseInt(pizza[0]), pizza[1], pizza[2], Double.parseDouble(pizza[3])));
+			maxNbPizza = Integer.parseInt(pizza[0]);
 		}
 		
-		
+		Pizza.setNbPizza(maxNbPizza);
 	}
 }

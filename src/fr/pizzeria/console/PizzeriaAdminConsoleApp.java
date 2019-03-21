@@ -2,6 +2,7 @@ package fr.pizzeria.console;
 
 import java.util.Scanner;
 
+import fr.pizzeria.exception.SavePizzaException;
 import fr.pizzeria.menu.MenuFactory;
 
 /**
@@ -34,31 +35,51 @@ public class PizzeriaAdminConsoleApp
 			
 			choice = questionUser.nextLine();
 			
-			if (Integer.parseInt(choice) == 1)
+			try
 			{
-				menu.create("list").executeUC(questionUser);
+				if (Integer.parseInt(choice) == 1)
+				{
+					menu.create("list").executeUC(questionUser);
+				}
+				else if (Integer.parseInt(choice) == 2)
+				{
+					menu.create("ajout").executeUC(questionUser);
+				}
+				else if (Integer.parseInt(choice) == 3)
+				{
+					menu.create("modif").executeUC(questionUser);
+				}
+				else if (Integer.parseInt(choice) == 4)
+				{
+					menu.create("suppr").executeUC(questionUser);			
+				}
+				else if (Integer.parseInt(choice) == 99)
+				{
+					System.out.println("Aurevoir ☻");
+					sortiBoucle = true;
+				}
+				else
+				{
+					System.out.println("Choix invalide, veuillez recommencer !");
+				}
+			//*
 			}
-			else if (Integer.parseInt(choice) == 2)
+			catch (NumberFormatException e)
 			{
-				menu.create("ajout").executeUC(questionUser);
+				choice = "0";
 			}
-			else if (Integer.parseInt(choice) == 3)
+			catch (SavePizzaException e)
 			{
-				menu.create("modif").executeUC(questionUser);
+				System.out.println(e.getMessage());
+				
+				if (e.getMessage().equals("codeTropCourt"))
+					System.out.println();
 			}
-			else if (Integer.parseInt(choice) == 4)
+			catch (Exception e)
 			{
-				menu.create("suppr").executeUC(questionUser);			
+				
 			}
-			else if (Integer.parseInt(choice) == 99)
-			{
-				System.out.println("Aurevoir ☻");
-				sortiBoucle = true;
-			}
-			else
-			{
-				System.out.println("Choix invalide, veuillez recommencer !");
-			}
+			//*/
 			
 		}
 		

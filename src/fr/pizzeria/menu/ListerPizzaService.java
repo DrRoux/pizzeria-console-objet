@@ -3,6 +3,7 @@
  */
 package fr.pizzeria.menu;
 
+import java.util.List;
 import java.util.Scanner;
 import fr.pizzeria.model.Pizza;;
 
@@ -18,7 +19,7 @@ public class ListerPizzaService extends MenuService
 	{
 		System.out.println("Liste des pizzas : ");
 		
-		Pizza [] pizzas = gestionnairePizza.findAllPizzas();
+		List<Pizza> pizzas = gestionnairePizza.findAllPizzas();
 		for (Pizza pi : pizzas)
 			if (pi != null)
 				System.out.println(pi);
