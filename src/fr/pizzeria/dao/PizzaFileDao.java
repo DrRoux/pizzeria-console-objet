@@ -22,7 +22,7 @@ public class PizzaFileDao implements IPizzaDao
 		tabPizza = new ArrayList <Pizza> ();
 		gestionFichier = new gestionFichier ();
 		
-		//*
+		/*
 		initialisation ();
 		ecriture ();
 		//*/

@@ -1,5 +1,9 @@
 package fr.pizzeria.model;
 
+import java.lang.reflect.Field;
+
+import fr.pizzeria.utils.*;
+
 /**
  * Cette classe représente une Pizza
  * @author BIRABEN-BIANCHI Hugo
@@ -8,11 +12,17 @@ public class Pizza
 {
 	/** nbPizza : static int */
 	private static int nbPizza = 0;
+	
 	/** id : int */
+	@ToString(separateur="", upperCase=false)
 	private int id;
+	
 	/** code : String */
+	@ToString(separateur=" - ", upperCase=false)
 	private String code;
+	
 	/** libelle : String */
+	@ToString(separateur=" -> ", upperCase=true)
 	private String libelle;
 	/** prix : double */
 	private double prix;
@@ -115,7 +125,44 @@ public class Pizza
 	 */
 	public String toString ()
 	{
-		return (code + " -> " + libelle + " (" + prix + " €) - " + cP.getNom());
+		
+		Class classe = getClass ();
+		Field [] fields = classe.getDeclaredFields();
+		String retour = "";
+		
+		for (Field f : fields)
+		{
+				if (f.isAnnotationPresent(ToString.class))
+				{
+					try
+					{
+						//System.out.println(f.getName ());
+						ToString annotation = f.getAnnotation(ToString.class);
+						boolean uppercase = annotation.upperCase ();
+						String separateur = annotation.separateur();
+						
+						retour += separateur;
+						if (uppercase == true)
+							retour += f.get(this).toString ().toUpperCase();
+						else
+							retour += f.get(this);
+						
+					} 
+					catch (IllegalArgumentException e)
+					{
+						e.printStackTrace();
+					}
+					catch (IllegalAccessException e)
+					{
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+		}
+		
+		return retour;
+		
+		//return (code + " -> " + libelle + " (" + prix + " €) - " + cP.getNom());
 	}
 	
 	/**
