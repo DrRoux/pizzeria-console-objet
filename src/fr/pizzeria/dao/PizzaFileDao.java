@@ -51,8 +51,7 @@ public class PizzaFileDao implements IPizzaDao
 	@Override
 	public void saveNewPizza(Pizza pizza)
 	{
-		tabPizza.add(new Pizza ());
-		tabPizza.get(tabPizza.size ()-1).modifPizza (pizza);
+		tabPizza.add(pizza);
 		ecriture ();
 	}
 
@@ -132,6 +131,6 @@ public class PizzaFileDao implements IPizzaDao
 			maxNbPizza = Integer.parseInt(pizza[0]);
 		}
 		
-		Pizza.setNbPizza(maxNbPizza);
+		Pizza.setNbPizza(maxNbPizza+1);
 	}
 }
