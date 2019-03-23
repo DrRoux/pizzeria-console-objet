@@ -40,6 +40,11 @@ public class gestionFichier
 		}
 	}
 	
+	public boolean isEmpty ()
+	{
+		return file.length() < 1;
+	}
+	
 	/**
 	 * ecriture : Prend une List <String> 
 	 * pour écrire dans un fichier ligne par ligne

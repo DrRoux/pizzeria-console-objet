@@ -20,12 +20,13 @@ public class PizzaFileDao implements IPizzaDao
 		tabPizza = new ArrayList <Pizza> ();
 		gestionFichier = new gestionFichier ();
 		
-		/*
-		initialisation ();
-		ecriture ();
-		//*/
-		
-		lecture ();
+		if (gestionFichier.isEmpty())
+		{
+			initialisation ();
+			ecriture ();
+		}
+		else
+			lecture ();
 	}
 	
 	public void initialisation ()
