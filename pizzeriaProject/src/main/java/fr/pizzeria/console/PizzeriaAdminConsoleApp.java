@@ -12,9 +12,9 @@ import fr.pizzeria.menu.MenuFactory;
  */
 public class PizzeriaAdminConsoleApp 
 {
-	private static Scanner questionUser;
+	private Scanner questionUser;
 	
-	public static void main(String[] args) 
+	public void display() 
 	{
 		String choice = "0";
 		questionUser = new Scanner (System.in);

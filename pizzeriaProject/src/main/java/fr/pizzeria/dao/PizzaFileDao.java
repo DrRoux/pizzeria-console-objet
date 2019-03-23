@@ -2,10 +2,8 @@ package fr.pizzeria.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
-import fr.pizzeria.dao.gestionFichier;
 
 /**
  * Classe permettant la gestion des Pizza comme une véritable
@@ -42,20 +40,17 @@ public class PizzaFileDao implements IPizzaDao
 		tabPizza.add(new Pizza ("IND",  "L’indienne", 	 14.00, CategoriePizza.INCONNU));
 	}
 
-	@Override
 	public List <Pizza> findAllPizzas()
 	{
 		return tabPizza;
 	}
 
-	@Override
 	public void saveNewPizza(Pizza pizza)
 	{
 		tabPizza.add(pizza);
 		ecriture ();
 	}
-
-	@Override
+	
 	public void updatePizza(String codePizza, Pizza pizza)
 	{
 		for (Pizza p : tabPizza)
@@ -65,7 +60,6 @@ public class PizzaFileDao implements IPizzaDao
 		ecriture ();
 	}
 
-	@Override
 	public void deletePizza(String codePizza)
 	{
 		for (Pizza p : tabPizza)
@@ -80,8 +74,7 @@ public class PizzaFileDao implements IPizzaDao
 		}
 		ecriture ();
 	}
-
-	@Override
+	
 	public Pizza findPizzaByCode(String codePizza)
 	{
 		for (Pizza pizza : tabPizza)
@@ -91,7 +84,6 @@ public class PizzaFileDao implements IPizzaDao
 		return null;
 	}
 
-	@Override
 	public boolean pizzaExists(String codePizza)
 	{
 		boolean exist = false;
