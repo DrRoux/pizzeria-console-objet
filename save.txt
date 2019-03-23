@@ -6,4 +6,5 @@
 5,SAV,La savoyarde,13.0,Inconnu
 6,ORI,L’orientale,13.5,Inconnu
 7,IND,L’indienne,14.0,Inconnu
-11,AZER,r,1.0,Inconnu
+8,AZE,Azénor,16.235,Inconnu
+9,TEST,Testing Pizza App,0.0,Inconnu

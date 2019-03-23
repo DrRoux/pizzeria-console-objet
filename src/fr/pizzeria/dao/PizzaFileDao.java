@@ -68,17 +68,15 @@ public class PizzaFileDao implements IPizzaDao
 	@Override
 	public void deletePizza(String codePizza)
 	{
+		for (Pizza p : tabPizza)
+			if (p.getCode().equals(codePizza))
+				tabPizza.remove (p);
+		
+		
 		for (int i = 0; i < tabPizza.size (); i++)
 		{
-			if (tabPizza.get(i) != null)	
-				if (tabPizza.get(i).getCode().equals(codePizza.toUpperCase()))
-					tabPizza.set(i, null);
-			
-			if (tabPizza.get(i) == null && (i < tabPizza.size ()-1) && tabPizza.get(i+1) != null)
-			{
-				tabPizza.set(i, tabPizza.get(i+1));
-				tabPizza.set(i+1, null);
-			}
+			if (tabPizza.get(i).getId() != i)
+				tabPizza.get(i).setId(i);
 		}
 		ecriture ();
 	}
