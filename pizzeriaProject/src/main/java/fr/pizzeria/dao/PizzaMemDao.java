@@ -1,7 +1,6 @@
 package fr.pizzeria.dao;
 
 import java.util.*;
-
 import fr.pizzeria.model.Pizza;
 
 /**
@@ -35,14 +34,12 @@ public class PizzaMemDao implements IPizzaDao
 		else
 			System.out.println("Taille du tableau insuffisante pour l'initialisation !");
 	}
-
-	@Override
+	
 	public List <Pizza> findAllPizzas()
 	{
 		return tabPizza;
 	}
 
-	@Override
 	public void saveNewPizza(Pizza pizza)
 	{
 		for (int i = 0; i < tabPizza.size (); i++)
@@ -54,7 +51,6 @@ public class PizzaMemDao implements IPizzaDao
 			}
 	}
 
-	@Override
 	public void updatePizza(String codePizza, Pizza pizza)
 	{
 		for (Pizza p : tabPizza)
@@ -63,7 +59,6 @@ public class PizzaMemDao implements IPizzaDao
 					p.modifPizza (pizza);
 	}
 
-	@Override
 	public void deletePizza(String codePizza)
 	{
 		for (int i = 0; i < tabPizza.size (); i++)
@@ -80,7 +75,6 @@ public class PizzaMemDao implements IPizzaDao
 		}
 	}
 
-	@Override
 	public Pizza findPizzaByCode(String codePizza)
 	{
 		for (Pizza pizza : tabPizza)
@@ -90,7 +84,6 @@ public class PizzaMemDao implements IPizzaDao
 		return null;
 	}
 
-	@Override
 	public boolean pizzaExists(String codePizza)
 	{
 		boolean exist = false;

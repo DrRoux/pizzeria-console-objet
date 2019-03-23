@@ -1,7 +1,5 @@
 package fr.pizzeria.model;
 
-import java.lang.reflect.Field;
-
 import fr.pizzeria.utils.*;
 
 /**

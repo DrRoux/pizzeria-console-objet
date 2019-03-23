@@ -1,7 +1,6 @@
 package fr.pizzeria.dao;
 
 import java.util.List;
-
 import fr.pizzeria.model.Pizza;
 
 /**
