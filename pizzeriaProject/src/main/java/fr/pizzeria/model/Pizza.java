@@ -114,6 +114,7 @@ public class Pizza
 		setCode (pizza.getCode());
 		setLibelle (pizza.getLibelle());
 		setPrix (pizza.getPrix());
+		setcP (pizza.getcP());
 	}
 	
 	

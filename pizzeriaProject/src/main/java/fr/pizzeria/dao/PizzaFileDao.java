@@ -67,7 +67,6 @@ public class PizzaFileDao implements IPizzaDao
 			if (p.getCode().equals(codePizza))
 				tabPizza.remove (p);
 		
-		
 		for (int i = 0; i < tabPizza.size (); i++)
 		{
 			if (tabPizza.get(i).getId() != i)

@@ -32,9 +32,24 @@ public class ModifierPizzaService extends MenuService
 		System.out.println("Veuillez saisir le nom (sans espace):");
 		String choiceLibelle = scanner.nextLine();
 		
-		System.out.println("Veuillez saisir le prix :");
-		String choiceTempString = scanner.nextLine();
-		double choicePrice = Double.parseDouble(choiceTempString);
+		double choicePrice = 0;
+		
+		try
+		{
+			while (choicePrice == 0)
+			{
+				System.out.println("Veuillez saisir le prix :");
+				String choiceTempString = scanner.nextLine();
+				choicePrice = Double.parseDouble(choiceTempString);
+			}
+		}
+		catch (NumberFormatException e)
+		{
+			System.out.println("Veuillez saisir une nombre valide !");
+			choicePrice = 0;
+		}
+			
+		
 		
 		gestionnairePizza.updatePizza(choice, new Pizza (choiceCode, choiceLibelle, choicePrice));
 	}
