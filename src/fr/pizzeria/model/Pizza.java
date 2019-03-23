@@ -17,6 +17,7 @@ public class Pizza
 	private int id;
 	
 	/** code : String */
+	@ToString(upperCase=true, separateurAp = " - ")
 	private String code;
 	
 	/** libelle : String */
@@ -225,7 +226,6 @@ public class Pizza
 	public static void setNbPizza(int nbPizza)
 	{
 		Pizza.nbPizza = nbPizza;
-		
 	}
 
 	public CategoriePizza getcP()

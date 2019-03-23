@@ -23,7 +23,7 @@ public class StringUtils <T>
 	
 	public String toString ()
 	{
-		Class classe = attribut.getClass ();
+		Class <? extends Object> classe = attribut.getClass ();
 		Field [] fields = classe.getDeclaredFields();
 		String retour = "";
 		
