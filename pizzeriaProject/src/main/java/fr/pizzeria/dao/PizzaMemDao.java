@@ -32,7 +32,9 @@ public class PizzaMemDao implements IPizzaDao
 			tabPizza.add(new Pizza ("IND",  "L’indienne", 	 14.00));
 		}
 		else
+		{
 			System.out.println("Taille du tableau insuffisante pour l'initialisation !");
+		}
 	}
 	
 	public List <Pizza> findAllPizzas()
@@ -43,34 +45,47 @@ public class PizzaMemDao implements IPizzaDao
 	public void saveNewPizza(Pizza pizza)
 	{
 		for (int i = 0; i < tabPizza.size (); i++)
+		{
 			if (tabPizza.get(i) == null)
 			{
 				tabPizza.add(new Pizza ());
 				tabPizza.get(i).modifPizza (pizza);
 				break;
 			}
+		}
 	}
 
 	public void updatePizza(String codePizza, Pizza pizza)
 	{
 		for (Pizza p : tabPizza)
+		{
 			if (p != null)
+			{
 				if (p.getCode().equals(codePizza))
+				{
 					p.modifPizza (pizza);
+				}
+			}
+		}
 	}
 
 	public void deletePizza(String codePizza)
 	{
+		for (Pizza p : tabPizza)
+		{
+			if (p.getCode().equals(codePizza))
+			{
+				System.out.println(p.getId());
+				tabPizza.remove (p);
+				break;
+			}
+		}
+		
 		for (int i = 0; i < tabPizza.size (); i++)
 		{
-			if (tabPizza.get(i) != null)	
-				if (tabPizza.get(i).getCode().equals(codePizza.toUpperCase()))
-					tabPizza.set(i, null);
-			
-			if (tabPizza.get(i) == null && (i < tabPizza.size ()-1) && tabPizza.get(i+1) != null)
+			if (tabPizza.get(i).getId() != i)
 			{
-				tabPizza.set(i, tabPizza.get(i+1));
-				tabPizza.set(i+1, null);
+				tabPizza.get(i).setId(i);
 			}
 		}
 	}
@@ -78,8 +93,12 @@ public class PizzaMemDao implements IPizzaDao
 	public Pizza findPizzaByCode(String codePizza)
 	{
 		for (Pizza pizza : tabPizza)
+		{
 			if (pizza.getCode().equals(codePizza.toUpperCase()))
+			{
 				return pizza;
+			}
+		}
 		
 		return null;
 	}
@@ -89,11 +108,13 @@ public class PizzaMemDao implements IPizzaDao
 		boolean exist = false;
 		
 		for (Pizza pizza : tabPizza)
+		{
 			if (pizza.getCode().equals(codePizza))
 			{
 				exist = true;
 				break;
 			}
+		}
 		
 		return exist;
 	}

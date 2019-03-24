@@ -56,7 +56,6 @@ public class Pizza
 		
 		this.id = nbPizza;
 		nbPizza++;
-		
 	}
 	
 	public Pizza (String code, String libelle, double prix, CategoriePizza cP) 

@@ -62,7 +62,6 @@ public class PizzeriaAdminConsoleApp
 				{
 					System.out.println("Choix invalide, veuillez recommencer !");
 				}
-			//*
 			}
 			catch (NumberFormatException e)
 			{
@@ -73,14 +72,14 @@ public class PizzeriaAdminConsoleApp
 				System.out.println(e.getMessage());
 				
 				if (e.getMessage().equals("codeTropCourt"))
+				{
 					System.out.println();
+				}
 			}
 			catch (Exception e)
 			{
-				
+				System.out.println(e.getMessage());
 			}
-			//*/
-			
 		}
 		
 		questionUser.close ();

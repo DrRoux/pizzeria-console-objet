@@ -26,10 +26,20 @@ public class ModifierPizzaService extends MenuService
 			choice = scanner.nextLine().toUpperCase();
 		}
 		
-		System.out.println("Veuillez saisir le code :");
-		String choiceCode = scanner.nextLine();
+		String choiceCode = null;
+		int lengthCode = 0;
 		
-		System.out.println("Veuillez saisir le nom (sans espace):");
+		while (lengthCode < 3 || lengthCode > 5)
+		{
+			System.out.println("Veuillez saisir le code :");
+			choiceCode = scanner.nextLine();
+			lengthCode = choiceCode.length();
+			
+			if (lengthCode < 3 || lengthCode > 5)
+				System.out.println("CODE INVALIDE ! Il doit faire entre 3 et 5 caractères !");
+		}
+		
+		System.out.println("Veuillez saisir le nom :");
 		String choiceLibelle = scanner.nextLine();
 		
 		double choicePrice = 0;
@@ -48,8 +58,6 @@ public class ModifierPizzaService extends MenuService
 			System.out.println("Veuillez saisir une nombre valide !");
 			choicePrice = 0;
 		}
-			
-		
 		
 		gestionnairePizza.updatePizza(choice, new Pizza (choiceCode, choiceLibelle, choicePrice));
 	}

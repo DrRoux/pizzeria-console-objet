@@ -26,7 +26,9 @@ public class PizzaFileDao implements IPizzaDao
 			ecriture ();
 		}
 		else
+		{
 			lecture ();
+		}
 	}
 	
 	public void initialisation ()
@@ -49,37 +51,54 @@ public class PizzaFileDao implements IPizzaDao
 	public void saveNewPizza(Pizza pizza)
 	{
 		tabPizza.add(pizza);
-		ecriture ();
+		this.ecriture ();
 	}
 	
 	public void updatePizza(String codePizza, Pizza pizza)
 	{
 		for (Pizza p : tabPizza)
+		{
 			if (p.getCode().equals(codePizza))
+			{
 				p.modifPizza (pizza);
+			}
+		}
 		
-		ecriture ();
+		this.ecriture ();
 	}
 
 	public void deletePizza(String codePizza)
 	{
 		for (Pizza p : tabPizza)
+		{
 			if (p.getCode().equals(codePizza))
+			{
+				System.out.println(p.getId());
 				tabPizza.remove (p);
+				//break;
+			}
+		}
 		
 		for (int i = 0; i < tabPizza.size (); i++)
 		{
 			if (tabPizza.get(i).getId() != i)
+			{
 				tabPizza.get(i).setId(i);
+			}
 		}
-		ecriture ();
+		
+		this.ecriture ();
 	}
 	
 	public Pizza findPizzaByCode(String codePizza)
 	{
 		for (Pizza pizza : tabPizza)
+		{
 			if (pizza.getCode().equals(codePizza.toUpperCase()))
+			{
 				return pizza;
+			}
+		}
 		
 		return null;
 	}
@@ -89,11 +108,13 @@ public class PizzaFileDao implements IPizzaDao
 		boolean exist = false;
 		
 		for (Pizza pizza : tabPizza)
+		{
 			if (pizza.getCode().equals(codePizza))
 			{
 				exist = true;
 				break;
 			}
+		}
 		
 		return exist;
 	}
@@ -103,7 +124,6 @@ public class PizzaFileDao implements IPizzaDao
 		List <String> listString = new ArrayList<String> ();
 		
 		for (Pizza pizza : tabPizza)
-			if (pizza != null)
 				listString.add(pizza.toSave());
 		
 		gestionFichier.ecriture(listString);

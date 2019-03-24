@@ -19,18 +19,20 @@ public class AjouterPizzaService extends MenuService
 	{
 		System.out.println("Ajout d'une nouvelle pizza : ");
 		
-		System.out.println("Veuillez saisir le code :");
-		String choiceCode = scanner.nextLine();
-
-		/*
-		if (choiceCode.length() < 3)
-			throw new SavePizzaException ("codeTropCourt");
-		else if (choiceCode.length() > 5)
-			throw new SavePizzaException ("codeTropLong");
-		//*/
-
+		String choiceCode = "AAAAAAAAAAAA";
+		int lengthCode = 0;
 		
-		System.out.println("Veuillez saisir le nom (sans espace):");
+		while (lengthCode < 3 || lengthCode > 5)
+		{
+			System.out.println("Veuillez saisir le code :");
+			choiceCode = scanner.nextLine();
+			lengthCode = choiceCode.length();
+			
+			if (lengthCode < 3 || lengthCode > 5)
+				System.out.println("CODE INVALIDE ! Il doit faire entre 3 et 5 caractères !");
+		}
+		
+		System.out.println("Veuillez saisir le nom :");
 		String choiceLibelle = scanner.nextLine();
 		
 		double choicePrice = 0;
