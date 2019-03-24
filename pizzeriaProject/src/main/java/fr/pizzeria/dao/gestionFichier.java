@@ -32,7 +32,9 @@ public class gestionFichier
 			file = new File ("save.txt");
 			
 			if (file.exists () == false)
+			{
 				file.createNewFile ();
+			}
 		} 
 		catch (IOException e)
 		{
@@ -57,7 +59,9 @@ public class gestionFichier
 			fileWriter = new PrintWriter (new FileWriter (file));
 			
 			for (String s : listString)
+			{
 				fileWriter.println (s);
+			}
 			
 			fileWriter.flush ();
 			fileWriter.close ();

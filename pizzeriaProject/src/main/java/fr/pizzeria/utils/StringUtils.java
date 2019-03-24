@@ -14,7 +14,8 @@ public class StringUtils <T>
 	private T attribut;
 	
 	public StringUtils ()
-	{	}
+	{	
+	}
 	
 	public StringUtils (T type)
 	{	
@@ -44,9 +45,13 @@ public class StringUtils <T>
 						if (display == true)
 						{
 							if (uppercase == true)
+							{
 								retour += f.get(attribut).toString ().toUpperCase();
+							}
 							else
+							{
 								retour += f.get(attribut);
+							}
 						}
 						retour += separateurAp;
 						

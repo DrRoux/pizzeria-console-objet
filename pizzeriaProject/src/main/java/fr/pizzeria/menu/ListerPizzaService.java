@@ -36,7 +36,9 @@ public class ListerPizzaService extends MenuService
 		/* Affichage du menu grâce à la méthode toString () 
 		   rédéfinie dans la classe Pizza. */
 		for (Pizza pi : pizzas)
+		{
 			System.out.println(pi);
+		}
 		
 				
 		

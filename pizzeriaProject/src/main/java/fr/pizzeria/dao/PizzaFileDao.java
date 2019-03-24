@@ -75,7 +75,7 @@ public class PizzaFileDao implements IPizzaDao
 			{
 				System.out.println(p.getId());
 				tabPizza.remove (p);
-				//break;
+				break;
 			}
 		}
 		
@@ -124,7 +124,9 @@ public class PizzaFileDao implements IPizzaDao
 		List <String> listString = new ArrayList<String> ();
 		
 		for (Pizza pizza : tabPizza)
+		{
 				listString.add(pizza.toSave());
+		}
 		
 		gestionFichier.ecriture(listString);
 	}

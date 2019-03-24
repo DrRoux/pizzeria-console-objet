@@ -36,7 +36,9 @@ public class ModifierPizzaService extends MenuService
 			lengthCode = choiceCode.length();
 			
 			if (lengthCode < 3 || lengthCode > 5)
+			{
 				System.out.println("CODE INVALIDE ! Il doit faire entre 3 et 5 caractères !");
+			}
 		}
 		
 		System.out.println("Veuillez saisir le nom :");
