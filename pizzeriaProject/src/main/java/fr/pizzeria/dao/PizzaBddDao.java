@@ -83,8 +83,6 @@ public class PizzaBddDao implements IPizzaDao
 				double prix = result.getDouble("prix");
 				String categorie = result.getString("categorie");
 				
-				System.out.println(code + " -> " + nom_pizza + " (" + prix + " €) - " + categorie);
-				
 				tabPizza.add(new Pizza (id, code, nom_pizza, prix, CategoriePizza.valueOf(categorie.toUpperCase())));	
 			}
 			
