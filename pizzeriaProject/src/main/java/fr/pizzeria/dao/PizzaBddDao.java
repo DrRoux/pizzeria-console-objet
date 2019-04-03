@@ -32,7 +32,6 @@ public class PizzaBddDao implements IPizzaDao
 			GestionFichier file = new GestionFichier ("jdbc.properties");
 			List <String> listString = file.lecture();
 			
-			
 			driverName = listString.get(0).split(";")[1];
 			jdbcUrl = listString.get(1).split(";")[1];
 			userName = listString.get(2).split(";")[1];
@@ -49,10 +48,6 @@ public class PizzaBddDao implements IPizzaDao
 		catch (SQLException e)
 		{
 			throw new PersonnalSqlException ("La connexion à la base de donnée ne s'est pas déroulé correctement", e);
-		}
-		finally
-		{
-			closeConnexionBdd ();
 		}
 	}
 	
