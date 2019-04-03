@@ -2,6 +2,7 @@ package fr.pizzeria.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -24,7 +25,7 @@ public class PizzaBddDao implements IPizzaDao
 	String userName = null;
 	String password = null;
 	Connection connexionBDD = null;
-	Statement statement = null;
+	PreparedStatement st = null;
 	
 	private void beginConnexionBdd ()
 	{
@@ -42,8 +43,6 @@ public class PizzaBddDao implements IPizzaDao
 			
 			connexionBDD = DriverManager.getConnection(jdbcUrl, userName, password);
 			connexionBDD.setAutoCommit(false);
-			
-			statement = connexionBDD.createStatement();
 		}
 		catch (ClassNotFoundException e)
 		{
@@ -59,7 +58,7 @@ public class PizzaBddDao implements IPizzaDao
 	{
 		try
 		{
-			statement.close ();
+			st.close ();
 			connexionBDD.close ();
 		}
 		catch (SQLException e)
@@ -76,7 +75,8 @@ public class PizzaBddDao implements IPizzaDao
 		{
 			beginConnexionBdd ();
 			
-			ResultSet result = statement.executeQuery("SELECT * FROM pizza");
+			st = connexionBDD.prepareStatement("SELECT * FROM pizza");
+			ResultSet result = st.executeQuery();
 			
 			while(result.next()) 
 			{		
@@ -107,8 +107,12 @@ public class PizzaBddDao implements IPizzaDao
 		{
 			beginConnexionBdd ();
 			
-			String requete = "\"" + pizza.getCode() + "\", \""  + pizza.getLibelle() + "\", "  + pizza.getPrix() + ", \""  + pizza.getcP().getNom() + "\"";
-			statement.executeUpdate("INSERT INTO pizza (code, nom_pizza, prix, categorie) values ("+requete+");");
+			st = connexionBDD.prepareStatement("INSERT INTO pizza (code, nom_pizza, prix, categorie) values (?, ?, ?, ?);");
+			st.setString(1, pizza.getCode());
+			st.setString(2, pizza.getLibelle());
+			st.setDouble(3, pizza.getPrix());
+			st.setString(4, pizza.getcP().getNom());
+			st.executeUpdate();
 			
 			connexionBDD.commit();
 			
@@ -128,11 +132,13 @@ public class PizzaBddDao implements IPizzaDao
 			{
 				beginConnexionBdd ();
 				
-				statement.executeUpdate(	"UPDATE pizza SET code = \"" + pizza.getCode()  + 
-											"\", nom_pizza = \"" + pizza.getLibelle() + 
-											"\", prix = " + pizza.getPrix() +
-											", categorie = \"" + pizza.getcP().getNom() + 
-											"\" WHERE code = \"" + codePizza + "\";");
+				st = connexionBDD.prepareStatement("UPDATE pizza SET code = ?, nom_pizza = ?, prix = ?, categorie = ? WHERE ?;");
+				st.setString(1, pizza.getCode());
+				st.setString(2, pizza.getLibelle());
+				st.setDouble(3, pizza.getPrix());
+				st.setString(4, pizza.getcP().getNom());
+				st.setString(5, codePizza);
+				st.executeUpdate();
 				
 				connexionBDD.commit();
 				
@@ -153,7 +159,9 @@ public class PizzaBddDao implements IPizzaDao
 			{
 				beginConnexionBdd ();
 				
-				statement.executeUpdate("DELETE FROM pizza WHERE code = \"" + codePizza + "\";");
+				st = connexionBDD.prepareStatement("DELETE FROM pizza WHERE code = ?;");
+				st.setString(1, codePizza);
+				st.executeUpdate();
 				
 				connexionBDD.commit();
 				
@@ -174,7 +182,9 @@ public class PizzaBddDao implements IPizzaDao
 		{
 			beginConnexionBdd ();
 			
-			ResultSet result = statement.executeQuery("SELECT * FROM pizza WHERE code = \"" + codePizza + "\";");
+			st = connexionBDD.prepareStatement("SELECT * FROM pizza WHERE code = ?");
+			st.setString(1, codePizza);
+			ResultSet result = st.executeQuery();
 			
 			while(result.next()) 
 			{		
@@ -207,7 +217,10 @@ public class PizzaBddDao implements IPizzaDao
 		{
 			beginConnexionBdd ();
 			
-			ResultSet result = statement.executeQuery("SELECT * FROM pizza WHERE code = \"" + codePizza + "\";");
+			st = connexionBDD.prepareStatement("SELECT * FROM pizza WHERE code = ?");
+			st.setString(1, codePizza);
+			ResultSet result = st.executeQuery();
+			
 			int compteur = 0;
 			
 			while(result.next()) 
