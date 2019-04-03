@@ -144,8 +144,23 @@ public class PizzaBddDao implements IPizzaDao
 
 	public void deletePizza(String codePizza)
 	{
-		// TODO Auto-generated method stub
-
+		if (pizzaExists (codePizza))
+		{
+			try
+			{
+				beginConnexionBdd ();
+				
+				statement.executeUpdate("DELETE FROM pizza WHERE code = \"" + codePizza + "\";");
+				
+				connexionBDD.commit();
+				
+				closeConnexionBdd ();
+			}
+			catch (SQLException e)
+			{
+				e.printStackTrace();
+			}
+		}
 	}
 
 	public Pizza findPizzaByCode(String codePizza)
