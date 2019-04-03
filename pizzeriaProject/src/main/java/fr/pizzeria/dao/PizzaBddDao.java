@@ -1,6 +1,3 @@
-/**
- * 
- */
 package fr.pizzeria.dao;
 
 import java.sql.Connection;
@@ -84,6 +81,8 @@ public class PizzaBddDao implements IPizzaDao
 				String categorie = result.getString("categorie");
 				
 				tabPizza.add(new Pizza (id, code, nom_pizza, prix, CategoriePizza.valueOf(categorie.toUpperCase())));	
+				
+				Pizza.setNbPizza(id);
 			}
 			
 			closeConnexionBdd ();
@@ -102,8 +101,11 @@ public class PizzaBddDao implements IPizzaDao
 		{
 			beginConnexionBdd ();
 			
-			String requete = "" + pizza.getId () + ", \"" + pizza.getCode() + "\", \""  + pizza.getLibelle() + "\", \""  + pizza.getPrix() + ", \""  + pizza.getcP() + "\"";
-			int nbLigne = statement.executeUpdate("INSERT INTO pizza values ("+requete+");");
+			String requete = "\"" + pizza.getCode() + "\", \""  + pizza.getLibelle() + "\", "  + pizza.getPrix() + ", \""  + pizza.getcP().getNom() + "\"";
+			System.out.println(requete);
+			int nbLigne = statement.executeUpdate("INSERT INTO pizza (code, nom_pizza, prix, categorie) values ("+requete+");");
+			
+			connexionBDD.commit();
 			
 			closeConnexionBdd ();
 		}
