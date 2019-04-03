@@ -18,7 +18,7 @@ public class PizzaFileDao implements IPizzaDao
 	public PizzaFileDao ()
 	{
 		tabPizza = new ArrayList <Pizza> ();
-		gestionFichier = new GestionFichier ("save.txt");
+		gestionFichier = new GestionFichier ("src/main/ressources/save.txt");
 		
 		if (gestionFichier.isEmpty())
 		{
