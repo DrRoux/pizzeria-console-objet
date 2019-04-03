@@ -61,7 +61,14 @@ public class ModifierPizzaService extends MenuService
 			choicePrice = 0;
 		}
 		
-		gestionnairePizza.updatePizza(choice, new Pizza (choiceCode, choiceLibelle, choicePrice));
+		try
+		{
+			gestionnairePizza.updatePizza(choice, new Pizza (choiceCode, choiceLibelle, choicePrice));
+		}
+		catch (MySqlException e)
+		{
+			System.out.println(e.getMessage());
+		}
 	}
 	
 }

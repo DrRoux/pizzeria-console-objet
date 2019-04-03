@@ -13,12 +13,12 @@ import fr.pizzeria.model.Pizza;
 public class PizzaFileDao implements IPizzaDao
 {
 	private List <Pizza> tabPizza;
-	private gestionFichier gestionFichier;
+	private GestionFichier gestionFichier;
 	
 	public PizzaFileDao ()
 	{
 		tabPizza = new ArrayList <Pizza> ();
-		gestionFichier = new gestionFichier ();
+		gestionFichier = new GestionFichier ("save.txt");
 		
 		if (gestionFichier.isEmpty())
 		{

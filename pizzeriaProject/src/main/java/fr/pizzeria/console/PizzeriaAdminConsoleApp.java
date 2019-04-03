@@ -2,7 +2,9 @@ package fr.pizzeria.console;
 
 import java.util.Scanner;
 
+import fr.pizzeria.exception.MySqlException;
 import fr.pizzeria.exception.SavePizzaException;
+import fr.pizzeria.exception.StockageException;
 import fr.pizzeria.menu.MenuFactory;
 
 /**
@@ -76,7 +78,7 @@ public class PizzeriaAdminConsoleApp
 					System.out.println();
 				}
 			}
-			catch (Exception e)
+			catch (StockageException e)
 			{
 				System.out.println(e.getMessage());
 			}

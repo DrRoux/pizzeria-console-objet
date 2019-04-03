@@ -54,7 +54,15 @@ public class AjouterPizzaService extends MenuService
 			choicePrice = 0;
 		}
 		
-		gestionnairePizza.saveNewPizza(new Pizza (choiceCode, choiceLibelle, choicePrice));
+		try
+		{
+			gestionnairePizza.saveNewPizza(new Pizza (choiceCode, choiceLibelle, choicePrice));
+		}
+		catch (MySqlException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		
 	}
 
 }

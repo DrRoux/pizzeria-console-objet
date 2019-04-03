@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.pizzeria.exception.MySqlException;
+import fr.pizzeria.exception.SavePizzaException;
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
@@ -30,9 +32,13 @@ public class PizzaBddDao implements IPizzaDao
 		{
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			
-			jdbcUrl = "jdbc:mysql://bxnieqyqjpcgwd3f2wwb-mysql.services.clever-cloud.com:3306/bxnieqyqjpcgwd3f2wwb?useSSL=false";
-			userName = "u23oixvvtlomobsc";
-			password = "lwW5IiUfLRDdIsxsqY7G";
+			GestionFichier file = new GestionFichier ("jdbc.properties");
+
+			List <String> listString = file.lecture();
+			
+			jdbcUrl = listString.get(0).split(";")[1];
+			userName = listString.get(1).split(";")[1];
+			password = listString.get(2).split(";")[1];
 			
 			connexionBDD = DriverManager.getConnection(jdbcUrl, userName, password);
 			connexionBDD.setAutoCommit(false);
@@ -89,7 +95,7 @@ public class PizzaBddDao implements IPizzaDao
 		}
 		catch (SQLException e)
 		{
-			e.printStackTrace();
+			throw new MySqlException (e.getMessage());
 		}
 		
 		return tabPizza;
@@ -110,7 +116,7 @@ public class PizzaBddDao implements IPizzaDao
 		}
 		catch (SQLException e)
 		{
-			e.printStackTrace();
+			throw new MySqlException (e.getMessage());
 		}
 	}
 
@@ -134,7 +140,7 @@ public class PizzaBddDao implements IPizzaDao
 			}
 			catch (SQLException e)
 			{
-				e.printStackTrace();
+				throw new MySqlException (e.getMessage());
 			}
 		}
 	}
@@ -155,7 +161,7 @@ public class PizzaBddDao implements IPizzaDao
 			}
 			catch (SQLException e)
 			{
-				e.printStackTrace();
+				throw new MySqlException (e.getMessage());
 			}
 		}
 	}
@@ -187,7 +193,7 @@ public class PizzaBddDao implements IPizzaDao
 		}
 		catch (SQLException e)
 		{
-			e.printStackTrace();
+			throw new MySqlException (e.getMessage());
 		}
 		
 		return pizza;
@@ -220,7 +226,7 @@ public class PizzaBddDao implements IPizzaDao
 		}
 		catch (SQLException e)
 		{
-			e.printStackTrace();
+			throw new MySqlException (e.getMessage());
 		}
 		
 		return retour;

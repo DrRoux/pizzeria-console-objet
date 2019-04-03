@@ -13,7 +13,7 @@ import fr.pizzeria.exception.TechnicalException;
  * de notre application
  * @author BIRABEN-BIANCHI Hugo
  */
-public class gestionFichier
+public class GestionFichier
 {
 	public File file;
 	public PrintWriter fileWriter;
@@ -24,12 +24,12 @@ public class gestionFichier
 	 * Constructor by default
 	 * Use a "save.txt" file
 	 */
-	public gestionFichier ()
+	public GestionFichier (String nomFichier)
 	{
 		try
 		{
 			// file = new File ("C:\\Users\\hugo-\\Documents\\save.txt");
-			file = new File ("save.txt");
+			file = new File (nomFichier);
 			
 			if (file.exists () == false)
 			{
