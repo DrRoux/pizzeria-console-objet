@@ -3,7 +3,7 @@
 Création d'un mini projet pour une formation JAVA suivi chez Diginamic pour la société DTA Ingénierie
 Cette application permet la gestion de pizzas, avec une base de données distante.
 
-Menu de l'application :
+Menu de l'application : 
 ***** Pizzeria Administration *****
 1.  Lister les pizzas
 2.  Ajouter une nouvelle pizza
