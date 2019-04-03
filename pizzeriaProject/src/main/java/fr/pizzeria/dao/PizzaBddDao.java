@@ -50,6 +50,10 @@ public class PizzaBddDao implements IPizzaDao
 		{
 			throw new PersonnalSqlException ("La connexion à la base de donnée ne s'est pas déroulé correctement", e);
 		}
+		finally
+		{
+			closeConnexionBdd ();
+		}
 	}
 	
 	private void closeConnexionBdd ()
@@ -95,6 +99,10 @@ public class PizzaBddDao implements IPizzaDao
 		{
 			throw new PersonnalSqlException ("La récupération de la liste de pizza dans la base de donnée ne s'est pas déroulé correctement", e);
 		}
+		finally
+		{
+			closeConnexionBdd ();
+		}
 		
 		return tabPizza;
 	}
@@ -119,6 +127,10 @@ public class PizzaBddDao implements IPizzaDao
 		catch (SQLException e)
 		{
 			throw new PersonnalSqlException ("Votre ajout d'une pizza dans la base de donnée ne s'est pas déroulé correctement", e);
+		}
+		finally
+		{
+			closeConnexionBdd ();
 		}
 	}
 
@@ -146,6 +158,10 @@ public class PizzaBddDao implements IPizzaDao
 			{
 				throw new PersonnalSqlException ("Votre modification d'une pizza dans la base de donnée ne s'est pas déroulé correctement", e);
 			}
+			finally
+			{
+				closeConnexionBdd ();
+			}
 		}
 	}
 
@@ -168,6 +184,10 @@ public class PizzaBddDao implements IPizzaDao
 			catch (SQLException e)
 			{
 				throw new PersonnalSqlException ("Votre suppression d'une pizza dans la base de donnée ne s'est pas déroulé correctement", e);
+			}
+			finally
+			{
+				closeConnexionBdd ();
 			}
 		}
 	}
@@ -198,6 +218,10 @@ public class PizzaBddDao implements IPizzaDao
 		catch (SQLException e)
 		{
 			throw new PersonnalSqlException ("Votre recherche d'une pizza dans la base de donnée ne s'est pas déroulé correctement", e);
+		}
+		finally
+		{
+			closeConnexionBdd ();
 		}
 		
 		return pizza;
@@ -234,6 +258,10 @@ public class PizzaBddDao implements IPizzaDao
 		catch (SQLException e)
 		{
 			throw new PersonnalSqlException ("Votre recherche d'une pizza dans la base de donnée ne s'est pas déroulé correctement", e);
+		}
+		finally
+		{
+			closeConnexionBdd ();
 		}
 		
 		return retour;
