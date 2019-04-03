@@ -25,18 +25,21 @@ public class PizzaBddDao implements IPizzaDao
 	private Connection connexionBDD = null;
 	private PreparedStatement st = null;
 	
+	public PizzaBddDao ()
+	{
+		GestionFichier file = new GestionFichier ("src/main/ressources/jdbc.properties");
+		List <String> listString = file.lecture();
+		
+		driverName = listString.get(0).split(";")[1];
+		jdbcUrl = listString.get(1).split(";")[1];
+		userName = listString.get(2).split(";")[1];
+		password = listString.get(3).split(";")[1];
+	}
+	
 	private void beginConnexionBdd ()
 	{
 		try
 		{
-			GestionFichier file = new GestionFichier ("jdbc.properties");
-			List <String> listString = file.lecture();
-			
-			driverName = listString.get(0).split(";")[1];
-			jdbcUrl = listString.get(1).split(";")[1];
-			userName = listString.get(2).split(";")[1];
-			password = listString.get(3).split(";")[1];
-			
 			Class.forName(driverName);
 			connexionBDD = DriverManager.getConnection(jdbcUrl, userName, password);
 			connexionBDD.setAutoCommit(false);
