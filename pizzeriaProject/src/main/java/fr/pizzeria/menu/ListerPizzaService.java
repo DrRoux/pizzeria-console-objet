@@ -5,6 +5,7 @@ package fr.pizzeria.menu;
 
 import java.util.List;
 import java.util.Scanner;
+
 import fr.pizzeria.model.Pizza;
 
 /**
@@ -18,8 +19,13 @@ public class ListerPizzaService extends MenuService
 	public void executeUC(Scanner scanner)
 	{
 		System.out.println("Liste des pizzas : ");
-		
+
 		List<Pizza> pizzas = gestionnairePizza.findAllPizzas();
+		
+		for (Pizza pi : pizzas)
+		{
+			System.out.println(pi);
+		}
 		
 		/*
 		// Affichage grâce aux annotations 
@@ -35,12 +41,6 @@ public class ListerPizzaService extends MenuService
 		
 		/* Affichage du menu grâce à la méthode toString () 
 		   rédéfinie dans la classe Pizza. */
-		for (Pizza pi : pizzas)
-		{
-			System.out.println(pi);
-		}
-		
-				
 		
 		System.out.println(" ");	
 	}

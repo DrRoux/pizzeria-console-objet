@@ -62,6 +62,7 @@ public class ModifierPizzaService extends MenuService
 		}
 		
 		gestionnairePizza.updatePizza(choice, new Pizza (choiceCode, choiceLibelle, choicePrice));
+
 	}
 	
 }
