@@ -13,6 +13,8 @@
   	<properties>
 	    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<junit.version>3.8.1</junit.version>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
 
 	<build>
@@ -64,6 +66,12 @@
 	     	<version> ${junit.version} </version>
 	     	<scope>test</scope>
 	   	</dependency>
+		
+		<dependency>
+			<groupId>org.mariadb.jdbc</groupId>
+			<artifactId>mariadb-java-client</artifactId>
+			<version>1.1.7</version>
+		</dependency>
 	</dependencies>
  
 	<profiles>
