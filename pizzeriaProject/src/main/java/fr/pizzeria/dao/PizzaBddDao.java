@@ -103,7 +103,7 @@ public class PizzaBddDao implements IPizzaDao
 			
 			String requete = "\"" + pizza.getCode() + "\", \""  + pizza.getLibelle() + "\", "  + pizza.getPrix() + ", \""  + pizza.getcP().getNom() + "\"";
 			System.out.println(requete);
-			int nbLigne = statement.executeUpdate("INSERT INTO pizza (code, nom_pizza, prix, categorie) values ("+requete+");");
+			statement.executeUpdate("INSERT INTO pizza (code, nom_pizza, prix, categorie) values ("+requete+");");
 			
 			connexionBDD.commit();
 			
@@ -117,8 +117,29 @@ public class PizzaBddDao implements IPizzaDao
 
 	public void updatePizza(String codePizza, Pizza pizza)
 	{
-		// TODO Auto-generated method stub
-
+		if (pizzaExists (codePizza))
+		{
+			try
+			{
+				beginConnexionBdd ();
+				
+				String requete = "\"" + pizza.getCode() + "\", \""  + pizza.getLibelle() + "\", "  + pizza.getPrix() + ", \""  + pizza.getcP().getNom() + "\"";
+				System.out.println(requete);
+				statement.executeUpdate(	"UPDATE pizza SET code = \"" + pizza.getCode()  + 
+											"\", nom_pizza = \"" + pizza.getLibelle() + 
+											"\", prix = " + pizza.getPrix() +
+											", categorie = \"" + pizza.getcP().getNom() + 
+											"\" WHERE code = \"" + codePizza + "\";");
+				
+				connexionBDD.commit();
+				
+				closeConnexionBdd ();
+			}
+			catch (SQLException e)
+			{
+				e.printStackTrace();
+			}
+		}
 	}
 
 	public void deletePizza(String codePizza)
@@ -135,8 +156,34 @@ public class PizzaBddDao implements IPizzaDao
 
 	public boolean pizzaExists(String codePizza)
 	{
-		// TODO Auto-generated method stub
-		return false;
+		boolean retour = false;
+		try
+		{
+			beginConnexionBdd ();
+			
+			ResultSet result = statement.executeQuery("SELECT * FROM pizza WHERE code = \"" + codePizza + "\";");
+			int compteur = 0;
+			
+			while(result.next()) 
+			{
+				compteur++;
+			}
+			
+			if (compteur == 1)
+			{
+				retour = true;
+			}
+			
+			connexionBDD.commit();
+			
+			closeConnexionBdd ();
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		
+		return retour;
 	}
 
 }
