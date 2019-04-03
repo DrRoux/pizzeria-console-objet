@@ -14,7 +14,8 @@ import java.sql.Statement;
  */
 public class BddTest
 {
-	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+	public static void main(String[] args) throws ClassNotFoundException, SQLException 
+	{
 
 		// DriverManager.registerDriver(new Driver());
 		// Etape 1 - Chargement du pilote
@@ -27,8 +28,6 @@ public class BddTest
 		Connection connexionBDD = DriverManager.getConnection(jdbcUrl, "u23oixvvtlomobsc", "lwW5IiUfLRDdIsxsqY7G");
 		connexionBDD.setAutoCommit(false);
 		
-		
-		//*
 		Statement st = connexionBDD.createStatement();
 		
 		// Etape 4 - exécution  de la requête
@@ -48,7 +47,6 @@ public class BddTest
 		rs.close();
 		
 		st.close();
-		//*/
 		
 		connexionBDD.close();
 

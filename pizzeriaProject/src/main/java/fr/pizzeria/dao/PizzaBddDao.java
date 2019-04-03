@@ -100,12 +100,12 @@ public class PizzaBddDao implements IPizzaDao
 
 	public void saveNewPizza(Pizza pizza)
 	{
-		/*
 		try
 		{
 			beginConnexionBdd ();
 			
-			ResultSet result = statement.executeQuery("SELECT * FROM pizza");
+			String requete = "" + pizza.getId () + ", \"" + pizza.getCode() + "\", \""  + pizza.getLibelle() + "\", \""  + pizza.getPrix() + ", \""  + pizza.getcP() + "\"";
+			int nbLigne = statement.executeUpdate("INSERT INTO pizza values ("+requete+");");
 			
 			closeConnexionBdd ();
 		}
@@ -113,7 +113,6 @@ public class PizzaBddDao implements IPizzaDao
 		{
 			e.printStackTrace();
 		}
-		*/
 	}
 
 	public void updatePizza(String codePizza, Pizza pizza)
