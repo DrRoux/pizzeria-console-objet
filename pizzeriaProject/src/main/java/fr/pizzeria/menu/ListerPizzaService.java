@@ -6,7 +6,6 @@ package fr.pizzeria.menu;
 import java.util.List;
 import java.util.Scanner;
 
-import fr.pizzeria.exception.MySqlException;
 import fr.pizzeria.model.Pizza;
 
 /**

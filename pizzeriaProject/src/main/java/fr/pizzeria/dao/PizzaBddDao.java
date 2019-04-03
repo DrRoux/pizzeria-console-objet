@@ -5,12 +5,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.pizzeria.exception.MySqlException;
-import fr.pizzeria.exception.SavePizzaException;
+import fr.pizzeria.exception.PersonnalSqlException;
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
@@ -21,11 +19,11 @@ import fr.pizzeria.model.Pizza;
 public class PizzaBddDao implements IPizzaDao
 {
 	
-	String jdbcUrl = null;
-	String userName = null;
-	String password = null;
-	Connection connexionBDD = null;
-	PreparedStatement st = null;
+	private String jdbcUrl = null;
+	private String userName = null;
+	private String password = null;
+	private Connection connexionBDD = null;
+	private PreparedStatement st = null;
 	
 	private void beginConnexionBdd ()
 	{
@@ -50,7 +48,7 @@ public class PizzaBddDao implements IPizzaDao
 		}
 		catch (SQLException e)
 		{
-			e.printStackTrace();
+			throw new PersonnalSqlException ("La connexion à la base de donnée ne s'est pas déroulé correctement", e);
 		}
 	}
 	
@@ -63,7 +61,7 @@ public class PizzaBddDao implements IPizzaDao
 		}
 		catch (SQLException e)
 		{
-			e.printStackTrace();
+			throw new PersonnalSqlException ("La fermeture de la connexion à la base de donnée ne s'est pas déroulé correctement", e);
 		}
 	}
 
@@ -95,7 +93,7 @@ public class PizzaBddDao implements IPizzaDao
 		}
 		catch (SQLException e)
 		{
-			throw new MySqlException ("La récupération de la liste de pizza dans la base de donnée ne s'est pas déroulé correctement", e);
+			throw new PersonnalSqlException ("La récupération de la liste de pizza dans la base de donnée ne s'est pas déroulé correctement", e);
 		}
 		
 		return tabPizza;
@@ -120,7 +118,7 @@ public class PizzaBddDao implements IPizzaDao
 		}
 		catch (SQLException e)
 		{
-			throw new MySqlException ("Votre ajout d'une pizza dans la base de donnée ne s'est pas déroulé correctement", e);
+			throw new PersonnalSqlException ("Votre ajout d'une pizza dans la base de donnée ne s'est pas déroulé correctement", e);
 		}
 	}
 
@@ -146,7 +144,7 @@ public class PizzaBddDao implements IPizzaDao
 			}
 			catch (SQLException e)
 			{
-				throw new MySqlException ("Votre modification d'une pizza dans la base de donnée ne s'est pas déroulé correctement", e);
+				throw new PersonnalSqlException ("Votre modification d'une pizza dans la base de donnée ne s'est pas déroulé correctement", e);
 			}
 		}
 	}
@@ -169,7 +167,7 @@ public class PizzaBddDao implements IPizzaDao
 			}
 			catch (SQLException e)
 			{
-				throw new MySqlException ("Votre suppression d'une pizza dans la base de donnée ne s'est pas déroulé correctement", e);
+				throw new PersonnalSqlException ("Votre suppression d'une pizza dans la base de donnée ne s'est pas déroulé correctement", e);
 			}
 		}
 	}
@@ -186,24 +184,20 @@ public class PizzaBddDao implements IPizzaDao
 			st.setString(1, codePizza);
 			ResultSet result = st.executeQuery();
 			
-			while(result.next()) 
-			{		
-				int id = result.getInt("id");
-				String code = result.getString("code");
-				String nom_pizza = result.getString("nom_pizza");
-				double prix = result.getDouble("prix");
-				String categorie = result.getString("categorie");
-				
-				pizza = new Pizza (id, code, nom_pizza, prix, CategoriePizza.valueOf(categorie.toUpperCase()));	
-				
-				Pizza.setNbPizza(id);
-			}
+			result.next();
+			int id = result.getInt("id");
+			String code = result.getString("code");
+			String nom_pizza = result.getString("nom_pizza");
+			double prix = result.getDouble("prix");
+			String categorie = result.getString("categorie");
+			
+			pizza = new Pizza (id, code, nom_pizza, prix, CategoriePizza.valueOf(categorie.toUpperCase()));	
 			
 			closeConnexionBdd ();
 		}
 		catch (SQLException e)
 		{
-			throw new MySqlException ("Votre recherche d'une pizza dans la base de donnée ne s'est pas déroulé correctement", e);
+			throw new PersonnalSqlException ("Votre recherche d'une pizza dans la base de donnée ne s'est pas déroulé correctement", e);
 		}
 		
 		return pizza;
@@ -239,7 +233,7 @@ public class PizzaBddDao implements IPizzaDao
 		}
 		catch (SQLException e)
 		{
-			throw new MySqlException ("Votre recherche d'une pizza dans la base de donnée ne s'est pas déroulé correctement", e);
+			throw new PersonnalSqlException ("Votre recherche d'une pizza dans la base de donnée ne s'est pas déroulé correctement", e);
 		}
 		
 		return retour;
