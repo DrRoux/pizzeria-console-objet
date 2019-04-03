@@ -18,7 +18,7 @@ import fr.pizzeria.model.Pizza;
  */
 public class PizzaBddDao implements IPizzaDao
 {
-	
+	private String driverName = null;
 	private String jdbcUrl = null;
 	private String userName = null;
 	private String password = null;
@@ -29,16 +29,16 @@ public class PizzaBddDao implements IPizzaDao
 	{
 		try
 		{
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			
 			GestionFichier file = new GestionFichier ("jdbc.properties");
-
 			List <String> listString = file.lecture();
 			
-			jdbcUrl = listString.get(0).split(";")[1];
-			userName = listString.get(1).split(";")[1];
-			password = listString.get(2).split(";")[1];
 			
+			driverName = listString.get(0).split(";")[1];
+			jdbcUrl = listString.get(1).split(";")[1];
+			userName = listString.get(2).split(";")[1];
+			password = listString.get(3).split(";")[1];
+			
+			Class.forName(driverName);
 			connexionBDD = DriverManager.getConnection(jdbcUrl, userName, password);
 			connexionBDD.setAutoCommit(false);
 		}
