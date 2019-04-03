@@ -102,7 +102,6 @@ public class PizzaBddDao implements IPizzaDao
 			beginConnexionBdd ();
 			
 			String requete = "\"" + pizza.getCode() + "\", \""  + pizza.getLibelle() + "\", "  + pizza.getPrix() + ", \""  + pizza.getcP().getNom() + "\"";
-			System.out.println(requete);
 			statement.executeUpdate("INSERT INTO pizza (code, nom_pizza, prix, categorie) values ("+requete+");");
 			
 			connexionBDD.commit();
@@ -123,8 +122,6 @@ public class PizzaBddDao implements IPizzaDao
 			{
 				beginConnexionBdd ();
 				
-				String requete = "\"" + pizza.getCode() + "\", \""  + pizza.getLibelle() + "\", "  + pizza.getPrix() + ", \""  + pizza.getcP().getNom() + "\"";
-				System.out.println(requete);
 				statement.executeUpdate(	"UPDATE pizza SET code = \"" + pizza.getCode()  + 
 											"\", nom_pizza = \"" + pizza.getLibelle() + 
 											"\", prix = " + pizza.getPrix() +
@@ -165,13 +162,41 @@ public class PizzaBddDao implements IPizzaDao
 
 	public Pizza findPizzaByCode(String codePizza)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		Pizza pizza = null;
+		
+		try
+		{
+			beginConnexionBdd ();
+			
+			ResultSet result = statement.executeQuery("SELECT * FROM pizza WHERE code = \"" + codePizza + "\";");
+			
+			while(result.next()) 
+			{		
+				int id = result.getInt("id");
+				String code = result.getString("code");
+				String nom_pizza = result.getString("nom_pizza");
+				double prix = result.getDouble("prix");
+				String categorie = result.getString("categorie");
+				
+				pizza = new Pizza (id, code, nom_pizza, prix, CategoriePizza.valueOf(categorie.toUpperCase()));	
+				
+				Pizza.setNbPizza(id);
+			}
+			
+			closeConnexionBdd ();
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		
+		return pizza;
 	}
 
 	public boolean pizzaExists(String codePizza)
 	{
 		boolean retour = false;
+		
 		try
 		{
 			beginConnexionBdd ();
