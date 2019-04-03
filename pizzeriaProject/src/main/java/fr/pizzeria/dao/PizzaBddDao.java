@@ -95,7 +95,7 @@ public class PizzaBddDao implements IPizzaDao
 		}
 		catch (SQLException e)
 		{
-			throw new MySqlException (e.getMessage());
+			throw new MySqlException ("La récupération de la liste de pizza dans la base de donnée ne s'est pas déroulé correctement", e);
 		}
 		
 		return tabPizza;
@@ -120,7 +120,7 @@ public class PizzaBddDao implements IPizzaDao
 		}
 		catch (SQLException e)
 		{
-			throw new MySqlException (e.getMessage());
+			throw new MySqlException ("Votre ajout d'une pizza dans la base de donnée ne s'est pas déroulé correctement", e);
 		}
 	}
 
@@ -146,7 +146,7 @@ public class PizzaBddDao implements IPizzaDao
 			}
 			catch (SQLException e)
 			{
-				throw new MySqlException (e.getMessage());
+				throw new MySqlException ("Votre modification d'une pizza dans la base de donnée ne s'est pas déroulé correctement", e);
 			}
 		}
 	}
@@ -169,7 +169,7 @@ public class PizzaBddDao implements IPizzaDao
 			}
 			catch (SQLException e)
 			{
-				throw new MySqlException (e.getMessage());
+				throw new MySqlException ("Votre suppression d'une pizza dans la base de donnée ne s'est pas déroulé correctement", e);
 			}
 		}
 	}
@@ -203,7 +203,7 @@ public class PizzaBddDao implements IPizzaDao
 		}
 		catch (SQLException e)
 		{
-			throw new MySqlException (e.getMessage());
+			throw new MySqlException ("Votre recherche d'une pizza dans la base de donnée ne s'est pas déroulé correctement", e);
 		}
 		
 		return pizza;
@@ -239,7 +239,7 @@ public class PizzaBddDao implements IPizzaDao
 		}
 		catch (SQLException e)
 		{
-			throw new MySqlException (e.getMessage());
+			throw new MySqlException ("Votre recherche d'une pizza dans la base de donnée ne s'est pas déroulé correctement", e);
 		}
 		
 		return retour;

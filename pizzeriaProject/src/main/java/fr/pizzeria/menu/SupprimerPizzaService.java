@@ -25,14 +25,7 @@ public class SupprimerPizzaService extends MenuService
 			choice = scanner.nextLine().toUpperCase();
 		}
 		
-		try
-		{
-			gestionnairePizza.deletePizza(choice);	
-		}
-		catch (MySqlException e)
-		{
-			System.out.println(e.getMessage());
-		}
+		gestionnairePizza.deletePizza(choice);	
 		
 	}
 

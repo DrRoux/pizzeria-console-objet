@@ -82,6 +82,9 @@ public class PizzeriaAdminConsoleApp
 			{
 				System.out.println(e.getMessage());
 			}
+			catch (MySqlException e) {
+				System.out.println(e.getMessage());
+			}
 		}
 		
 		questionUser.close ();

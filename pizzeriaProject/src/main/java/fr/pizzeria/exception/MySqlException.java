@@ -21,4 +21,24 @@ public class MySqlException extends RuntimeException
 		super(e);
 	}
 
+	public MySqlException()
+	{
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public MySqlException(String arg0, Throwable arg1)
+	{
+		super(arg0, arg1);
+		// TODO Auto-generated constructor stub
+	}
+
+	public MySqlException(Throwable arg0)
+	{
+		super(arg0);
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+
 }
