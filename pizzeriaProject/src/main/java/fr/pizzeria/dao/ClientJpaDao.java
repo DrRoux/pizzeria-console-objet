@@ -3,6 +3,7 @@
  */
 package fr.pizzeria.dao;
 
+import javax.persistence.TypedQuery;
 import fr.pizzeria.model.Client;
 
 /**
@@ -18,12 +19,15 @@ public class ClientJpaDao extends JpaDao
 		closeConnexionBdd();
 	}
 	
-	public boolean clientExist (Client client)
+	public Client getClient (String login, String password)
 	{
-		boolean retour = false;
+		beginConnexionBdd();
+		TypedQuery<Client> query = em.createQuery("SELECT c FROM Client c WHERE email=:login AND password=:pswd", Client.class);
+		query.setParameter("login", login);
+		query.setParameter("pswd", password);
+		Client client = query.getSingleResult();
+		closeConnexionBdd();
 		
-		
-		
-		return retour;
+		return client;
 	}
 }

@@ -4,7 +4,6 @@
 package fr.pizzeria.console;
 
 import java.util.Scanner;
-
 import fr.pizzeria.exception.PersonnalSqlException;
 import fr.pizzeria.exception.StockageException;
 import fr.pizzeria.menu.MenuFactory;

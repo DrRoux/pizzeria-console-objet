@@ -5,7 +5,6 @@ import java.util.Scanner;
 import fr.pizzeria.console.*;
 
 /**
- * Hello world!
  *
  */
 public class App 
