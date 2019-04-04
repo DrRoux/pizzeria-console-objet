@@ -19,9 +19,6 @@ import fr.pizzeria.utils.*;
 @Table(name="pizza")
 public class Pizza 
 {
-	/** nbPizza : static int */
-	private static int nbPizza = 0;
-	
 	/** id : int */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,8 +50,6 @@ public class Pizza
 	public Pizza () 
 	{
 		super ();
-		this.id = nbPizza;
-		nbPizza++;
 		cP = CategoriePizza.INCONNU;
 	}
 	
@@ -71,9 +66,6 @@ public class Pizza
 		this.libelle = libelle;
 		this.prix = prix;
 		cP = CategoriePizza.INCONNU;
-		
-		this.id = nbPizza;
-		nbPizza++;
 	}
 	
 	public Pizza (String code, String libelle, double prix, CategoriePizza cP) 
@@ -83,9 +75,6 @@ public class Pizza
 		this.libelle = libelle;
 		this.prix = prix;
 		this.cP = cP;
-		
-		this.id = nbPizza;
-		nbPizza++;
 	}
 	
 	public Pizza (String code, String libelle, double prix, String cP) 
@@ -95,9 +84,6 @@ public class Pizza
 		this.libelle = libelle;
 		this.prix = prix;
 		this.cP = CategoriePizza.valueOf(cP);
-		
-		this.id = nbPizza;
-		nbPizza++;
 	}
 	
 	/**
