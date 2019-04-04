@@ -70,10 +70,11 @@ public class PizzaJpaDao extends JpaDao implements IPizzaDao
 	{
 		if (pizzaExists (codePizza))
 		{
-			Pizza p = findPizzaByCode (codePizza);
-			
 			beginConnexionBdd();
-			modif (p);
+			
+			Pizza query = em.createQuery("SELECT p FROM Pizza p WHERE code=:codePizza", Pizza.class).setParameter("codePizza", codePizza).getSingleResult();
+			suppr(query);
+			
 			closeConnexionBdd();
 		}
 	}
