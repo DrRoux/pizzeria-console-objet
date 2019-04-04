@@ -11,5 +11,5 @@ import java.util.Scanner;
  */
 public interface PizzeriaConsole
 {
-	void display (Scanner questionUser);
+	default void display (Scanner questionUser) {};
 }
