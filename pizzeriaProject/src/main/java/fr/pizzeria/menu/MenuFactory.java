@@ -29,7 +29,7 @@ public class MenuFactory
 		}
 		else if (typeMenu.equals("connexionClient"))
 		{
-			retour =  new ConnecterClientService ();
+			retour =  new ConnexionClientService ();
 		}
 		else if (typeMenu.equals("inscription"))
 		{

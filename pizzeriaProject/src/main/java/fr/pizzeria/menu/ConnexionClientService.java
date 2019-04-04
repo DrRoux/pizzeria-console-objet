@@ -11,7 +11,7 @@ import fr.pizzeria.exception.StockageException;
  *
  * @author BIRABEN-BIANCHI Hugo
  */
-public class ConnecterClientService extends MenuService
+public class ConnexionClientService extends MenuService
 {
 
 	/* (non-Javadoc)
