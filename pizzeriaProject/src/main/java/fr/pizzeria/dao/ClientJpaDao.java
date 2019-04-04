@@ -3,13 +3,8 @@
  */
 package fr.pizzeria.dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.List;
 
-import fr.pizzeria.exception.PersonnalSqlException;
 import fr.pizzeria.model.Client;
 
 /**

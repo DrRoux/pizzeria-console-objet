@@ -27,7 +27,7 @@ public class PizzaBddDao implements IPizzaDao
 	
 	public PizzaBddDao ()
 	{
-		GestionFichier file = new GestionFichier ("src/main/ressources/jdbc.properties");
+		GestionFichier file = new GestionFichier ("src/main/resources/jdbc.properties");
 		List <String> listString = file.lecture();
 		
 		driverName = listString.get(0).split(";")[1];
