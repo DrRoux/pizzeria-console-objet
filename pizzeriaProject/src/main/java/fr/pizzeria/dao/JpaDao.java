@@ -33,11 +33,9 @@ public abstract class JpaDao
 	
 	public <T> void transaction (T object)
 	{
-		beginConnexionBdd ();
 		EntityTransaction et = em.getTransaction();
-		
+		et.begin ();
 		em.persist(object);
 		et.commit ();
-		closeConnexionBdd ();
 	}
 }

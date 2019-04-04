@@ -36,8 +36,11 @@ public class PizzaJpaDao extends JpaDao implements IPizzaDao
 	@Override
 	public void saveNewPizza(Pizza pizza)
 	{
-		// TODO Auto-generated method stub
+		beginConnexionBdd();
 		
+		transaction (pizza);
+		
+		closeConnexionBdd();
 	}
 
 	/* (non-Javadoc)
