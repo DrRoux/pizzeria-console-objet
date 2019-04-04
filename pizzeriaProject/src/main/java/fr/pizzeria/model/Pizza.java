@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import fr.pizzeria.utils.*;
 
@@ -13,6 +14,7 @@ import fr.pizzeria.utils.*;
  * @author BIRABEN-BIANCHI Hugo
  */
 @Entity
+@Table(name="pizza")
 public class Pizza 
 {
 	/** nbPizza : static int */
@@ -24,7 +26,7 @@ public class Pizza
 	
 	/** code : String */
 	@ToString(upperCase=true, separateurAp = " - ")
-	@Column(name="code")
+	@Column
 	private String code;
 	
 	/** libelle : String */
@@ -34,7 +36,7 @@ public class Pizza
 	
 	/** prix : double */
 	@ToString(separateurAv=" -> (", separateurAp = " €)",upperCase=true)
-	@Column(name="prix")
+	@Column
 	private double prix;
 	
 	/** cP : CategoriePizza */
