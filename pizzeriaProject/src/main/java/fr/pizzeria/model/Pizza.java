@@ -1,32 +1,42 @@
 package fr.pizzeria.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 import fr.pizzeria.utils.*;
 
 /**
  * Cette classe représente une Pizza
  * @author BIRABEN-BIANCHI Hugo
  */
+@Entity
 public class Pizza 
 {
 	/** nbPizza : static int */
 	private static int nbPizza = 0;
 	
 	/** id : int */
+	@Id
 	private int id;
 	
 	/** code : String */
 	@ToString(upperCase=true, separateurAp = " - ")
+	@Column(name="code")
 	private String code;
 	
 	/** libelle : String */
 	@ToString(upperCase=true)
+	@Column(name="nom_pizza")
 	private String libelle;
 	
 	/** prix : double */
 	@ToString(separateurAv=" -> (", separateurAp = " €)",upperCase=true)
+	@Column(name="prix")
 	private double prix;
 	
 	/** cP : CategoriePizza */
+	@Column(name="categorie")
 	private CategoriePizza cP;
 	
 	/**
