@@ -139,7 +139,7 @@ public class PizzaBddDao implements IPizzaDao
 			
 			try
 			{				
-				st = connexionBDD.prepareStatement("UPDATE pizza SET code = ?, nom_pizza = ?, prix = ?, categorie = ? WHERE ?;");
+				st = connexionBDD.prepareStatement("UPDATE pizza SET code = ?, nom_pizza = ?, prix = ?, categorie = ? WHERE code = ?;");
 				st.setString(1, pizza.getCode());
 				st.setString(2, pizza.getLibelle());
 				st.setDouble(3, pizza.getPrix());
