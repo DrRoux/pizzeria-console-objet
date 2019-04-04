@@ -83,7 +83,7 @@ public class Pizza
 		this.code = code.toUpperCase();
 		this.libelle = libelle;
 		this.prix = prix;
-		this.cP = CategoriePizza.valueOf(cP);
+		this.cP = CategoriePizza.valueOf(cP.toUpperCase());
 	}
 	
 	/**
@@ -127,7 +127,7 @@ public class Pizza
 		this.code = code.toUpperCase();
 		this.libelle = libelle;
 		this.prix = prix;
-		this.cP = CategoriePizza.valueOf(cP);
+		this.cP = CategoriePizza.valueOf(cP.toUpperCase());
 	}
 	
 	/**
@@ -150,7 +150,7 @@ public class Pizza
 	 */
 	public String toString ()
 	{
-		return (code + " -> " + libelle + " (" + prix + " €) - " + cP.getNom());
+		return (code + " -> " + libelle + " (" + prix + " €) - " + cP.getNom().toUpperCase());
 	}
 	
 	/**
@@ -160,7 +160,7 @@ public class Pizza
 	 */
 	public String toSave ()
 	{
-		return (id + "," + code + "," + libelle + "," + prix + "," + cP.getNom());
+		return (id + "," + code + "," + libelle + "," + prix + "," + cP.getNom().toUpperCase());
 	}
 
 	/**

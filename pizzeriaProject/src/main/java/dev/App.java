@@ -55,6 +55,7 @@ public class App
 				choice = "0";
 			}
 		}
-    	
+		
+		System.out.println("FIN DE L'APPLICATION AVEC SUCCES !");
     }
 }

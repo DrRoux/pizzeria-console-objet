@@ -18,7 +18,6 @@ public class PizzeriaClientConsoleApp implements PizzeriaConsole
 	public void display(Scanner questionUser) 
 	{
 		String choice = "0";
-		questionUser = new Scanner (System.in);
 		
 		MenuFactory menu = new MenuFactory ();
 		
@@ -67,8 +66,5 @@ public class PizzeriaClientConsoleApp implements PizzeriaConsole
 				System.out.println(e.getMessage());
 			}
 		}
-		
-		questionUser.close ();
-		System.out.println("FIN DE L'APPLICATION AVEC SUCCES !");
 	}
 }
