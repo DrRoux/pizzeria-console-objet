@@ -59,6 +59,11 @@ public class Commande
 		this.client_id = client_id;
 	}
 
+	public String toString ()
+	{
+		return (numero_commande + " : " + date_commande + " - " + client_id + "");
+	}
+	
 	/**
 	 * Getter
 	 * @return the id

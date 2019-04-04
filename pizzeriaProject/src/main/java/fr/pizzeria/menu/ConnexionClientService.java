@@ -20,9 +20,7 @@ public class ConnexionClientService extends MenuService
 {
 	ClientJpaDao cJpaDao = new ClientJpaDao ();
 	PizzeriaClientConnecteConsoleApp console = new PizzeriaClientConnecteConsoleApp ();
-	/* (non-Javadoc)
-	 * @see fr.pizzeria.menu.MenuService#executeUC(java.util.Scanner)
-	 */
+
 	@Override
 	public void executeUC(Scanner scanner) throws StockageException
 	{

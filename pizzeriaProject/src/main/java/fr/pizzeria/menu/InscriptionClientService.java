@@ -20,9 +20,7 @@ import static org.apache.commons.codec.digest.MessageDigestAlgorithms.SHA_512;
 public class InscriptionClientService extends MenuService
 {
 	ClientJpaDao cJpaDao = new ClientJpaDao ();
-	/* (non-Javadoc)
-	 * @see fr.pizzeria.menu.MenuService#executeUC(java.util.Scanner)
-	 */
+
 	@Override
 	public void executeUC(Scanner scanner) throws StockageException
 	{
