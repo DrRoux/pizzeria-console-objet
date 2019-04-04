@@ -23,7 +23,7 @@ public class App
     	EntityManagerFactory emf = Persistence.createEntityManagerFactory("pizzeriaProject");
     	EntityManager em = emf.createEntityManager();
 
-    	TypedQuery <Pizza> requete = em.createQuery("select * from Pizza p;", Pizza.class);
+    	TypedQuery <Pizza> requete = em.createQuery("select p from Pizza p", Pizza.class);
     	List <Pizza> listPizza = requete.getResultList();
     	
     	listPizza.forEach(t -> System.out.println(t));
@@ -31,6 +31,6 @@ public class App
         em.close ();
         emf.close ();
         
-        p.display ();
+        //p.display ();
     }
 }

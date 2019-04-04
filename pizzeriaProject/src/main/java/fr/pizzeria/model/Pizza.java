@@ -2,6 +2,8 @@ package fr.pizzeria.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 
 import fr.pizzeria.utils.*;
@@ -37,6 +39,7 @@ public class Pizza
 	
 	/** cP : CategoriePizza */
 	@Column(name="categorie")
+	@Enumerated(EnumType.STRING)
 	private CategoriePizza cP;
 	
 	/**
@@ -80,6 +83,18 @@ public class Pizza
 		nbPizza++;
 	}
 	
+	public Pizza (String code, String libelle, double prix, String cP) 
+	{
+		super();
+		this.code = code.toUpperCase();
+		this.libelle = libelle;
+		this.prix = prix;
+		this.cP = CategoriePizza.valueOf(cP);
+		
+		this.id = nbPizza;
+		nbPizza++;
+	}
+	
 	/**
 	 * Constructor
 	 * @param id : id
@@ -112,6 +127,16 @@ public class Pizza
 		this.libelle = libelle;
 		this.prix = prix;
 		this.cP = cP;
+	}
+	
+	public Pizza (int id, String code, String libelle, double prix, String cP) 
+	{
+		super();
+		this.id = id;
+		this.code = code.toUpperCase();
+		this.libelle = libelle;
+		this.prix = prix;
+		this.cP = CategoriePizza.valueOf(cP);
 	}
 	
 	/**
