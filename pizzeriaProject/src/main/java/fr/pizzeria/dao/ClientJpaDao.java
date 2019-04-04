@@ -29,37 +29,6 @@ public class ClientJpaDao extends JpaDao
 		password = listString.get(3).split(";")[1];
 	}
 	
-	public void beginConnexionBdd ()
-	{
-		try
-		{
-			Class.forName(driverName);
-			connexionBDD = DriverManager.getConnection(jdbcUrl, userName, password);
-			connexionBDD.setAutoCommit(false);
-		}
-		catch (ClassNotFoundException e)
-		{
-			e.printStackTrace();
-		}
-		catch (SQLException e)
-		{
-			throw new PersonnalSqlException ("La connexion à la base de donnée ne s'est pas déroulé correctement", e);
-		}
-	}
-	
-	public void closeConnexionBdd ()
-	{
-		try
-		{
-			st.close ();
-			connexionBDD.close ();
-		}
-		catch (SQLException e)
-		{
-			throw new PersonnalSqlException ("La fermeture de la connexion à la base de donnée ne s'est pas déroulé correctement", e);
-		}
-	}
-	
 	public boolean clientExist (Client client)
 	{
 		boolean retour = false;

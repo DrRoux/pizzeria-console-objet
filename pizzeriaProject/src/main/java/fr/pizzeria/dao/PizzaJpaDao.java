@@ -3,18 +3,8 @@
  */
 package fr.pizzeria.dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
-
-import fr.pizzeria.exception.PersonnalSqlException;
 import fr.pizzeria.model.Pizza;
 
 /**
@@ -23,34 +13,6 @@ import fr.pizzeria.model.Pizza;
  */
 public class PizzaJpaDao extends JpaDao implements IPizzaDao
 {
-	public PizzaJpaDao ()
-	{
-		GestionFichier file = new GestionFichier ("src/main/ressources/jdbc.properties");
-		List <String> listString = file.lecture();
-		
-		driverName = listString.get(0).split(";")[1];
-		jdbcUrl = listString.get(1).split(";")[1];
-		userName = listString.get(2).split(";")[1];
-		password = listString.get(3).split(";")[1];
-	}
-	
-	public void beginConnexionBdd ()
-	{
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("pizzeriaProject");
-    	EntityManager em = emf.createEntityManager();
-
-    	TypedQuery <Pizza> requete = em.createQuery("select p from Pizza p", Pizza.class);
-    	List <Pizza> listPizza = requete.getResultList();
-    	
-    	listPizza.forEach(t -> System.out.println(t));
-        
-        em.close ();
-        emf.close ();
-	}
-	
-	public void closeConnexionBdd ()
-	{
-	}
 	
 	/* (non-Javadoc)
 	 * @see fr.pizzeria.dao.IPizzaDao#findAllPizzas()
@@ -58,8 +20,14 @@ public class PizzaJpaDao extends JpaDao implements IPizzaDao
 	@Override
 	public List<Pizza> findAllPizzas()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		beginConnexionBdd();
+		
+		TypedQuery <Pizza> requete = em.createQuery("select p from Pizza p", Pizza.class);
+    	List <Pizza> listPizza = requete.getResultList();
+    	
+    	closeConnexionBdd();
+    	
+		return listPizza;
 	}
 
 	/* (non-Javadoc)
