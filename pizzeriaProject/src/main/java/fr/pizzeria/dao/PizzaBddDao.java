@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 
 import fr.pizzeria.exception.PersonnalSqlException;
 import fr.pizzeria.model.CategoriePizza;
@@ -72,10 +71,10 @@ public class PizzaBddDao implements IPizzaDao
 	{
 		List <Pizza> tabPizza = new ArrayList <> ();
 		
+		beginConnexionBdd ();
+		
 		try
 		{
-			beginConnexionBdd ();
-			
 			st = connexionBDD.prepareStatement("SELECT * FROM pizza");
 			ResultSet result = st.executeQuery();
 			
@@ -91,8 +90,6 @@ public class PizzaBddDao implements IPizzaDao
 				
 				Pizza.setNbPizza(id);
 			}
-			
-			closeConnexionBdd ();
 		}
 		catch (SQLException e)
 		{
@@ -103,15 +100,16 @@ public class PizzaBddDao implements IPizzaDao
 			closeConnexionBdd ();
 		}
 		
+		closeConnexionBdd ();		
 		return tabPizza;
 	}
 
 	public void saveNewPizza(Pizza pizza)
 	{
+		beginConnexionBdd ();
+		
 		try
 		{
-			beginConnexionBdd ();
-			
 			st = connexionBDD.prepareStatement("INSERT INTO pizza (code, nom_pizza, prix, categorie) values (?, ?, ?, ?);");
 			st.setString(1, pizza.getCode());
 			st.setString(2, pizza.getLibelle());
@@ -120,8 +118,6 @@ public class PizzaBddDao implements IPizzaDao
 			st.executeUpdate();
 			
 			connexionBDD.commit();
-			
-			closeConnexionBdd ();
 		}
 		catch (SQLException e)
 		{
@@ -131,16 +127,18 @@ public class PizzaBddDao implements IPizzaDao
 		{
 			closeConnexionBdd ();
 		}
+		
+		closeConnexionBdd ();
 	}
 
 	public void updatePizza(String codePizza, Pizza pizza)
 	{
 		if (pizzaExists (codePizza))
 		{
+			beginConnexionBdd ();
+			
 			try
-			{
-				beginConnexionBdd ();
-				
+			{				
 				st = connexionBDD.prepareStatement("UPDATE pizza SET code = ?, nom_pizza = ?, prix = ?, categorie = ? WHERE ?;");
 				st.setString(1, pizza.getCode());
 				st.setString(2, pizza.getLibelle());
@@ -150,8 +148,6 @@ public class PizzaBddDao implements IPizzaDao
 				st.executeUpdate();
 				
 				connexionBDD.commit();
-				
-				closeConnexionBdd ();
 			}
 			catch (SQLException e)
 			{
@@ -161,6 +157,8 @@ public class PizzaBddDao implements IPizzaDao
 			{
 				closeConnexionBdd ();
 			}
+			
+			closeConnexionBdd ();
 		}
 	}
 
@@ -168,17 +166,15 @@ public class PizzaBddDao implements IPizzaDao
 	{
 		if (pizzaExists (codePizza))
 		{
+			beginConnexionBdd ();
+			
 			try
 			{
-				beginConnexionBdd ();
-				
 				st = connexionBDD.prepareStatement("DELETE FROM pizza WHERE code = ?;");
 				st.setString(1, codePizza);
 				st.executeUpdate();
 				
 				connexionBDD.commit();
-				
-				closeConnexionBdd ();
 			}
 			catch (SQLException e)
 			{
@@ -188,6 +184,8 @@ public class PizzaBddDao implements IPizzaDao
 			{
 				closeConnexionBdd ();
 			}
+			
+			closeConnexionBdd ();
 		}
 	}
 
@@ -195,10 +193,10 @@ public class PizzaBddDao implements IPizzaDao
 	{
 		Pizza pizza = null;
 		
+		beginConnexionBdd ();
+		
 		try
 		{
-			beginConnexionBdd ();
-			
 			st = connexionBDD.prepareStatement("SELECT * FROM pizza WHERE code = ?");
 			st.setString(1, codePizza);
 			ResultSet result = st.executeQuery();
@@ -210,9 +208,7 @@ public class PizzaBddDao implements IPizzaDao
 			double prix = result.getDouble("prix");
 			String categorie = result.getString("categorie");
 			
-			pizza = new Pizza (id, code, nom_pizza, prix, CategoriePizza.valueOf(categorie.toUpperCase()));	
-			
-			closeConnexionBdd ();
+			pizza = new Pizza (id, code, nom_pizza, prix, CategoriePizza.valueOf(categorie.toUpperCase()));
 		}
 		catch (SQLException e)
 		{
@@ -223,6 +219,7 @@ public class PizzaBddDao implements IPizzaDao
 			closeConnexionBdd ();
 		}
 		
+		closeConnexionBdd ();
 		return pizza;
 	}
 
@@ -230,10 +227,10 @@ public class PizzaBddDao implements IPizzaDao
 	{
 		boolean retour = false;
 		
+		beginConnexionBdd ();
+		
 		try
 		{
-			beginConnexionBdd ();
-			
 			st = connexionBDD.prepareStatement("SELECT * FROM pizza WHERE code = ?");
 			st.setString(1, codePizza);
 			ResultSet result = st.executeQuery();
@@ -251,8 +248,6 @@ public class PizzaBddDao implements IPizzaDao
 			}
 			
 			connexionBDD.commit();
-			
-			closeConnexionBdd ();
 		}
 		catch (SQLException e)
 		{
@@ -263,6 +258,7 @@ public class PizzaBddDao implements IPizzaDao
 			closeConnexionBdd ();
 		}
 		
+		closeConnexionBdd ();
 		return retour;
 	}
 
