@@ -2,7 +2,7 @@ package fr.pizzeria.menu;
 
 import java.util.Scanner;
 import fr.pizzeria.dao.IPizzaDao;
-import fr.pizzeria.dao.PizzaBddDao;
+import fr.pizzeria.dao.PizzaJpaDao;
 import fr.pizzeria.exception.*;
 
 /**
@@ -10,7 +10,7 @@ import fr.pizzeria.exception.*;
  */
 public abstract class MenuService  
 {
-	protected static IPizzaDao gestionnairePizza = new PizzaBddDao ();
+	protected static IPizzaDao gestionnairePizza = new PizzaJpaDao ();
 		
 	public abstract void executeUC (Scanner scanner) throws StockageException;
 }

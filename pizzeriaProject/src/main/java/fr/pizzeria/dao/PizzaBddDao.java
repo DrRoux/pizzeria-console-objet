@@ -27,7 +27,7 @@ public class PizzaBddDao implements IPizzaDao
 	
 	public PizzaBddDao ()
 	{
-		GestionFichier file = new GestionFichier ("src/main/ressources/jdbc.properties");
+		GestionFichier file = new GestionFichier ("src/main/resources/jdbc.properties");
 		List <String> listString = file.lecture();
 		
 		driverName = listString.get(0).split(";")[1];
@@ -87,8 +87,6 @@ public class PizzaBddDao implements IPizzaDao
 				String categorie = result.getString("categorie");
 				
 				tabPizza.add(new Pizza (id, code, nom_pizza, prix, CategoriePizza.valueOf(categorie.toUpperCase())));	
-				
-				Pizza.setNbPizza(id);
 			}
 		}
 		catch (SQLException e)

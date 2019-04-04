@@ -1,32 +1,47 @@
 package fr.pizzeria.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import fr.pizzeria.utils.*;
 
 /**
  * Cette classe représente une Pizza
  * @author BIRABEN-BIANCHI Hugo
  */
+@Entity
+@Table(name="pizza")
 public class Pizza 
 {
-	/** nbPizza : static int */
-	private static int nbPizza = 0;
-	
 	/** id : int */
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	/** code : String */
 	@ToString(upperCase=true, separateurAp = " - ")
+	@Column
 	private String code;
 	
 	/** libelle : String */
 	@ToString(upperCase=true)
+	@Column(name="nom_pizza")
 	private String libelle;
 	
 	/** prix : double */
 	@ToString(separateurAv=" -> (", separateurAp = " €)",upperCase=true)
+	@Column
 	private double prix;
 	
 	/** cP : CategoriePizza */
+	@Column(name="categorie")
+	@Enumerated(EnumType.STRING)
 	private CategoriePizza cP;
 	
 	/**
@@ -35,8 +50,6 @@ public class Pizza
 	public Pizza () 
 	{
 		super ();
-		this.id = nbPizza;
-		nbPizza++;
 		cP = CategoriePizza.INCONNU;
 	}
 	
@@ -53,9 +66,6 @@ public class Pizza
 		this.libelle = libelle;
 		this.prix = prix;
 		cP = CategoriePizza.INCONNU;
-		
-		this.id = nbPizza;
-		nbPizza++;
 	}
 	
 	public Pizza (String code, String libelle, double prix, CategoriePizza cP) 
@@ -65,9 +75,15 @@ public class Pizza
 		this.libelle = libelle;
 		this.prix = prix;
 		this.cP = cP;
-		
-		this.id = nbPizza;
-		nbPizza++;
+	}
+	
+	public Pizza (String code, String libelle, double prix, String cP) 
+	{
+		super();
+		this.code = code.toUpperCase();
+		this.libelle = libelle;
+		this.prix = prix;
+		this.cP = CategoriePizza.valueOf(cP);
 	}
 	
 	/**
@@ -102,6 +118,16 @@ public class Pizza
 		this.libelle = libelle;
 		this.prix = prix;
 		this.cP = cP;
+	}
+	
+	public Pizza (int id, String code, String libelle, double prix, String cP) 
+	{
+		super();
+		this.id = id;
+		this.code = code.toUpperCase();
+		this.libelle = libelle;
+		this.prix = prix;
+		this.cP = CategoriePizza.valueOf(cP);
 	}
 	
 	/**
@@ -207,23 +233,6 @@ public class Pizza
 	public void setPrix(double prix)
 	{
 		this.prix = prix;
-	}
-
-	/**
-	 * Getter
-	 * @return the nbPizza
-	 */
-	public static int getNbPizza()
-	{
-		return nbPizza;
-	}
-
-	/**
-	 * @param nbPizza2
-	 */
-	public static void setNbPizza(int nbPizza)
-	{
-		Pizza.nbPizza = nbPizza;
 	}
 
 	public CategoriePizza getcP()

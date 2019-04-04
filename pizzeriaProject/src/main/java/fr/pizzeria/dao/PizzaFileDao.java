@@ -142,7 +142,5 @@ public class PizzaFileDao implements IPizzaDao
 			tabPizza.add(new Pizza (Integer.parseInt(pizza[0]), pizza[1], pizza[2], Double.parseDouble(pizza[3]), CategoriePizza.valueOf(pizza[4].toUpperCase())));
 			maxNbPizza = Integer.parseInt(pizza[0]);
 		}
-		
-		Pizza.setNbPizza(maxNbPizza+1);
 	}
 }
