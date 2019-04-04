@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package fr.pizzeria.console;
 
 import java.util.Scanner;
@@ -8,11 +11,10 @@ import fr.pizzeria.exception.StockageException;
 import fr.pizzeria.menu.MenuFactory;
 
 /**
- * Cette classe permet de gérer le menu d'affichage
- * de l'application.
+ *
  * @author BIRABEN-BIANCHI Hugo
  */
-public class PizzeriaAdminConsoleApp implements PizzeriaConsole
+public class PizzeriaClientConsoleApp implements PizzeriaConsole
 {
 	private Scanner questionUser;
 	
@@ -27,11 +29,9 @@ public class PizzeriaAdminConsoleApp implements PizzeriaConsole
 		
 		while (sortiBoucle == false)
 		{
-			System.out.println("***** Pizzeria Administration *****");
-			System.out.println("1.  Lister les pizzas ");
-			System.out.println("2.  Ajouter une nouvelle pizza");
-			System.out.println("3.  Mettre à jour une pizza");
-			System.out.println("4.  Supprimer une pizza");
+			System.out.println("***** Pizzeria Client *****");
+			System.out.println("1.  S'inscrire ");
+			System.out.println("2.  Se connecter");
 			System.out.println("99. Quitter l'application");
 			System.out.println("\nVeuillez saisir votre choix : ");
 			
@@ -41,19 +41,11 @@ public class PizzeriaAdminConsoleApp implements PizzeriaConsole
 			{
 				if (Integer.parseInt(choice) == 1)
 				{
-					menu.create("list").executeUC(questionUser);
+					menu.create("inscription").executeUC(questionUser);
 				}
 				else if (Integer.parseInt(choice) == 2)
 				{
-					menu.create("ajout").executeUC(questionUser);
-				}
-				else if (Integer.parseInt(choice) == 3)
-				{
-					menu.create("modif").executeUC(questionUser);
-				}
-				else if (Integer.parseInt(choice) == 4)
-				{
-					menu.create("suppr").executeUC(questionUser);			
+					menu.create("connexionClient").executeUC(questionUser);
 				}
 				else if (Integer.parseInt(choice) == 99)
 				{
@@ -69,15 +61,6 @@ public class PizzeriaAdminConsoleApp implements PizzeriaConsole
 			{
 				choice = "0";
 			}
-			catch (SavePizzaException e)
-			{
-				System.out.println(e.getMessage());
-				
-				if (e.getMessage().equals("codeTropCourt"))
-				{
-					System.out.println();
-				}
-			}
 			catch (StockageException e)
 			{
 				System.out.println(e.getMessage());
@@ -91,5 +74,4 @@ public class PizzeriaAdminConsoleApp implements PizzeriaConsole
 		questionUser.close ();
 		System.out.println("FIN DE L'APPLICATION AVEC SUCCES !");
 	}
-
 }
