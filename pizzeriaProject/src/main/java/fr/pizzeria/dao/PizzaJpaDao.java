@@ -38,7 +38,7 @@ public class PizzaJpaDao extends JpaDao implements IPizzaDao
 	{
 		beginConnexionBdd();
 		
-		transaction (pizza);
+		ajout (pizza);
 		
 		closeConnexionBdd();
 	}

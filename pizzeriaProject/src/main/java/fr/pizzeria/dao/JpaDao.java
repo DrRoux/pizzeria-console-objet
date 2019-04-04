@@ -31,7 +31,7 @@ public abstract class JpaDao
 		em.close ();
 	}
 	
-	public <T> void transaction (T object)
+	public <T> void ajout (T object)
 	{
 		EntityTransaction et = em.getTransaction();
 		et.begin ();
