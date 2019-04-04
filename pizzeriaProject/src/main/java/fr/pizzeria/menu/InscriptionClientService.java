@@ -11,7 +11,7 @@ import fr.pizzeria.dao.ClientJpaDao;
 import fr.pizzeria.exception.StockageException;
 import fr.pizzeria.model.Client;
 import org.apache.commons.codec.digest.DigestUtils;
-import static org.apache.commons.codec.digest.MessageDigestAlgorithms.SHA_224;
+import static org.apache.commons.codec.digest.MessageDigestAlgorithms.SHA_512;
 
 /**
  *
@@ -43,7 +43,7 @@ public class InscriptionClientService extends MenuService
 		choiceMail = scanner.nextLine();
 		
 		System.out.println("Veuillez saisir votre mot de passe:");
-		choicePswd = new DigestUtils(SHA_224).digestAsHex(scanner.nextLine());
+		choicePswd = new DigestUtils(SHA_512).digestAsHex(scanner.nextLine());
 		
 		Client client = new Client (choiceNom, choicePrenom, choiceMail, choicePswd);
 		cJpaDao.beginConnexionBdd();
