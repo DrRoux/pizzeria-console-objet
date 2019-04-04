@@ -16,7 +16,7 @@ import fr.pizzeria.model.Client;
  *
  * @author BIRABEN-BIANCHI Hugo
  */
-public class ClientJPADao
+public class ClientJpaDao
 {
 	private String driverName = null;
 	private String jdbcUrl = null;
@@ -25,7 +25,7 @@ public class ClientJPADao
 	private Connection connexionBDD = null;
 	private PreparedStatement st = null;
 	
-	public ClientJPADao ()
+	public ClientJpaDao ()
 	{
 		GestionFichier file = new GestionFichier ("src/main/resources/jdbc.properties");
 		List <String> listString = file.lecture();

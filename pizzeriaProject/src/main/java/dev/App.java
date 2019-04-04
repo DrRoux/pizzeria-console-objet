@@ -20,6 +20,7 @@ public class App
 	
     public static void main( String[] args )
     {
+    	/*
     	EntityManagerFactory emf = Persistence.createEntityManagerFactory("pizzeriaProject");
     	EntityManager em = emf.createEntityManager();
 
@@ -30,7 +31,8 @@ public class App
         
         em.close ();
         emf.close ();
+        */
         
-        //p.display ();
+        p.display ();
     }
 }
