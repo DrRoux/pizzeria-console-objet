@@ -27,6 +27,14 @@ public class MenuFactory
 		{
 			retour =  new SupprimerPizzaService ();
 		}
+		else if (typeMenu.equals("connexionClient"))
+		{
+			retour =  new ConnecterClientService ();
+		}
+		else if (typeMenu.equals("inscription"))
+		{
+			retour =  new InscriptionClientService ();
+		}
 		
 		return retour;
 	}
