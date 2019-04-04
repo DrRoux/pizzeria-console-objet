@@ -235,23 +235,6 @@ public class Pizza
 		this.prix = prix;
 	}
 
-	/**
-	 * Getter
-	 * @return the nbPizza
-	 */
-	public static int getNbPizza()
-	{
-		return nbPizza;
-	}
-
-	/**
-	 * @param nbPizza2
-	 */
-	public static void setNbPizza(int nbPizza)
-	{
-		Pizza.nbPizza = nbPizza;
-	}
-
 	public CategoriePizza getcP()
 	{
 		return cP;
