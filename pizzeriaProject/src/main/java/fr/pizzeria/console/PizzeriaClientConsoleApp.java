@@ -16,9 +16,7 @@ import fr.pizzeria.menu.MenuFactory;
  */
 public class PizzeriaClientConsoleApp implements PizzeriaConsole
 {
-	private Scanner questionUser;
-	
-	public void display() 
+	public void display(Scanner questionUser) 
 	{
 		String choice = "0";
 		questionUser = new Scanner (System.in);
