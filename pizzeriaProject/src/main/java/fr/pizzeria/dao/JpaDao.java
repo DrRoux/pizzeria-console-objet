@@ -38,4 +38,20 @@ public abstract class JpaDao
 		em.persist(object);
 		et.commit ();
 	}
+	
+	public <T> void modif (T object)
+	{
+		EntityTransaction et = em.getTransaction();
+		et.begin ();
+		em.merge(object);
+		et.commit ();
+	}
+	
+	public <T> void suppr (T object)
+	{
+		EntityTransaction et = em.getTransaction();
+		et.begin ();
+		em.remove(object);
+		et.commit ();
+	}
 }

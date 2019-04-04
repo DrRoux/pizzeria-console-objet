@@ -87,8 +87,6 @@ public class PizzaBddDao implements IPizzaDao
 				String categorie = result.getString("categorie");
 				
 				tabPizza.add(new Pizza (id, code, nom_pizza, prix, CategoriePizza.valueOf(categorie.toUpperCase())));	
-				
-				Pizza.setNbPizza(id);
 			}
 		}
 		catch (SQLException e)

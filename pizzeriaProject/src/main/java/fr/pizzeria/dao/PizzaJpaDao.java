@@ -37,9 +37,7 @@ public class PizzaJpaDao extends JpaDao implements IPizzaDao
 	public void saveNewPizza(Pizza pizza)
 	{
 		beginConnexionBdd();
-		
 		ajout (pizza);
-		
 		closeConnexionBdd();
 	}
 
@@ -49,7 +47,18 @@ public class PizzaJpaDao extends JpaDao implements IPizzaDao
 	@Override
 	public void updatePizza(String codePizza, Pizza pizza)
 	{
-		// TODO Auto-generated method stub
+		if (pizzaExists (codePizza))
+		{
+			Pizza p = findPizzaByCode (codePizza);
+			p.setCode(pizza.getCode ());
+			p.setLibelle(pizza.getLibelle());
+			p.setPrix(pizza.getPrix());
+			p.setcP(pizza.getcP());
+			
+			beginConnexionBdd();
+			modif (p);
+			closeConnexionBdd();
+		}
 		
 	}
 
@@ -59,8 +68,14 @@ public class PizzaJpaDao extends JpaDao implements IPizzaDao
 	@Override
 	public void deletePizza(String codePizza)
 	{
-		// TODO Auto-generated method stub
-		
+		if (pizzaExists (codePizza))
+		{
+			Pizza p = findPizzaByCode (codePizza);
+			
+			beginConnexionBdd();
+			modif (p);
+			closeConnexionBdd();
+		}
 	}
 
 	/* (non-Javadoc)
@@ -69,8 +84,15 @@ public class PizzaJpaDao extends JpaDao implements IPizzaDao
 	@Override
 	public Pizza findPizzaByCode(String codePizza)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		Pizza p = null;
+		beginConnexionBdd();
+
+		TypedQuery<Pizza> query = em.createQuery("SELECT p FROM Pizza p WHERE code=:codePizza", Pizza.class);
+		query.setParameter("codePizza", codePizza);
+		p = query.getSingleResult();
+		
+		closeConnexionBdd();
+		return p;
 	}
 
 	/* (non-Javadoc)
@@ -79,8 +101,19 @@ public class PizzaJpaDao extends JpaDao implements IPizzaDao
 	@Override
 	public boolean pizzaExists(String codePizza)
 	{
-		// TODO Auto-generated method stub
-		return false;
+		boolean retour = false;
+		
+		beginConnexionBdd();
+
+		TypedQuery<Pizza> query = em.createQuery("SELECT p FROM Pizza p WHERE code=:codePizza", Pizza.class);
+		query.setParameter("codePizza", codePizza);
+		
+		if (query.getResultList().size() == 1)
+			retour = true;
+		
+		closeConnexionBdd();
+		
+		return retour;
 	}
 
 }
