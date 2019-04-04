@@ -4,12 +4,16 @@
 package fr.pizzeria.model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -29,16 +33,18 @@ public class Commande
 	private int statut;
 	@Column
 	private LocalDateTime date_commande;
-	@Column
-	private int livreur_id;
-	@Column
-	private int client_id;
+	@ManyToOne
+	@JoinColumn(name="livreur_id")
+	private Livreur livreur_id;
+	@ManyToOne
+	@JoinColumn(name="client_id")
+	private Client client_id;
 	
 	public Commande ()
 	{
 	}
 	
-	public Commande(int numero_commande, int statut, LocalDateTime date_commande, int livreur_id, int client_id)
+	public Commande(int numero_commande, int statut, LocalDateTime date_commande, ArrayList<Livreur> livreur_id, Client client_id)
 	{
 		super();
 		this.numero_commande = numero_commande;
@@ -48,7 +54,7 @@ public class Commande
 		this.client_id = client_id;
 	}
 	
-	public Commande(int id, int numero_commande, int statut, LocalDateTime date_commande, int livreur_id, int client_id)
+	public Commande(int id, int numero_commande, int statut, LocalDateTime date_commande, ArrayList<Livreur> livreur_id, Client client_id)
 	{
 		super();
 		this.id = id;
@@ -140,7 +146,7 @@ public class Commande
 	 * Getter
 	 * @return the livreur_id
 	 */
-	public int getLivreur_id()
+	public ArrayList<Livreur> getLivreur_id()
 	{
 		return livreur_id;
 	}
@@ -149,7 +155,7 @@ public class Commande
 	 * Setter
 	 * @param livreur_id the livreur_id to set
 	 */
-	public void setLivreur_id(int livreur_id)
+	public void setLivreur_id(ArrayList<Livreur> livreur_id)
 	{
 		this.livreur_id = livreur_id;
 	}
@@ -158,7 +164,7 @@ public class Commande
 	 * Getter
 	 * @return the client_id
 	 */
-	public int getClient_id()
+	public Client getClient_id()
 	{
 		return client_id;
 	}
@@ -167,7 +173,7 @@ public class Commande
 	 * Setter
 	 * @param client_id the client_id to set
 	 */
-	public void setClient_id(int client_id)
+	public void setClient_id(Client client_id)
 	{
 		this.client_id = client_id;
 	}
