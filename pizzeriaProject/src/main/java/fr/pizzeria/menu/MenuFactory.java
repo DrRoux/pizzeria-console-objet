@@ -35,7 +35,7 @@ public class MenuFactory
 		{
 			retour =  new InscriptionClientService ();
 		}
-		else if (typeMenu.equals("clientConnecte"))
+		else if (typeMenu.equals("listerClientConnecte"))
 		{
 			retour =  new ListerClientConnecteService ();
 		}

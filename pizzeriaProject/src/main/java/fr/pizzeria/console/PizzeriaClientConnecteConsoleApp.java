@@ -7,7 +7,7 @@ import fr.pizzeria.exception.StockageException;
 import fr.pizzeria.menu.MenuFactory;
 import fr.pizzeria.model.Client;
 
-public class PizzeriaClientConnecteConsoleApp implements PizzeriaConsole
+public class PizzeriaClientConnecteConsoleApp implements IPizzeriaConsole
 {
 	public void display(Scanner questionUser, Client client) 
 	{
@@ -35,6 +35,7 @@ public class PizzeriaClientConnecteConsoleApp implements PizzeriaConsole
 				}
 				else if (Integer.parseInt(choice) == 2)
 				{
+					menu.create("listerClientConnecte").set(client);
 					menu.create("listerClientConnecte").executeUC(questionUser);
 				}
 				else if (Integer.parseInt(choice) == 99)

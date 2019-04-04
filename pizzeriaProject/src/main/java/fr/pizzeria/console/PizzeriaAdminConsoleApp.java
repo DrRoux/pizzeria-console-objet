@@ -12,7 +12,7 @@ import fr.pizzeria.menu.MenuFactory;
  * de l'application.
  * @author BIRABEN-BIANCHI Hugo
  */
-public class PizzeriaAdminConsoleApp implements PizzeriaConsole
+public class PizzeriaAdminConsoleApp implements IPizzeriaConsole
 {
 	public void display(Scanner questionUser) 
 	{

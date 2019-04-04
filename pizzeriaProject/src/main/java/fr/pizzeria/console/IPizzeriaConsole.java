@@ -9,7 +9,7 @@ import java.util.Scanner;
  *
  * @author BIRABEN-BIANCHI Hugo
  */
-public interface PizzeriaConsole
+public interface IPizzeriaConsole
 {
 	default void display (Scanner questionUser) {};
 }

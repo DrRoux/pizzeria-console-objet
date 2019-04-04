@@ -30,6 +30,11 @@ public class Client
 	@Column
 	private String mot_de_passe;
 	
+	public String toString ()
+	{
+		return (id + " : " + nom + " : " + prenom + " - " + email + "");
+	}
+	
 	public Client ()
 	{
 		

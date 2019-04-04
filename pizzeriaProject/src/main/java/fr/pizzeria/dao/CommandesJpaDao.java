@@ -8,14 +8,15 @@ import fr.pizzeria.model.Commande;
 
 public class CommandesJpaDao extends JpaDao
 {
-	public List <Commande> listerCommandes (Client c)
+	public List <Commande> listerCommandes (Client client)
 	{
+		System.out.println(client + " " + client.getId ());
 		beginConnexionBdd();
 		TypedQuery<Commande> query = em.createQuery("SELECT c FROM Commande c WHERE client_id =:id", Commande.class);
-		query.setParameter("id", c.getId());
-		List<Commande> client = query.getResultList();
+		query.setParameter("id", client.getId());
+		List<Commande> listClients = query.getResultList();
 		closeConnexionBdd();
 		
-		return client;
+		return listClients;
 	}
 }
