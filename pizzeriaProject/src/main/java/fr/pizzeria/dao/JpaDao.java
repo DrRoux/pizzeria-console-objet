@@ -3,8 +3,9 @@
  */
 package fr.pizzeria.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 /**
  *
@@ -16,6 +17,18 @@ public abstract class JpaDao
 	String jdbcUrl = null;
 	String userName = null;
 	String password = null;
-	Connection connexionBDD = null;
-	PreparedStatement st = null;
+	EntityManagerFactory emf = null;
+	EntityManager em = null;
+	
+	public void beginConnexionBdd ()
+	{
+		emf = Persistence.createEntityManagerFactory("pizzeriaProject");
+    	em = emf.createEntityManager();
+	}
+	
+	public void closeConnexionBdd ()
+	{
+		em.close ();
+        emf.close ();
+	}
 }
