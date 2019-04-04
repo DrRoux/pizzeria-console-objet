@@ -16,15 +16,8 @@ import fr.pizzeria.model.Client;
  *
  * @author BIRABEN-BIANCHI Hugo
  */
-public class ClientJpaDao
+public class ClientJpaDao extends JpaDao
 {
-	private String driverName = null;
-	private String jdbcUrl = null;
-	private String userName = null;
-	private String password = null;
-	private Connection connexionBDD = null;
-	private PreparedStatement st = null;
-	
 	public ClientJpaDao ()
 	{
 		GestionFichier file = new GestionFichier ("src/main/resources/jdbc.properties");

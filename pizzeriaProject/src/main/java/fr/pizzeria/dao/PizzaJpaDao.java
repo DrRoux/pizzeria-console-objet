@@ -21,16 +21,8 @@ import fr.pizzeria.model.Pizza;
  *
  * @author BIRABEN-BIANCHI Hugo
  */
-public class PizzaJpaDao implements IPizzaDao
+public class PizzaJpaDao extends JpaDao implements IPizzaDao
 {
-
-	private String driverName = null;
-	private String jdbcUrl = null;
-	private String userName = null;
-	private String password = null;
-	private Connection connexionBDD = null;
-	private PreparedStatement st = null;
-	
 	public PizzaJpaDao ()
 	{
 		GestionFichier file = new GestionFichier ("src/main/ressources/jdbc.properties");
