@@ -29,6 +29,9 @@ public class PizzeriaAdminConsoleApp implements IPizzeriaConsole
 			System.out.println("2.  Ajouter une nouvelle pizza");
 			System.out.println("3.  Mettre à jour une pizza");
 			System.out.println("4.  Supprimer une pizza");
+			System.out.println("5.  Lister toutes les commandes non traitées");
+			System.out.println("6.  Ajouter un livreur");
+			System.out.println("7.  Expédier une commande");
 			System.out.println("99. Quitter l'application");
 			System.out.println("\nVeuillez saisir votre choix : ");
 			
