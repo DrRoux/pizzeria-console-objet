@@ -8,9 +8,6 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -20,15 +17,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table (name="client")
-public class Client
+public class Client extends Personne
 {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	@Column
-	private String nom;
-	@Column
-	private String prenom;
 	@Column
 	private String email;
 	@Column
@@ -67,30 +57,36 @@ public class Client
 		this.mot_de_passe = mot_de_passe;
 	}
 	
+	@Override
 	public int getId()
 	{
 		return id;
 	}
 	
+	@Override
 	public void setId(int id)
 	{
 		this.id = id;
 	}
 	
+	@Override
 	public String getNom()
 	{
 		return nom;
 	}
 	
+	@Override
 	public void setNom(String nom)
 	{
 		this.nom = nom;
 	}
 	
+	@Override
 	public String getPrenom()
 	{
 		return prenom;
 	}
+	@Override
 	public void setPrenom(String prenom)
 	{
 		this.prenom = prenom;
