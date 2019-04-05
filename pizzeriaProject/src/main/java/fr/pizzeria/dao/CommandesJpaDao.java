@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityGraph;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import fr.pizzeria.model.Client;
@@ -72,7 +73,7 @@ public class CommandesJpaDao extends JpaDao
 		beginConnexionBdd ();
 		EntityTransaction et = em.getTransaction();
 		et.begin ();
-		TypedQuery<Commande> query = em.createQuery("UPDATE FROM Commande c SET c.status=1 WHERE livreur NOT NULL", Commande.class);
+		Query query = em.createQuery("UPDATE FROM Commande c SET c.status=1 WHERE c.livreur_id IS NOT NULL");
 		query.executeUpdate();
 		et.commit ();
 		closeConnexionBdd();
