@@ -7,12 +7,12 @@
 		<class>fr.pizzeria.model.Client</class>
 		<class>fr.pizzeria.model.Livreur</class>
 		<class>fr.pizzeria.model.Commande</class>
-		<class>fr.pizzeria.model.CommandePizza</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://bxnieqyqjpcgwd3f2wwb-mysql.services.clever-cloud.com:3306/bxnieqyqjpcgwd3f2wwb?useSSL=false"/>
 			<property name="javax.persistence.jdbc.user" value="u23oixvvtlomobsc"/>
 			<property name="javax.persistence.jdbc.password" value="lwW5IiUfLRDdIsxsqY7G"/>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+			<!-- <property name="hibernate.show_sql" value="true"/> -->
 		</properties>
 	</persistence-unit>
 </persistence>

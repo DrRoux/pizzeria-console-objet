@@ -1,5 +1,6 @@
 package fr.pizzeria.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -9,9 +10,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
 import javax.persistence.Table;
 
 import fr.pizzeria.utils.*;
@@ -22,6 +23,8 @@ import fr.pizzeria.utils.*;
  */
 @Entity
 @Table(name="pizza")
+@NamedEntityGraph(	name = "graph.Pizza.listComPiz", 
+					attributeNodes = @NamedAttributeNode("listComPiz"))
 public class Pizza 
 {
 	/** id : int */
@@ -49,11 +52,9 @@ public class Pizza
 	@Enumerated(EnumType.STRING)
 	private CategoriePizza cP;
 	
-	@ManyToMany
-	@JoinTable(	name = "commande_pizza",
-				joinColumns = @JoinColumn(name = "pizza_id", referencedColumnName = "id"),
-				inverseJoinColumns = @JoinColumn(name = "commande_id", referencedColumnName = "id")) 
-	private List <Commande> listComPiz;
+	@ManyToMany(mappedBy = "listComPiz")
+
+	private List <Commande> listComPiz = new ArrayList <> ();
 	
 	/**
 	 * Default Constructor

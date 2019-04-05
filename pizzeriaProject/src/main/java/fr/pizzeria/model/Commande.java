@@ -4,6 +4,7 @@
 package fr.pizzeria.model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -15,6 +16,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
 import javax.persistence.Table;
 
 /**
@@ -23,6 +26,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table (name="commande")
+@NamedEntityGraph(	name = "graph.Commande.listComPiz", 
+					attributeNodes = @NamedAttributeNode("listComPiz"))
 public class Commande
 {
 	@Id
@@ -45,7 +50,7 @@ public class Commande
 	@JoinTable(	name = "commande_pizza",
 				joinColumns = @JoinColumn(name = "commande_id", referencedColumnName = "id"), 
 				inverseJoinColumns = @JoinColumn(name = "pizza_id", referencedColumnName = "id"))
-	private List <Pizza> listComPiz;
+	private List <Pizza> listComPiz = new ArrayList <> ();
 	
 	public Commande ()
 	{
@@ -74,7 +79,12 @@ public class Commande
 
 	public String toString ()
 	{
-		return (numero_commande + " : " + date_commande + " - " + client_id + "");
+		String listCommande = "";
+		for (Pizza p : listComPiz)
+		{
+			listCommande += date_commande + " - " + client_id + " : " + p + "\n";			
+		}
+		return listCommande;
 	}
 	
 	/**

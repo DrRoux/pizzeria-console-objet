@@ -39,7 +39,7 @@ public class Client
 	
 	public String toString ()
 	{
-		return (id + " : " + nom + " : " + prenom + " - " + email + "");
+		return (nom + " " + prenom + " - " + email);
 	}
 	
 	public Client ()

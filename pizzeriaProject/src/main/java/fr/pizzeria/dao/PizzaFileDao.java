@@ -134,13 +134,11 @@ public class PizzaFileDao implements IPizzaDao
 	public void lecture ()
 	{
 		List <String> listString = gestionFichier.lecture();
-		
-		int maxNbPizza = 0;		
+			
 		for (String s : listString)
 		{
 			String [] pizza = s.split(",");
 			tabPizza.add(new Pizza (Integer.parseInt(pizza[0]), pizza[1], pizza[2], Double.parseDouble(pizza[3]), CategoriePizza.valueOf(pizza[4].toUpperCase())));
-			maxNbPizza = Integer.parseInt(pizza[0]);
 		}
 	}
 }

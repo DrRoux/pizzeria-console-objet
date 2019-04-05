@@ -3,6 +3,7 @@
  */
 package fr.pizzeria.menu;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -24,7 +25,7 @@ public class CommandeClientService extends MenuService
 	@Override
 	public void executeUC(Scanner scanner) throws StockageException
 	{
-		List <Commande> a;
+		List <Commande> a = new ArrayList <> ();
 		String choice = "0";
 		
 		boolean sortiBoucle = false;
@@ -51,7 +52,6 @@ public class CommandeClientService extends MenuService
 				}
 				else if (Integer.parseInt(choice) == 99)
 				{
-					System.out.println("Aurevoir ☻");
 					sortiBoucle = true;
 				}
 				else

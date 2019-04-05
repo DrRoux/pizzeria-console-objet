@@ -40,7 +40,6 @@ public class PizzeriaClientConnecteConsoleApp implements IPizzeriaConsole
 				}
 				else if (Integer.parseInt(choice) == 99)
 				{
-					System.out.println("Aurevoir ☻");
 					sortiBoucle = true;
 				}
 				else
