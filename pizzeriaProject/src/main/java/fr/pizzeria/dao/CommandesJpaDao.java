@@ -57,7 +57,7 @@ public class CommandesJpaDao extends JpaDao
 		closeConnexionBdd();
 	}
 	
-	public void associerLivreurCommande (int livreur, int commande)
+	public void associerLivreurCommande (int commande, int livreur)
 	{	
 		beginConnexionBdd ();
 		Livreur l = lJpaDao.findLivreur(livreur);
