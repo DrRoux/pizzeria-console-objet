@@ -84,8 +84,8 @@ public class CommandeClientService extends MenuService
 		}
 	}
 	
-	public <T> void set (T c)
+	public void set (Client c)
 	{
-		client = (Client)c;
+		client = c;
 	}
 }

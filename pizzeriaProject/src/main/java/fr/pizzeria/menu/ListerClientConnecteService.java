@@ -17,8 +17,8 @@ public class ListerClientConnecteService extends MenuService
 		cJpaDao.listerCommandes (client, true).forEach(t->System.out.println(t));
 	}
 	
-	public <T> void set (T c)
+	public void set (Client c)
 	{
-		client = (Client)c;
+		client = c;
 	}
 }

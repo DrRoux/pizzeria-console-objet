@@ -8,7 +8,7 @@ import fr.pizzeria.exception.*;
 /**
  * @author BIRABEN-BIANCHI Hugo
  */
-public abstract class MenuService implements ISet
+public abstract class MenuService
 {
 	protected static IPizzaDao gestionnairePizza = new PizzaJpaDao ();
 		

@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 import fr.pizzeria.exception.PersonnalSqlException;
 import fr.pizzeria.exception.StockageException;
+import fr.pizzeria.menu.CommandeClientService;
+import fr.pizzeria.menu.ListerClientConnecteService;
 import fr.pizzeria.menu.MenuFactory;
 import fr.pizzeria.model.Client;
 
@@ -31,13 +33,15 @@ public class PizzeriaClientConnecteConsoleApp implements IPizzeriaConsole
 			{
 				if (Integer.parseInt(choice) == 1)
 				{
-					menu.create("commander").set(client);
-					menu.create("commander").executeUC(questionUser);
+					CommandeClientService c =(CommandeClientService) menu.create("commander");
+					c.set(client);
+					c.executeUC(questionUser);
 				}
 				else if (Integer.parseInt(choice) == 2)
 				{
-					menu.create("listerClientConnecte").set(client);
-					menu.create("listerClientConnecte").executeUC(questionUser);
+					ListerClientConnecteService l = (ListerClientConnecteService) menu.create("listerClientConnecte");
+					l.set(client);
+					l.executeUC(questionUser);
 				}
 				else if (Integer.parseInt(choice) == 99)
 				{
