@@ -26,12 +26,15 @@ public class LivreurJpaDao extends JpaDao
 	
 	public Livreur findLivreur (int id)
 	{
+		Livreur l = new Livreur ();
 		beginConnexionBdd();
+		
 		TypedQuery<Livreur> query = em.createQuery("SELECT l FROM Livreur l WHERE l.id= ?1", Livreur.class);
 		query.setParameter(1, id);
-		Livreur l = query.getSingleResult();
-		System.out.println(l);
+		l = query.getSingleResult();
+		
 		closeConnexionBdd();
+		
 		return l;
 	}
 }
