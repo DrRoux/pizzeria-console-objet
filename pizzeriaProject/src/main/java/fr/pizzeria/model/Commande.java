@@ -28,7 +28,7 @@ public class Commande
 	@Column
 	private int numero_commande;
 	@Column
-	private int statut;
+	private int status;
 	@Column
 	private LocalDateTime date_commande;
 	@ManyToOne
@@ -46,7 +46,7 @@ public class Commande
 	{
 		super();
 		this.numero_commande = numero_commande;
-		this.statut = statut;
+		this.status = statut;
 		this.date_commande = date_commande;
 		this.livreur_id = livreur_id;
 		this.client_id = client_id;
@@ -57,7 +57,7 @@ public class Commande
 		super();
 		this.id = id;
 		this.numero_commande = numero_commande;
-		this.statut = statut;
+		this.status = statut;
 		this.date_commande = date_commande;
 		this.livreur_id = livreur_id;
 		this.client_id = client_id;
@@ -110,7 +110,7 @@ public class Commande
 	 */
 	public int getStatut()
 	{
-		return statut;
+		return status;
 	}
 	
 	/**
@@ -119,7 +119,7 @@ public class Commande
 	 */
 	public void setStatut(int statut)
 	{
-		this.statut = statut;
+		this.status = statut;
 	}
 	
 	/**
