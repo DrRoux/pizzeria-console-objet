@@ -27,6 +27,30 @@ public class MenuFactory
 		{
 			retour =  new SupprimerPizzaService ();
 		}
+		else if (typeMenu.equals("connexionClient"))
+		{
+			retour =  new ConnexionClientService ();
+		}
+		else if (typeMenu.equals("inscription"))
+		{
+			retour =  new InscriptionClientService ();
+		}
+		else if (typeMenu.equals("commander"))
+		{
+			retour =  new CommandeClientService ();
+		}
+		else if (typeMenu.equals("ajouterLivreur"))
+		{
+			retour =  new AjouterLivreurService ();
+		}
+		else if (typeMenu.equals("expedierCommande"))
+		{
+			retour =  new ExpedierCommandeService ();
+		}
+		else if (typeMenu.equals("listerAttente"))
+		{
+			retour =  new ListeAttenteService ();
+		}
 		
 		return retour;
 	}

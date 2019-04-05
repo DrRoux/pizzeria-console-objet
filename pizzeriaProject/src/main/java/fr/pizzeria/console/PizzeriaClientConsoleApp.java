@@ -4,9 +4,7 @@
 package fr.pizzeria.console;
 
 import java.util.Scanner;
-
 import fr.pizzeria.exception.PersonnalSqlException;
-import fr.pizzeria.exception.SavePizzaException;
 import fr.pizzeria.exception.StockageException;
 import fr.pizzeria.menu.MenuFactory;
 
@@ -14,14 +12,11 @@ import fr.pizzeria.menu.MenuFactory;
  *
  * @author BIRABEN-BIANCHI Hugo
  */
-public class PizzeriaClientConsoleApp implements PizzeriaConsole
+public class PizzeriaClientConsoleApp implements IPizzeriaConsole
 {
-	private Scanner questionUser;
-	
-	public void display() 
+	public void display(Scanner questionUser) 
 	{
 		String choice = "0";
-		questionUser = new Scanner (System.in);
 		
 		MenuFactory menu = new MenuFactory ();
 		
@@ -49,7 +44,6 @@ public class PizzeriaClientConsoleApp implements PizzeriaConsole
 				}
 				else if (Integer.parseInt(choice) == 99)
 				{
-					System.out.println("Aurevoir ☻");
 					sortiBoucle = true;
 				}
 				else
@@ -70,8 +64,5 @@ public class PizzeriaClientConsoleApp implements PizzeriaConsole
 				System.out.println(e.getMessage());
 			}
 		}
-		
-		questionUser.close ();
-		System.out.println("FIN DE L'APPLICATION AVEC SUCCES !");
 	}
 }

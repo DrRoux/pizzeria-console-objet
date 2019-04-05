@@ -12,14 +12,12 @@ import fr.pizzeria.menu.MenuFactory;
  * de l'application.
  * @author BIRABEN-BIANCHI Hugo
  */
-public class PizzeriaAdminConsoleApp implements PizzeriaConsole
+public class PizzeriaAdminConsoleApp implements IPizzeriaConsole
 {
-	private Scanner questionUser;
-	
-	public void display() 
+	@Override
+	public void display(Scanner questionUser) 
 	{
 		String choice = "0";
-		questionUser = new Scanner (System.in);
 		
 		MenuFactory menu = new MenuFactory ();
 		
@@ -32,6 +30,9 @@ public class PizzeriaAdminConsoleApp implements PizzeriaConsole
 			System.out.println("2.  Ajouter une nouvelle pizza");
 			System.out.println("3.  Mettre à jour une pizza");
 			System.out.println("4.  Supprimer une pizza");
+			System.out.println("5.  Lister toutes les commandes non traitées");
+			System.out.println("6.  Ajouter un livreur");
+			System.out.println("7.  Expédier une commande");
 			System.out.println("99. Quitter l'application");
 			System.out.println("\nVeuillez saisir votre choix : ");
 			
@@ -55,9 +56,20 @@ public class PizzeriaAdminConsoleApp implements PizzeriaConsole
 				{
 					menu.create("suppr").executeUC(questionUser);			
 				}
+				else if (Integer.parseInt(choice) == 5)
+				{
+					menu.create("listerAttente").executeUC(questionUser);			
+				}
+				else if (Integer.parseInt(choice) == 6)
+				{
+					menu.create("ajouterLivreur").executeUC(questionUser);			
+				}
+				else if (Integer.parseInt(choice) == 7)
+				{
+					menu.create("expedierCommande").executeUC(questionUser);			
+				}
 				else if (Integer.parseInt(choice) == 99)
 				{
-					System.out.println("Aurevoir ☻");
 					sortiBoucle = true;
 				}
 				else
@@ -87,9 +99,6 @@ public class PizzeriaAdminConsoleApp implements PizzeriaConsole
 				System.out.println(e.getMessage());
 			}
 		}
-		
-		questionUser.close ();
-		System.out.println("FIN DE L'APPLICATION AVEC SUCCES !");
 	}
 
 }

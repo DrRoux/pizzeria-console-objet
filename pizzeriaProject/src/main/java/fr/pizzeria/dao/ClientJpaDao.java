@@ -3,8 +3,7 @@
  */
 package fr.pizzeria.dao;
 
-import java.util.List;
-
+import javax.persistence.TypedQuery;
 import fr.pizzeria.model.Client;
 
 /**
@@ -13,23 +12,22 @@ import fr.pizzeria.model.Client;
  */
 public class ClientJpaDao extends JpaDao
 {
-	public ClientJpaDao ()
+	public void addNewClient (Client client)
 	{
-		GestionFichier file = new GestionFichier ("src/main/resources/jdbc.properties");
-		List <String> listString = file.lecture();
-		
-		driverName = listString.get(0).split(";")[1];
-		jdbcUrl = listString.get(1).split(";")[1];
-		userName = listString.get(2).split(";")[1];
-		password = listString.get(3).split(";")[1];
+		beginConnexionBdd();
+		ajout (client);
+		closeConnexionBdd();
 	}
 	
-	public boolean clientExist (Client client)
+	public Client getClient (String login, String password)
 	{
-		boolean retour = false;
+		beginConnexionBdd();
+		TypedQuery<Client> query = em.createQuery("SELECT c FROM Client c WHERE email= ?1 AND mot_de_passe= ?2", Client.class);
+		query.setParameter(1, login);
+		query.setParameter(2, password);
+		Client client = query.getSingleResult();
+		closeConnexionBdd();
 		
-		
-		
-		return retour;
+		return client;
 	}
 }

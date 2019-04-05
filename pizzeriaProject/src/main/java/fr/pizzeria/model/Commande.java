@@ -4,12 +4,20 @@
 package fr.pizzeria.model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
 import javax.persistence.Table;
 
 /**
@@ -18,6 +26,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table (name="commande")
+@NamedEntityGraph(	name = "graph.Commande.listComPiz", 
+					attributeNodes = @NamedAttributeNode("listComPiz"))
 public class Commande
 {
 	@Id
@@ -26,39 +36,68 @@ public class Commande
 	@Column
 	private int numero_commande;
 	@Column
-	private int statut;
+	private int status;
 	@Column
 	private LocalDateTime date_commande;
-	@Column
-	private int livreur_id;
-	@Column
-	private int client_id;
+	@ManyToOne
+	@JoinColumn(name="livreur_id")
+	private Livreur livreur_id;
+	@ManyToOne
+	@JoinColumn(name="client_id")
+	private Client client_id;
+	
+	@ManyToMany
+	@JoinTable(	name = "commande_pizza",
+				joinColumns = @JoinColumn(name = "commande_id", referencedColumnName = "id"), 
+				inverseJoinColumns = @JoinColumn(name = "pizza_id", referencedColumnName = "id"))
+	private List <Pizza> listComPiz = new ArrayList <> ();
 	
 	public Commande ()
 	{
+		numero_commande = id;
+		status = 0;
+		date_commande = LocalDateTime.now();
 	}
 	
-	public Commande(int numero_commande, int statut, LocalDateTime date_commande, int livreur_id, int client_id)
+	public Commande(int numero_commande, int statut, LocalDateTime date_commande, Livreur livreur_id, Client client_id)
 	{
 		super();
 		this.numero_commande = numero_commande;
-		this.statut = statut;
+		this.status = statut;
 		this.date_commande = date_commande;
 		this.livreur_id = livreur_id;
 		this.client_id = client_id;
 	}
 	
-	public Commande(int id, int numero_commande, int statut, LocalDateTime date_commande, int livreur_id, int client_id)
+	public Commande(int id, int numero_commande, int statut, LocalDateTime date_commande, Livreur livreur_id, Client client_id)
 	{
 		super();
 		this.id = id;
 		this.numero_commande = numero_commande;
-		this.statut = statut;
+		this.status = statut;
 		this.date_commande = date_commande;
 		this.livreur_id = livreur_id;
 		this.client_id = client_id;
 	}
 
+	@Override
+	public String toString ()
+	{
+		String listCommande = "";
+		
+		for (Pizza p : listComPiz)
+		{
+			listCommande += date_commande + " - " + client_id + " : " + p + "\n";			
+		}
+		
+		return listCommande;
+	}
+	
+	public void afficherListeAttente ()
+	{
+		System.out.println(id + " " + date_commande + " - " + client_id.afficherClient () + " " + livreur_id + "\n");			
+	}
+	
 	/**
 	 * Getter
 	 * @return the id
@@ -101,7 +140,7 @@ public class Commande
 	 */
 	public int getStatut()
 	{
-		return statut;
+		return status;
 	}
 	
 	/**
@@ -110,7 +149,7 @@ public class Commande
 	 */
 	public void setStatut(int statut)
 	{
-		this.statut = statut;
+		this.status = statut;
 	}
 	
 	/**
@@ -135,7 +174,7 @@ public class Commande
 	 * Getter
 	 * @return the livreur_id
 	 */
-	public int getLivreur_id()
+	public Livreur getLivreur_id()
 	{
 		return livreur_id;
 	}
@@ -144,7 +183,7 @@ public class Commande
 	 * Setter
 	 * @param livreur_id the livreur_id to set
 	 */
-	public void setLivreur_id(int livreur_id)
+	public void setLivreur_id(Livreur livreur_id)
 	{
 		this.livreur_id = livreur_id;
 	}
@@ -153,7 +192,7 @@ public class Commande
 	 * Getter
 	 * @return the client_id
 	 */
-	public int getClient_id()
+	public Client getClient_id()
 	{
 		return client_id;
 	}
@@ -162,8 +201,53 @@ public class Commande
 	 * Setter
 	 * @param client_id the client_id to set
 	 */
-	public void setClient_id(int client_id)
+	public void setClient_id(Client client_id)
 	{
 		this.client_id = client_id;
+	}
+
+	/**
+	 * Getter
+	 * @return the status
+	 */
+	public int getStatus()
+	{
+		return status;
+	}
+
+	/**
+	 * Setter
+	 * @param status the status to set
+	 */
+	public void setStatus(int status)
+	{
+		this.status = status;
+	}
+
+	/**
+	 * Getter
+	 * @return the listComPiz
+	 */
+	public List<Pizza> getListComPiz()
+	{
+		return listComPiz;
+	}
+
+	public void setListComPiz(List<Pizza>  pizza)
+	{
+		this.listComPiz = pizza;
+	}
+	
+	public void setListComPiz(Pizza pizza)
+	{
+		this.listComPiz.add(pizza);
+	}
+
+	/**
+	 * @param l
+	 */
+	public void setLivreur(Livreur l)
+	{
+		this.livreur_id = l;
 	}
 }
