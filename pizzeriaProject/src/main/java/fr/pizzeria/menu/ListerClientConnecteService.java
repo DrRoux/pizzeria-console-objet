@@ -14,7 +14,7 @@ public class ListerClientConnecteService extends MenuService
 	@Override
 	public void executeUC (Scanner scanner) throws StockageException 
 	{
-		cJpaDao.listerCommandes (client);
+		cJpaDao.listerCommandes (client).forEach(t->System.out.println(t));
 	}
 	
 	public <T> void set (T c)

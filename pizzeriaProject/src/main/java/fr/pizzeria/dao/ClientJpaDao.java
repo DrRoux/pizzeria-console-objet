@@ -22,9 +22,9 @@ public class ClientJpaDao extends JpaDao
 	public Client getClient (String login, String password)
 	{
 		beginConnexionBdd();
-		TypedQuery<Client> query = em.createQuery("SELECT c FROM Client c WHERE email=:login AND mot_de_passe=:pswd", Client.class);
-		query.setParameter("login", login);
-		query.setParameter("pswd", password);
+		TypedQuery<Client> query = em.createQuery("SELECT c FROM Client c WHERE email= ?1 AND mot_de_passe= ?2", Client.class);
+		query.setParameter(1, login);
+		query.setParameter(2, password);
 		Client client = query.getSingleResult();
 		closeConnexionBdd();
 		
