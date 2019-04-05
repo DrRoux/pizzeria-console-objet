@@ -4,7 +4,6 @@
 package fr.pizzeria.model;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,7 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -44,7 +42,7 @@ public class Commande
 	{
 	}
 	
-	public Commande(int numero_commande, int statut, LocalDateTime date_commande, ArrayList<Livreur> livreur_id, Client client_id)
+	public Commande(int numero_commande, int statut, LocalDateTime date_commande, Livreur livreur_id, Client client_id)
 	{
 		super();
 		this.numero_commande = numero_commande;
@@ -54,7 +52,7 @@ public class Commande
 		this.client_id = client_id;
 	}
 	
-	public Commande(int id, int numero_commande, int statut, LocalDateTime date_commande, ArrayList<Livreur> livreur_id, Client client_id)
+	public Commande(int id, int numero_commande, int statut, LocalDateTime date_commande, Livreur livreur_id, Client client_id)
 	{
 		super();
 		this.id = id;
@@ -146,7 +144,7 @@ public class Commande
 	 * Getter
 	 * @return the livreur_id
 	 */
-	public ArrayList<Livreur> getLivreur_id()
+	public Livreur getLivreur_id()
 	{
 		return livreur_id;
 	}
@@ -155,7 +153,7 @@ public class Commande
 	 * Setter
 	 * @param livreur_id the livreur_id to set
 	 */
-	public void setLivreur_id(ArrayList<Livreur> livreur_id)
+	public void setLivreur_id(Livreur livreur_id)
 	{
 		this.livreur_id = livreur_id;
 	}
