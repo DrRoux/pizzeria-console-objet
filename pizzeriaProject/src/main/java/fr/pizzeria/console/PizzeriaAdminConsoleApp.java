@@ -14,6 +14,7 @@ import fr.pizzeria.menu.MenuFactory;
  */
 public class PizzeriaAdminConsoleApp implements IPizzeriaConsole
 {
+	@Override
 	public void display(Scanner questionUser) 
 	{
 		String choice = "0";
@@ -61,11 +62,11 @@ public class PizzeriaAdminConsoleApp implements IPizzeriaConsole
 				}
 				else if (Integer.parseInt(choice) == 6)
 				{
-					menu.create("suppr").executeUC(questionUser);			
+					menu.create("ajouterLivreur").executeUC(questionUser);			
 				}
 				else if (Integer.parseInt(choice) == 7)
 				{
-					menu.create("suppr").executeUC(questionUser);			
+					menu.create("expedierCommande").executeUC(questionUser);			
 				}
 				else if (Integer.parseInt(choice) == 99)
 				{

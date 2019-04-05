@@ -27,6 +27,12 @@ public abstract class Personne
 	@Column
 	String prenom;
 	
+	@Override
+	public String toString ()
+	{
+		return (id + " " + nom + " " + prenom);
+	}
+	
 	/**
 	 * Getter
 	 * @return the id

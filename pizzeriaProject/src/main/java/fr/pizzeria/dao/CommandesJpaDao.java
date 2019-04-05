@@ -3,13 +3,18 @@ package fr.pizzeria.dao;
 import java.util.List;
 
 import javax.persistence.EntityGraph;
+import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 
 import fr.pizzeria.model.Client;
 import fr.pizzeria.model.Commande;
+import fr.pizzeria.model.Livreur;
 
 public class CommandesJpaDao extends JpaDao
 {
+	
+	LivreurJpaDao lJpaDao = new LivreurJpaDao ();
+	
 	public List <Commande> listerCommandes (Client client, boolean chargePizza)
 	{
 		beginConnexionBdd();
@@ -48,6 +53,28 @@ public class CommandesJpaDao extends JpaDao
 		commande.setClient_id(client);
 		commande.setLivreur_id(null);
 		ajout(commande);
+		closeConnexionBdd();
+	}
+	
+	public void associerLivreurCommande (int livreur, int commande)
+	{	
+		beginConnexionBdd ();
+		Livreur l = lJpaDao.findLivreur(livreur);
+		Commande c = em.find(Commande.class, commande);
+		c.setLivreur (l);
+		modif(c);
+		closeConnexionBdd();
+		
+	}
+	
+	public void expedierCommande ()
+	{
+		beginConnexionBdd ();
+		EntityTransaction et = em.getTransaction();
+		et.begin ();
+		TypedQuery<Commande> query = em.createQuery("UPDATE FROM Commande c SET c.status=1 WHERE livreur NOT NULL", Commande.class);
+		query.executeUpdate();
+		et.commit ();
 		closeConnexionBdd();
 	}
 }

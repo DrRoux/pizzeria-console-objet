@@ -18,8 +18,6 @@ import javax.persistence.Table;
 @Table (name="livreur")
 public class Livreur extends Personne
 {
-	
-	
 	@OneToMany (mappedBy = "livreur_id")
 	private List<Commande> commandesLivreur;
 	

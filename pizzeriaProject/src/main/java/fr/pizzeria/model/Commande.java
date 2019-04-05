@@ -242,4 +242,12 @@ public class Commande
 	{
 		this.listComPiz.add(pizza);
 	}
+
+	/**
+	 * @param l
+	 */
+	public void setLivreur(Livreur l)
+	{
+		this.livreur_id = l;
+	}
 }
