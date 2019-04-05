@@ -4,7 +4,9 @@
 package fr.pizzeria.dao;
 
 import java.util.List;
+
 import javax.persistence.TypedQuery;
+
 import fr.pizzeria.model.Pizza;
 
 /**
@@ -59,7 +61,7 @@ public class PizzaJpaDao extends JpaDao implements IPizzaDao
 		{
 			beginConnexionBdd();
 			
-			Pizza query = em.createQuery("SELECT p FROM Pizza p WHERE code=:codePizza", Pizza.class).setParameter("codePizza", codePizza).getSingleResult();
+			Pizza query = em.createQuery("SELECT p FROM Pizza p WHERE code= ?1", Pizza.class).setParameter(1, codePizza).getSingleResult();
 			suppr(query);
 			
 			closeConnexionBdd();
