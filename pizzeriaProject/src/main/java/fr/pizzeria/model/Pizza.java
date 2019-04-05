@@ -1,5 +1,7 @@
 package fr.pizzeria.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -7,6 +9,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import fr.pizzeria.utils.*;
@@ -43,6 +48,12 @@ public class Pizza
 	@Column(name="categorie")
 	@Enumerated(EnumType.STRING)
 	private CategoriePizza cP;
+	
+	@ManyToMany
+	@JoinTable(	name = "commande_pizza",
+				joinColumns = @JoinColumn(name = "pizza_id", referencedColumnName = "id"),
+				inverseJoinColumns = @JoinColumn(name = "commande_id", referencedColumnName = "id")) 
+	private List <Commande> listComPiz;
 	
 	/**
 	 * Default Constructor

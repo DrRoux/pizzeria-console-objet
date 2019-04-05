@@ -18,4 +18,11 @@ public class CommandesJpaDao extends JpaDao
 		
 		return listClients;
 	}
+	
+	public void ajoutCommande (Client client, List <Commande> commandes)
+	{
+		beginConnexionBdd();
+		commandes.forEach(em::persist);
+		closeConnexionBdd();
+	}
 }
