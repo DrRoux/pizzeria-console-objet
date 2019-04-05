@@ -10,12 +10,11 @@ public class CommandesJpaDao extends JpaDao
 {
 	public List <Commande> listerCommandes (Client client)
 	{
-		System.out.println(client);
-		System.out.println(client.getId ());
 		beginConnexionBdd();
 		TypedQuery<Commande> query = em.createQuery("SELECT c FROM Commande c WHERE client_id =:id", Commande.class);
 		query.setParameter("id", client.getId());
 		List<Commande> listClients = query.getResultList();
+		listClients.forEach(t->System.out.println(t));
 		closeConnexionBdd();
 		
 		return listClients;

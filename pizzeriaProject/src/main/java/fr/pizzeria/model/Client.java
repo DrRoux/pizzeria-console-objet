@@ -61,6 +61,7 @@ public class Client
 	
 	public int getId()
 	{
+		System.out.println("ici");
 		return id;
 	}
 	
