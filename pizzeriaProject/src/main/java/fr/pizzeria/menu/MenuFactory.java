@@ -35,9 +35,17 @@ public class MenuFactory
 		{
 			retour =  new InscriptionClientService ();
 		}
+		else if (typeMenu.equals("commander"))
+		{
+			retour =  new CommandeClientService ();
+		}
 		else if (typeMenu.equals("listerClientConnecte"))
 		{
 			retour =  new ListerClientConnecteService ();
+		}
+		else if (typeMenu.equals("listerAttente"))
+		{
+			retour =  new ListeAttenteService ();
 		}
 		
 		return retour;

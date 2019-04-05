@@ -54,6 +54,9 @@ public class Commande
 	
 	public Commande ()
 	{
+		numero_commande = id;
+		status = 0;
+		date_commande = LocalDateTime.now();
 	}
 	
 	public Commande(int numero_commande, int statut, LocalDateTime date_commande, Livreur livreur_id, Client client_id)
@@ -77,14 +80,22 @@ public class Commande
 		this.client_id = client_id;
 	}
 
+	@Override
 	public String toString ()
 	{
 		String listCommande = "";
+		
 		for (Pizza p : listComPiz)
 		{
 			listCommande += date_commande + " - " + client_id + " : " + p + "\n";			
 		}
+		
 		return listCommande;
+	}
+	
+	public void afficherListeAttente ()
+	{
+		System.out.println(id + " " + date_commande + " - " + client_id.afficherClient () + " " + livreur_id + "\n");			
 	}
 	
 	/**
@@ -193,5 +204,42 @@ public class Commande
 	public void setClient_id(Client client_id)
 	{
 		this.client_id = client_id;
+	}
+
+	/**
+	 * Getter
+	 * @return the status
+	 */
+	public int getStatus()
+	{
+		return status;
+	}
+
+	/**
+	 * Setter
+	 * @param status the status to set
+	 */
+	public void setStatus(int status)
+	{
+		this.status = status;
+	}
+
+	/**
+	 * Getter
+	 * @return the listComPiz
+	 */
+	public List<Pizza> getListComPiz()
+	{
+		return listComPiz;
+	}
+
+	public void setListComPiz(List<Pizza>  pizza)
+	{
+		this.listComPiz = pizza;
+	}
+	
+	public void setListComPiz(Pizza pizza)
+	{
+		this.listComPiz.add(pizza);
 	}
 }

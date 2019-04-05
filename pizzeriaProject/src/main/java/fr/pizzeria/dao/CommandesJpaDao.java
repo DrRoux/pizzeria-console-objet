@@ -31,10 +31,23 @@ public class CommandesJpaDao extends JpaDao
 		return listClients;
 	}
 	
-	public void ajoutCommande (Client client, List <Commande> commandes)
+	public List <Commande> listerCommandesAttente ()
 	{
 		beginConnexionBdd();
-		commandes.forEach(em::persist);
+		TypedQuery<Commande> query = em.createQuery("SELECT c FROM Commande c WHERE status = 0", Commande.class);
+		List<Commande> listClients = query.getResultList();
+
+		closeConnexionBdd();
+		
+		return listClients;
+	}
+	
+	public void ajoutCommande (Client client, Commande commande)
+	{
+		beginConnexionBdd();
+		commande.setClient_id(client);
+		commande.setLivreur_id(null);
+		ajout(commande);
 		closeConnexionBdd();
 	}
 }

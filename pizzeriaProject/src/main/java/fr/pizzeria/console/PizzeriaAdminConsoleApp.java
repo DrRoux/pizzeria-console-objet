@@ -55,6 +55,18 @@ public class PizzeriaAdminConsoleApp implements IPizzeriaConsole
 				{
 					menu.create("suppr").executeUC(questionUser);			
 				}
+				else if (Integer.parseInt(choice) == 5)
+				{
+					menu.create("listerAttente").executeUC(questionUser);			
+				}
+				else if (Integer.parseInt(choice) == 6)
+				{
+					menu.create("suppr").executeUC(questionUser);			
+				}
+				else if (Integer.parseInt(choice) == 7)
+				{
+					menu.create("suppr").executeUC(questionUser);			
+				}
 				else if (Integer.parseInt(choice) == 99)
 				{
 					sortiBoucle = true;

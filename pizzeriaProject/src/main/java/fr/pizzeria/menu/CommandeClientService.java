@@ -3,15 +3,14 @@
  */
 package fr.pizzeria.menu;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
 import fr.pizzeria.dao.CommandesJpaDao;
 import fr.pizzeria.exception.PersonnalSqlException;
 import fr.pizzeria.exception.StockageException;
 import fr.pizzeria.model.Client;
 import fr.pizzeria.model.Commande;
+import fr.pizzeria.model.Pizza;
 
 /**
  *
@@ -25,8 +24,10 @@ public class CommandeClientService extends MenuService
 	@Override
 	public void executeUC(Scanner scanner) throws StockageException
 	{
-		List <Commande> a = new ArrayList <> ();
+		Commande commande = new Commande ();
 		String choice = "0";
+		
+		List <Pizza> listPizza = gestionnairePizza.findAllPizzas();
 		
 		boolean sortiBoucle = false;
 		
@@ -35,7 +36,7 @@ public class CommandeClientService extends MenuService
 			System.out.println("***** Commande en cours *****");
 			System.out.println("1.  Commander une pizza");
 			System.out.println("2.  Consulter sa commande en cours");
-			System.out.println("99. Quitter l'application");
+			System.out.println("99. Finaliser votre commande");
 			System.out.println("\nVeuillez saisir votre choix : ");
 			
 			choice = scanner.nextLine();
@@ -44,15 +45,28 @@ public class CommandeClientService extends MenuService
 			{
 				if (Integer.parseInt(choice) == 1)
 				{
+					String choice2 = null;
+					System.out.println("Choix d'une pizza : ");
+					
+					System.out.println(listPizza);
+					
+					while (gestionnairePizza.pizzaExists(choice2) != true)
+					{	
+						System.out.println("Veuillez choisir le code de la pizza à commander : ");
+						choice2 = scanner.nextLine().toUpperCase();
+					}
+					
+					commande.setListComPiz(gestionnairePizza.findPizzaByCode(choice2));
 					
 				}
 				else if (Integer.parseInt(choice) == 2)
 				{
-					System.out.println();
+					System.out.println(commande);
 				}
 				else if (Integer.parseInt(choice) == 99)
 				{
 					sortiBoucle = true;
+					cJpaDao.ajoutCommande(client, commande);
 				}
 				else
 				{

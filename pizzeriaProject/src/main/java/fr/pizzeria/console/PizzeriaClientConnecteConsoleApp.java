@@ -31,6 +31,7 @@ public class PizzeriaClientConnecteConsoleApp implements IPizzeriaConsole
 			{
 				if (Integer.parseInt(choice) == 1)
 				{
+					menu.create("commander").set(client);
 					menu.create("commander").executeUC(questionUser);
 				}
 				else if (Integer.parseInt(choice) == 2)

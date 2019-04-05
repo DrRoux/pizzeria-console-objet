@@ -13,10 +13,6 @@ import fr.pizzeria.model.Pizza;
  */
 public class PizzaJpaDao extends JpaDao implements IPizzaDao
 {
-	
-	/* (non-Javadoc)
-	 * @see fr.pizzeria.dao.IPizzaDao#findAllPizzas()
-	 */
 	@Override
 	public List<Pizza> findAllPizzas()
 	{
@@ -30,9 +26,6 @@ public class PizzaJpaDao extends JpaDao implements IPizzaDao
 		return listPizza;
 	}
 
-	/* (non-Javadoc)
-	 * @see fr.pizzeria.dao.IPizzaDao#saveNewPizza(fr.pizzeria.model.Pizza)
-	 */
 	@Override
 	public void saveNewPizza(Pizza pizza)
 	{
@@ -41,9 +34,6 @@ public class PizzaJpaDao extends JpaDao implements IPizzaDao
 		closeConnexionBdd();
 	}
 
-	/* (non-Javadoc)
-	 * @see fr.pizzeria.dao.IPizzaDao#updatePizza(java.lang.String, fr.pizzeria.model.Pizza)
-	 */
 	@Override
 	public void updatePizza(String codePizza, Pizza pizza)
 	{
@@ -62,9 +52,6 @@ public class PizzaJpaDao extends JpaDao implements IPizzaDao
 		
 	}
 
-	/* (non-Javadoc)
-	 * @see fr.pizzeria.dao.IPizzaDao#deletePizza(java.lang.String)
-	 */
 	@Override
 	public void deletePizza(String codePizza)
 	{
@@ -79,26 +66,23 @@ public class PizzaJpaDao extends JpaDao implements IPizzaDao
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see fr.pizzeria.dao.IPizzaDao#findPizzaByCode(java.lang.String)
-	 */
 	@Override
 	public Pizza findPizzaByCode(String codePizza)
 	{
 		Pizza p = null;
-		beginConnexionBdd();
-
-		TypedQuery<Pizza> query = em.createQuery("SELECT p FROM Pizza p WHERE code=:codePizza", Pizza.class);
-		query.setParameter("codePizza", codePizza);
-		p = query.getSingleResult();
-		
-		closeConnexionBdd();
+		if (codePizza != null)
+		{
+			beginConnexionBdd();
+	
+			TypedQuery<Pizza> query = em.createQuery("SELECT p FROM Pizza p WHERE code= ?1", Pizza.class);
+			query.setParameter(1, codePizza);
+			p = query.getSingleResult();
+			
+			closeConnexionBdd();
+		}
 		return p;
 	}
 
-	/* (non-Javadoc)
-	 * @see fr.pizzeria.dao.IPizzaDao#pizzaExists(java.lang.String)
-	 */
 	@Override
 	public boolean pizzaExists(String codePizza)
 	{
@@ -106,8 +90,8 @@ public class PizzaJpaDao extends JpaDao implements IPizzaDao
 		
 		beginConnexionBdd();
 
-		TypedQuery<Pizza> query = em.createQuery("SELECT p FROM Pizza p WHERE code=:codePizza", Pizza.class);
-		query.setParameter("codePizza", codePizza);
+		TypedQuery<Pizza> query = em.createQuery("SELECT p FROM Pizza p WHERE code= ?1", Pizza.class);
+		query.setParameter(1, codePizza);
 		
 		if (query.getResultList().size() == 1)
 			retour = true;
