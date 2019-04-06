@@ -80,22 +80,22 @@ public class Commande
 		this.client_id = client_id;
 	}
 
-	@Override
-	public String toString ()
+	/**
+	 * Affiche toutes les commandes d'un client avec le détail de sa commande (toutes les pizzas dans chaque commande)
+	 */
+	public void afficherCommandesClient ()
 	{
-		String listCommande = "";
-		
 		for (Pizza p : listComPiz)
 		{
-			listCommande += date_commande + " - " + client_id + " : " + p + "\n";			
+			System.out.println(date_commande + " - " + client_id + " : " + p);		
 		}
-		
-		return listCommande;
+		System.out.println("---------------------------------------------------------");
 	}
 	
 	public void afficherListeAttente ()
 	{
-		System.out.println(id + " " + date_commande + " - " + client_id.afficherClient () + " " + livreur_id + "\n");			
+		String livreur = livreur_id == null ? "Pas de livreur associé" : String.valueOf(livreur_id);;
+		System.out.println(id + " " + date_commande + " - " + client_id.afficherClient () + " " + livreur);			
 	}
 	
 	/**

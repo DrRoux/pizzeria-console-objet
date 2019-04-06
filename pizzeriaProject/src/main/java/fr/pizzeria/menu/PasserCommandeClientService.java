@@ -5,6 +5,7 @@ package fr.pizzeria.menu;
 
 import java.util.List;
 import java.util.Scanner;
+
 import fr.pizzeria.dao.CommandesJpaDao;
 import fr.pizzeria.exception.PersonnalSqlException;
 import fr.pizzeria.exception.StockageException;
@@ -16,7 +17,7 @@ import fr.pizzeria.model.Pizza;
  *
  * @author BIRABEN-BIANCHI Hugo
  */
-public class CommandeClientService extends MenuService
+public class PasserCommandeClientService extends MenuService
 {
 	CommandesJpaDao cJpaDao = new CommandesJpaDao ();
 	static Client client;
@@ -48,7 +49,7 @@ public class CommandeClientService extends MenuService
 					String choice2 = null;
 					System.out.println("Choix d'une pizza : ");
 					
-					System.out.println(listPizza);
+					listPizza.forEach(t -> t.afficherPizza ());
 					
 					while (gestionnairePizza.pizzaExists(choice2) != true)
 					{	

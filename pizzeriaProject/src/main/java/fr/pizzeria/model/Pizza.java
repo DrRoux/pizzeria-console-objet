@@ -15,7 +15,7 @@ import javax.persistence.NamedAttributeNode;
 import javax.persistence.NamedEntityGraph;
 import javax.persistence.Table;
 
-import fr.pizzeria.utils.*;
+import fr.pizzeria.utils.ToString;
 
 /**
  * Cette classe représente une Pizza
@@ -53,8 +53,12 @@ public class Pizza
 	private CategoriePizza cP;
 	
 	@ManyToMany(mappedBy = "listComPiz")
-
 	private List <Commande> listComPiz = new ArrayList <> ();
+	
+	public void afficherPizza ()
+	{
+		System.out.println(code + " -> " + libelle + " (" + prix + " €) - " + cP.getNom().toUpperCase());
+	}
 	
 	/**
 	 * Default Constructor
@@ -160,6 +164,7 @@ public class Pizza
 	 * afin de pouvoir afficher l'objet Pizza normalement.
 	 * @see java.lang.Object#toString()
 	 */
+	@Override
 	public String toString ()
 	{
 		return (code + " -> " + libelle + " (" + prix + " €) - " + cP.getNom().toUpperCase());

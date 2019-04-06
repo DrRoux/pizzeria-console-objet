@@ -6,7 +6,7 @@ import fr.pizzeria.dao.CommandesJpaDao;
 import fr.pizzeria.exception.StockageException;
 import fr.pizzeria.model.Client;
 
-public class ListerClientConnecteService extends MenuService
+public class ListerCommandesClientService extends MenuService
 {
 	CommandesJpaDao cJpaDao = new CommandesJpaDao ();
 	static Client client;

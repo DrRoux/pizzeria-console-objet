@@ -29,15 +29,15 @@ public class MenuFactory
 		}
 		else if (typeMenu.equals("connexionClient"))
 		{
-			retour =  new ConnexionClientService ();
+			retour =  new ConnecterClientService ();
 		}
 		else if (typeMenu.equals("inscription"))
 		{
-			retour =  new InscriptionClientService ();
+			retour =  new InscrireClientService ();
 		}
 		else if (typeMenu.equals("commander"))
 		{
-			retour =  new CommandeClientService ();
+			retour =  new PasserCommandeClientService ();
 		}
 		else if (typeMenu.equals("ajouterLivreur"))
 		{
@@ -49,7 +49,11 @@ public class MenuFactory
 		}
 		else if (typeMenu.equals("listerAttente"))
 		{
-			retour =  new ListeAttenteService ();
+			retour =  new ListerAttenteService ();
+		}
+		else if (typeMenu.equals("listerCommandesClient"))
+		{
+			retour =  new ListerCommandesClientService ();
 		}
 		
 		return retour;

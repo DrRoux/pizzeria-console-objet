@@ -5,7 +5,7 @@ import java.util.Scanner;
 import fr.pizzeria.exception.PersonnalSqlException;
 import fr.pizzeria.exception.StockageException;
 import fr.pizzeria.menu.CommandeClientService;
-import fr.pizzeria.menu.ListerClientConnecteService;
+import fr.pizzeria.menu.ListerCommandesClientService;
 import fr.pizzeria.menu.MenuFactory;
 import fr.pizzeria.model.Client;
 
@@ -13,6 +13,7 @@ public class PizzeriaClientConnecteConsoleApp implements IPizzeriaConsole
 {
 	static Client client = null;
 	
+	@Override
 	public void display(Scanner questionUser) 
 	{
 		String choice = "0";
@@ -41,7 +42,7 @@ public class PizzeriaClientConnecteConsoleApp implements IPizzeriaConsole
 				}
 				else if (Integer.parseInt(choice) == 2)
 				{
-					ListerClientConnecteService l = (ListerClientConnecteService) menu.create("listerClientConnecte");
+					ListerCommandesClientService l = (ListerCommandesClientService) menu.create("listerClientConnecte");
 					l.set(client);
 					l.executeUC(questionUser);
 				}
