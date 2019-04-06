@@ -31,7 +31,7 @@ public class AjouterLivreurService extends MenuService
 		
 		List<Livreur> listLivreur = new ArrayList <> ();
 		listLivreur = lJpaDao.listLivreur();
-		System.out.println(listLivreur);
+		listLivreur.forEach(t -> t.displayComplet ());
 		System.out.println("Veuillez attribuer un livreur à la commande");
 		int choiceLivreur = Integer.parseInt(scanner.nextLine());
 		

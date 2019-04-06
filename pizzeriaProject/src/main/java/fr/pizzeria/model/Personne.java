@@ -27,10 +27,9 @@ public abstract class Personne
 	@Column
 	String prenom;
 	
-	@Override
-	public String toString ()
+	public void displayComplet ()
 	{
-		return (id + " " + nom + " " + prenom);
+		System.out.println("Id : " + id + " - " + nom + " " + prenom);
 	}
 	
 	/**
