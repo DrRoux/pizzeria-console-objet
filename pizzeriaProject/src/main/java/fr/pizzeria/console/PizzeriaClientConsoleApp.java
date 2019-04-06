@@ -17,10 +17,10 @@ public class PizzeriaClientConsoleApp implements IPizzeriaConsole
 	public void display(Scanner questionUser) 
 	{
 		String choice = "0";
-		
 		MenuFactory menu = new MenuFactory ();
-		
 		boolean sortiBoucle = false;
+		
+		clean ();
 		
 		while (sortiBoucle == false)
 		{

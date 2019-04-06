@@ -1,11 +1,13 @@
 package dev;
 
 import java.util.Scanner;
-
 import fr.pizzeria.console.*;
 
 /**
- *
+ * App : Classe contenant le point d'entrée du programme (main).
+ * Propose un menu permettant de se rendre dans la partie 
+ * cliente ou administrateur de l'application.
+ * @author BIRABEN-BIANCHI Hugo
  */
 public class App 
 {

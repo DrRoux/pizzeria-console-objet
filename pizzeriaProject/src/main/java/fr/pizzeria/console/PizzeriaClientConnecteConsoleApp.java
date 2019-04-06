@@ -11,18 +11,20 @@ import fr.pizzeria.model.Client;
 
 public class PizzeriaClientConnecteConsoleApp implements IPizzeriaConsole
 {
-	public void display(Scanner questionUser, Client client) 
+	static Client client = null;
+	
+	public void display(Scanner questionUser) 
 	{
 		String choice = "0";
-		
 		MenuFactory menu = new MenuFactory ();
-		
 		boolean sortiBoucle = false;
+		
+		clean ();
 		
 		while (sortiBoucle == false)
 		{
 			System.out.println("***** Pizzeria Client Connecté *****");
-			System.out.println("1.  Commander une pizza");
+			System.out.println("1.  Passer une nouvelle commande");
 			System.out.println("2.  Lister ses commandes");
 			System.out.println("99. Quitter l'application");
 			System.out.println("\nVeuillez saisir votre choix : ");
@@ -65,7 +67,11 @@ public class PizzeriaClientConnecteConsoleApp implements IPizzeriaConsole
 				System.out.println(e.getMessage());
 			}
 		}
-		
+	}
+	
+	public void set (Client c)
+	{
+		client = c;
 	}
 
 }
