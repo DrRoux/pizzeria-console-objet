@@ -1,7 +1,9 @@
-package fr.pizzeria.dao;
+package fr.pizzeria.dao.oldDao;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 

@@ -1,4 +1,4 @@
-package fr.pizzeria.dao;
+package fr.pizzeria.dao.oldDao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.exception.PersonnalSqlException;
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
@@ -16,7 +17,7 @@ import fr.pizzeria.model.Pizza;
  *
  * @author BIRABEN-BIANCHI Hugo
  */
-public class PizzaBddDao implements IPizzaDao
+public class PizzaJDBCDao implements IPizzaDao
 {
 	private String driverName = null;
 	private String jdbcUrl = null;
@@ -25,7 +26,7 @@ public class PizzaBddDao implements IPizzaDao
 	private Connection connexionBDD = null;
 	private PreparedStatement st = null;
 	
-	public PizzaBddDao ()
+	public PizzaJDBCDao ()
 	{
 		GestionFichier file = new GestionFichier ("src/main/resources/jdbc.properties");
 		List <String> listString = file.lecture();

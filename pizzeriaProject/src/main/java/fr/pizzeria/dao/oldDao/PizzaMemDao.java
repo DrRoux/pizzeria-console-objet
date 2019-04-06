@@ -1,6 +1,8 @@
-package fr.pizzeria.dao;
+package fr.pizzeria.dao.oldDao;
 
 import java.util.*;
+
+import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.model.Pizza;
 
 /**
