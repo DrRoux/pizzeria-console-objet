@@ -23,7 +23,7 @@ public interface IPizzeriaConsole
 	 */
 	default void clean () 
 	{
-		for (int i = 0; i < 20; i++)
+		for (int i = 0; i < 40; i++)
 		{
 			System.out.println(" ");
 		}

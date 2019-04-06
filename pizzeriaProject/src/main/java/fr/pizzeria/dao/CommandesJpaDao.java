@@ -16,18 +16,14 @@ public class CommandesJpaDao extends JpaDao
 	
 	LivreurJpaDao lJpaDao = new LivreurJpaDao ();
 	
-	public List <Commande> listerCommandes (Client client, boolean chargePizza)
+	public List <Commande> listerCommandesClient (Client client)
 	{
 		beginConnexionBdd();
 		
 		EntityGraph<?> graph = this.em.getEntityGraph("graph.Commande.listComPiz");
 		
-		TypedQuery<Commande> query = em.createQuery("SELECT c FROM Commande c WHERE client_id = ?1", Commande.class);
-		
-		if (chargePizza == true)
-		{			
-			query.setHint("javax.persistence.fetchgraph", graph);
-		}
+		TypedQuery<Commande> query = em.createQuery("SELECT c FROM Commande c WHERE client_id = ?1", Commande.class);		
+		query.setHint("javax.persistence.fetchgraph", graph);
 		query.setParameter(1, client);
 		
 		List<Commande> listClients = query.getResultList();

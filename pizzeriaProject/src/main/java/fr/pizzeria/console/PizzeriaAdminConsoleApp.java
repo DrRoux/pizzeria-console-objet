@@ -39,7 +39,7 @@ public class PizzeriaAdminConsoleApp implements IPizzeriaConsole
 				System.out.println("6.  Ajouter un livreur à une livraison");
 				System.out.println("7.  Expédier toutes les commandes");
 				System.out.println("99. Quitter l'application");
-				System.out.println("\nVeuillez saisir votre choix : ");
+				System.out.println("Veuillez saisir votre choix : ");
 				
 				choice = questionUser.nextLine();
 				
