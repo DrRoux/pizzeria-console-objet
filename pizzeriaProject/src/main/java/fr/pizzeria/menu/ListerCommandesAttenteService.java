@@ -12,7 +12,7 @@ import fr.pizzeria.exception.StockageException;
  *
  * @author BIRABEN-BIANCHI Hugo
  */
-public class ListerAttenteService extends MenuService
+public class ListerCommandesAttenteService extends MenuService
 {
 	CommandesJpaDao cJpaDao = new CommandesJpaDao ();
 	

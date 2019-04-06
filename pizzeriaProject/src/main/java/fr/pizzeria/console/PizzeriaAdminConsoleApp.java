@@ -63,7 +63,7 @@ public class PizzeriaAdminConsoleApp implements IPizzeriaConsole
 					}
 					else if (Integer.parseInt(choice) == 5)
 					{
-						menu.create("listerAttente").executeUC(questionUser);			
+						menu.create("listerCommandesAttente").executeUC(questionUser);			
 					}
 					else if (Integer.parseInt(choice) == 6)
 					{

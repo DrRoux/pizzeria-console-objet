@@ -11,6 +11,7 @@ public class MenuFactory
 	{
 		MenuService retour = null;
 		
+		// Administration
 		if (typeMenu.equals("list"))
 		{
 			retour = new ListerPizzaService ();	
@@ -27,17 +28,9 @@ public class MenuFactory
 		{
 			retour =  new SupprimerPizzaService ();
 		}
-		else if (typeMenu.equals("connexionClient"))
+		else if (typeMenu.equals("listerCommandesAttente"))
 		{
-			retour =  new ConnecterClientService ();
-		}
-		else if (typeMenu.equals("inscription"))
-		{
-			retour =  new InscrireClientService ();
-		}
-		else if (typeMenu.equals("commander"))
-		{
-			retour =  new PasserCommandeClientService ();
+			retour =  new ListerCommandesAttenteService ();
 		}
 		else if (typeMenu.equals("ajouterLivreur"))
 		{
@@ -47,15 +40,25 @@ public class MenuFactory
 		{
 			retour =  new ExpedierCommandeService ();
 		}
-		else if (typeMenu.equals("listerAttente"))
+		// Visiteurs de l'application
+		else if (typeMenu.equals("connexionClient"))
 		{
-			retour =  new ListerAttenteService ();
+			retour =  new ConnecterClientService ();
+		}
+		else if (typeMenu.equals("inscription"))
+		{
+			retour =  new InscrireClientService ();
+		}
+		// Clients connectés
+		else if (typeMenu.equals("passerCommandeClient"))
+		{
+			retour =  new PasserCommandeClientService ();
 		}
 		else if (typeMenu.equals("listerCommandesClient"))
 		{
 			retour =  new ListerCommandesClientService ();
 		}
-		
+				
 		return retour;
 	}
 }
