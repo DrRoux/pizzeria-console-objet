@@ -4,6 +4,7 @@
 package fr.pizzeria.console;
 
 import java.util.Scanner;
+
 import fr.pizzeria.exception.PersonnalSqlException;
 import fr.pizzeria.exception.StockageException;
 import fr.pizzeria.menu.MenuFactory;
@@ -14,16 +15,16 @@ import fr.pizzeria.menu.MenuFactory;
  */
 public class PizzeriaClientConsoleApp implements IPizzeriaConsole
 {
+	@Override
 	public void display(Scanner questionUser) 
 	{
 		String choice = "0";
 		MenuFactory menu = new MenuFactory ();
 		boolean sortiBoucle = false;
 		
-		clean ();
-		
 		while (sortiBoucle == false)
 		{
+			clean ();
 			System.out.println("***** Pizzeria Client *****");
 			System.out.println("1.  S'inscrire ");
 			System.out.println("2.  Se connecter");

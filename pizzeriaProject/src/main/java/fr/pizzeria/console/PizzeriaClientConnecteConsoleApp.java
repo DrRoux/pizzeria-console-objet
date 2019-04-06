@@ -19,10 +19,9 @@ public class PizzeriaClientConnecteConsoleApp implements IPizzeriaConsole
 		MenuFactory menu = new MenuFactory ();
 		boolean sortiBoucle = false;
 		
-		clean ();
-		
 		while (sortiBoucle == false)
 		{
+			clean ();
 			System.out.println("***** Pizzeria Client Connecté *****");
 			System.out.println("1.  Passer une nouvelle commande");
 			System.out.println("2.  Lister ses commandes");

@@ -61,7 +61,6 @@ public class CommandesJpaDao extends JpaDao
 		c.setLivreur (l);
 		modif(c);
 		closeConnexionBdd();
-		
 	}
 	
 	public void expedierCommande ()
