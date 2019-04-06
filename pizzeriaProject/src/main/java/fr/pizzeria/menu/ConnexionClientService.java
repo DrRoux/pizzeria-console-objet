@@ -39,7 +39,8 @@ public class ConnexionClientService extends MenuService
 		Client client = cJpaDao.getClient (choiceMail, choicePswd);
 		cJpaDao.closeConnexionBdd();
 		
-		console.display(scanner, client);
+		console.set (client);
+		console.display(scanner);
 	}
 
 }
