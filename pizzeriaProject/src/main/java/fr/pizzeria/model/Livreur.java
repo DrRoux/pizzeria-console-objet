@@ -40,4 +40,9 @@ public class Livreur extends Personne
 		this.nom = nom;
 		this.prenom = prenom;
 	}
+
+	public String stringComplet()
+	{
+		return ("Id : " + id + " - " + nom + " " + prenom + "\n");
+	}
 }

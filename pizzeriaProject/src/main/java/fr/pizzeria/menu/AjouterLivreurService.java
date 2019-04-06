@@ -24,9 +24,11 @@ public class AjouterLivreurService extends MenuService
 	@Override
 	public void executeUC(Scanner scanner) throws StockageException
 	{
-		System.out.println("Veuillez saisir le numero de la commande");
+		clean ();
 		ListerCommandesAttenteService l = new ListerCommandesAttenteService ();
+		l.removePrecision();
 		l.executeUC(scanner);
+		System.out.println("Veuillez saisir le numero de la commande");
 		int choiceCommande = Integer.parseInt(scanner.nextLine());
 		
 		List<Livreur> listLivreur = new ArrayList <> ();

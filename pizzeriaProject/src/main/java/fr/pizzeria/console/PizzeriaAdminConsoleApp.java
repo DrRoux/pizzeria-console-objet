@@ -5,6 +5,7 @@ import java.util.Scanner;
 import fr.pizzeria.exception.PersonnalSqlException;
 import fr.pizzeria.exception.SavePizzaException;
 import fr.pizzeria.exception.StockageException;
+import fr.pizzeria.menu.ListerCommandesAttenteService;
 import fr.pizzeria.menu.MenuFactory;
 
 /**
@@ -26,10 +27,11 @@ public class PizzeriaAdminConsoleApp implements IPizzeriaConsole
 		System.out.println("(le mot de passe est admin)");
 		choice = questionUser.nextLine();
 		
-		if (choice != "admin")
+		if (choice.equals("admin"))
 		{
 			while (sortiBoucle == false)
 			{
+				clean ();
 				System.out.println("***** Pizzeria Administration *****");
 				System.out.println("1.  Lister les pizzas ");
 				System.out.println("2.  Ajouter une nouvelle pizza");
@@ -63,7 +65,9 @@ public class PizzeriaAdminConsoleApp implements IPizzeriaConsole
 					}
 					else if (Integer.parseInt(choice) == 5)
 					{
-						menu.create("listerCommandesAttente").executeUC(questionUser);			
+						ListerCommandesAttenteService l = (ListerCommandesAttenteService) menu.create("listerCommandesAttente");
+						l.addPrecision();
+						l.executeUC(questionUser);			
 					}
 					else if (Integer.parseInt(choice) == 6)
 					{

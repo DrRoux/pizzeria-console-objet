@@ -27,6 +27,11 @@ public class Client extends Personne
 	@OneToMany (mappedBy = "client_id")
 	private List<Commande> commandesClient;
 	
+	public String afficherClient()
+	{
+		return ("Nom : " + nom + " Prénom : " + prenom);
+	}
+	
 	@Override
 	public String toString ()
 	{
@@ -75,10 +80,4 @@ public class Client extends Personne
 	{
 		this.mot_de_passe = mot_de_passe;
 	}
-
-	public String afficherClient()
-	{
-		return (nom + " " + prenom);
-	}
-	
 }

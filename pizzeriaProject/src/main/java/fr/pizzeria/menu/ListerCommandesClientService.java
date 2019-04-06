@@ -15,8 +15,10 @@ public class ListerCommandesClientService extends MenuService
 	public void executeUC (Scanner scanner) throws StockageException 
 	{
 		clean ();
-		System.out.println("Liste de vos commandes détaillées");
+		System.out.println("Voici la liste détaillée de vos commandes !");
 		cJpaDao.listerCommandesClient (client).forEach(t->t.afficherCommandesClient());
+		System.out.println("Veuillez presser la touche entrée pour continuer");
+		scanner.nextLine();
 	}
 	
 	public void set (Client c)

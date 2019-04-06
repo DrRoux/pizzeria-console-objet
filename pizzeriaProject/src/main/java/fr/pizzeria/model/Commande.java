@@ -94,8 +94,8 @@ public class Commande
 	
 	public void afficherListeAttente ()
 	{
-		String livreur = livreur_id == null ? "Pas de livreur associé" : String.valueOf(livreur_id);;
-		System.out.println(id + " " + date_commande + " - " + client_id.afficherClient () + " " + livreur);			
+		String livreur = livreur_id == null ? "Pas de livreur associé" : livreur_id.stringComplet();
+		System.out.println(id + " " + date_commande + " - " + client_id.afficherClient () + " - " + livreur);			
 	}
 	
 	/**
