@@ -6,3 +6,5 @@ diagrams/
 .project
 README.md
 dependency-reduced-pom.xml
+exception.log
+app.log

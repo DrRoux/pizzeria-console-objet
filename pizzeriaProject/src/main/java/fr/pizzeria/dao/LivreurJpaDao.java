@@ -7,6 +7,8 @@ import java.util.List;
 
 import javax.persistence.TypedQuery;
 
+import org.slf4j.LoggerFactory;
+
 import fr.pizzeria.model.Livreur;
 
 /**
@@ -15,7 +17,12 @@ import fr.pizzeria.model.Livreur;
  */
 public class LivreurJpaDao extends JpaDao
 {
-	public List<Livreur> listLivreur ()
+	public LivreurJpaDao()
+	{
+		LOGGER = LoggerFactory.getLogger(LivreurJpaDao.class);
+	}
+
+	public List<Livreur> listLivreur()
 	{
 		beginConnexionBdd();
 		TypedQuery<Livreur> query = em.createQuery("SELECT l FROM Livreur l", Livreur.class);
@@ -23,17 +30,17 @@ public class LivreurJpaDao extends JpaDao
 		closeConnexionBdd();
 		return listLivreur;
 	}
-	
-	public Livreur findLivreur (int id)
+
+	public Livreur findLivreur(int id)
 	{
 		beginConnexionBdd();
-		
+
 		TypedQuery<Livreur> query = em.createQuery("SELECT l FROM Livreur l WHERE l.id= ?1", Livreur.class);
 		query.setParameter(1, id);
 		Livreur l = query.getSingleResult();
-		
+
 		closeConnexionBdd();
-		
+
 		return l;
 	}
 }

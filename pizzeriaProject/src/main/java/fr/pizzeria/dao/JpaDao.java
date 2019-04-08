@@ -8,50 +8,61 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  *
  * @author BIRABEN-BIANCHI Hugo
  */
 public abstract class JpaDao
 {
+
+	protected static Logger LOGGER = LoggerFactory.getLogger(JpaDao.class);
+
 	String driverName = null;
 	String jdbcUrl = null;
 	String userName = null;
 	String password = null;
 	static EntityManagerFactory emf = Persistence.createEntityManagerFactory("pizzeriaProject");
 	EntityManager em = null;
-	
-	public void beginConnexionBdd ()
+
+	JpaDao()
 	{
-    	em = emf.createEntityManager();
+		LOGGER.info("Démarrage de JPA");
 	}
-	
-	public void closeConnexionBdd ()
+
+	public void beginConnexionBdd()
 	{
-		em.close ();
+		em = emf.createEntityManager();
 	}
-	
-	public <T> void ajout (T object)
+
+	public void closeConnexionBdd()
+	{
+		em.close();
+	}
+
+	public <T> void ajout(T object)
 	{
 		EntityTransaction et = em.getTransaction();
-		et.begin ();
+		et.begin();
 		em.persist(object);
-		et.commit ();
+		et.commit();
 	}
-	
-	public <T> void modif (T object)
+
+	public <T> void modif(T object)
 	{
 		EntityTransaction et = em.getTransaction();
-		et.begin ();
+		et.begin();
 		em.merge(object);
-		et.commit ();
+		et.commit();
 	}
-	
-	public <T> void suppr (T object)
+
+	public <T> void suppr(T object)
 	{
 		EntityTransaction et = em.getTransaction();
-		et.begin ();
+		et.begin();
 		em.remove(object);
-		et.commit ();
+		et.commit();
 	}
 }
