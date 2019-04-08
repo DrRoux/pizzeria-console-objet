@@ -9,29 +9,30 @@ import fr.pizzeria.menu.ListerCommandesAttenteService;
 import fr.pizzeria.menu.MenuFactory;
 
 /**
- * Cette classe permet de gérer le menu d'affichage
- * de l'application pour un administrateur.
+ * Cette classe permet de gérer le menu d'affichage de l'application pour un
+ * administrateur.
+ * 
  * @author BIRABEN-BIANCHI Hugo
  */
 public class PizzeriaAdminConsoleApp implements IPizzeriaConsole
 {
 	@Override
-	public void display(Scanner questionUser) 
+	public void display(Scanner questionUser)
 	{
 		String choice = "0";
-		MenuFactory menu = new MenuFactory ();
+		MenuFactory menu = new MenuFactory();
 		boolean sortiBoucle = false;
-		
-		clean ();
+
+		clean();
 		System.out.println("Veuillez saisir le mot de passe pour rentrer dans la partie administrateur !");
 		System.out.println("(le mot de passe est admin)");
 		choice = questionUser.nextLine();
-		
+
 		if (choice.equals("admin"))
 		{
 			while (sortiBoucle == false)
 			{
-				clean ();
+				clean();
 				System.out.println("***** Pizzeria Administration *****");
 				System.out.println("1.  Lister les pizzas ");
 				System.out.println("2.  Ajouter une nouvelle pizza");
@@ -42,46 +43,39 @@ public class PizzeriaAdminConsoleApp implements IPizzeriaConsole
 				System.out.println("7.  Expédier toutes les commandes");
 				System.out.println("99. Quitter l'application");
 				System.out.println("Veuillez saisir votre choix : ");
-				
+
 				choice = questionUser.nextLine();
-				
+
 				try
 				{
 					if (Integer.parseInt(choice) == 1)
 					{
 						menu.create("list").executeUC(questionUser);
-					}
-					else if (Integer.parseInt(choice) == 2)
+					} else if (Integer.parseInt(choice) == 2)
 					{
 						menu.create("ajout").executeUC(questionUser);
-					}
-					else if (Integer.parseInt(choice) == 3)
+					} else if (Integer.parseInt(choice) == 3)
 					{
 						menu.create("modif").executeUC(questionUser);
-					}
-					else if (Integer.parseInt(choice) == 4)
+					} else if (Integer.parseInt(choice) == 4)
 					{
-						menu.create("suppr").executeUC(questionUser);			
-					}
-					else if (Integer.parseInt(choice) == 5)
+						menu.create("suppr").executeUC(questionUser);
+					} else if (Integer.parseInt(choice) == 5)
 					{
-						ListerCommandesAttenteService l = (ListerCommandesAttenteService) menu.create("listerCommandesAttente");
+						ListerCommandesAttenteService l = (ListerCommandesAttenteService) menu
+								.create("listerCommandesAttente");
 						l.addPrecision();
-						l.executeUC(questionUser);			
-					}
-					else if (Integer.parseInt(choice) == 6)
+						l.executeUC(questionUser);
+					} else if (Integer.parseInt(choice) == 6)
 					{
-						menu.create("ajouterLivreur").executeUC(questionUser);			
-					}
-					else if (Integer.parseInt(choice) == 7)
+						menu.create("ajouterLivreur").executeUC(questionUser);
+					} else if (Integer.parseInt(choice) == 7)
 					{
-						menu.create("expedierCommande").executeUC(questionUser);			
-					}
-					else if (Integer.parseInt(choice) == 99)
+						menu.create("expedierCommande").executeUC(questionUser);
+					} else if (Integer.parseInt(choice) == 99)
 					{
 						sortiBoucle = true;
-					}
-					else
+					} else
 					{
 						System.out.println("Choix invalide, veuillez recommencer !");
 					}
@@ -93,7 +87,7 @@ public class PizzeriaAdminConsoleApp implements IPizzeriaConsole
 				catch (SavePizzaException e)
 				{
 					System.out.println(e.getMessage());
-					
+
 					if (e.getMessage().equals("codeTropCourt"))
 					{
 						System.out.println();
@@ -103,7 +97,7 @@ public class PizzeriaAdminConsoleApp implements IPizzeriaConsole
 				{
 					System.out.println(e.getMessage());
 				}
-				catch (PersonnalSqlException e) 
+				catch (PersonnalSqlException e)
 				{
 					System.out.println(e.getMessage());
 				}

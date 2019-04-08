@@ -15,67 +15,69 @@ import javax.persistence.NamedAttributeNode;
 import javax.persistence.NamedEntityGraph;
 import javax.persistence.Table;
 
+import fr.pizzeria.logger.ILogger;
 import fr.pizzeria.utils.ToString;
 
 /**
  * Cette classe représente une Pizza
+ * 
  * @author BIRABEN-BIANCHI Hugo
  */
 @Entity
-@Table(name="pizza")
-@NamedEntityGraph(	name = "graph.Pizza.listComPiz", 
-					attributeNodes = @NamedAttributeNode("listComPiz"))
-public class Pizza 
+@Table(name = "pizza")
+@NamedEntityGraph(name = "graph.Pizza.listComPiz", attributeNodes = @NamedAttributeNode("listComPiz"))
+public class Pizza implements ILogger
 {
 	/** id : int */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	/** code : String */
-	@ToString(upperCase=true, separateurAp = " - ")
+	@ToString(upperCase = true, separateurAp = " - ")
 	@Column
 	private String code;
-	
+
 	/** libelle : String */
-	@ToString(upperCase=true)
-	@Column(name="nom_pizza")
+	@ToString(upperCase = true)
+	@Column(name = "nom_pizza")
 	private String libelle;
-	
+
 	/** prix : double */
-	@ToString(separateurAv=" -> (", separateurAp = " €)",upperCase=true)
+	@ToString(separateurAv = " -> (", separateurAp = " €)", upperCase = true)
 	@Column
 	private double prix;
-	
+
 	/** cP : CategoriePizza */
-	@Column(name="categorie")
+	@Column(name = "categorie")
 	@Enumerated(EnumType.STRING)
 	private CategoriePizza cP;
-	
+
 	@ManyToMany(mappedBy = "listComPiz")
-	private List <Commande> listComPiz = new ArrayList <> ();
-	
-	public void afficherPizza ()
+	private List<Commande> listComPiz = new ArrayList<>();
+
+	public void afficherPizza()
 	{
 		System.out.println(code + " -> " + libelle + " (" + prix + " €) - " + cP.getNom().toUpperCase());
 	}
-	
+
 	/**
 	 * Default Constructor
 	 */
-	public Pizza () 
+	public Pizza()
 	{
-		super ();
+		super();
 		cP = CategoriePizza.INCONNU;
 	}
-	
-	/** 
+
+	/**
 	 * Constructor
-	 * @param code : code en majuscule en maximum 4 lettres
+	 * 
+	 * @param code    : code en majuscule en maximum 4 lettres
 	 * @param libelle : nom de la pizza
-	 * @param prix : prix en €
+	 * @param prix    : prix en €
 	 */
-	public Pizza (String code, String libelle, double prix) 
+	public Pizza(String code, String libelle, double prix)
 	{
 		super();
 		this.code = code.toUpperCase();
@@ -83,8 +85,8 @@ public class Pizza
 		this.prix = prix;
 		cP = CategoriePizza.INCONNU;
 	}
-	
-	public Pizza (String code, String libelle, double prix, CategoriePizza cP) 
+
+	public Pizza(String code, String libelle, double prix, CategoriePizza cP)
 	{
 		super();
 		this.code = code.toUpperCase();
@@ -92,8 +94,8 @@ public class Pizza
 		this.prix = prix;
 		this.cP = cP;
 	}
-	
-	public Pizza (String code, String libelle, double prix, String cP) 
+
+	public Pizza(String code, String libelle, double prix, String cP)
 	{
 		super();
 		this.code = code.toUpperCase();
@@ -101,15 +103,16 @@ public class Pizza
 		this.prix = prix;
 		this.cP = CategoriePizza.valueOf(cP.toUpperCase());
 	}
-	
+
 	/**
 	 * Constructor
-	 * @param id : id
-	 * @param code : code en majuscule en maximum 4 lettres
+	 * 
+	 * @param id      : id
+	 * @param code    : code en majuscule en maximum 4 lettres
 	 * @param libelle : nom de la pizza
-	 * @param prix : prix en €
+	 * @param prix    : prix en €
 	 */
-	public Pizza (int id, String code, String libelle, double prix)  
+	public Pizza(int id, String code, String libelle, double prix)
 	{
 		super();
 		this.id = id;
@@ -118,15 +121,16 @@ public class Pizza
 		this.prix = prix;
 		cP = CategoriePizza.INCONNU;
 	}
-	
+
 	/**
 	 * Constructor
-	 * @param id : id
-	 * @param code : code en majuscule en maximum 4 lettres
+	 * 
+	 * @param id      : id
+	 * @param code    : code en majuscule en maximum 4 lettres
 	 * @param libelle : nom de la pizza
-	 * @param prix : prix en €
+	 * @param prix    : prix en €
 	 */
-	public Pizza (int id, String code, String libelle, double prix, CategoriePizza cP)  
+	public Pizza(int id, String code, String libelle, double prix, CategoriePizza cP)
 	{
 		super();
 		this.id = id;
@@ -135,8 +139,8 @@ public class Pizza
 		this.prix = prix;
 		this.cP = cP;
 	}
-	
-	public Pizza (int id, String code, String libelle, double prix, String cP) 
+
+	public Pizza(int id, String code, String libelle, double prix, String cP)
 	{
 		super();
 		this.id = id;
@@ -145,43 +149,46 @@ public class Pizza
 		this.prix = prix;
 		this.cP = CategoriePizza.valueOf(cP.toUpperCase());
 	}
-	
+
 	/**
 	 * Fonction permettant de modifier une pizza
+	 * 
 	 * @param pizza
 	 */
-	public void modifPizza (Pizza pizza)
+	public void modifPizza(Pizza pizza)
 	{
-		setCode (pizza.getCode());
-		setLibelle (pizza.getLibelle());
-		setPrix (pizza.getPrix());
-		setcP (pizza.getcP());
+		setCode(pizza.getCode());
+		setLibelle(pizza.getLibelle());
+		setPrix(pizza.getPrix());
+		setcP(pizza.getcP());
 	}
-	
-	
+
 	/**
-	 * Surcharge de la méthode toString de Object
-	 * afin de pouvoir afficher l'objet Pizza normalement.
+	 * Surcharge de la méthode toString de Object afin de pouvoir afficher l'objet
+	 * Pizza normalement.
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
-	public String toString ()
+	public String toString()
 	{
 		return (code + " -> " + libelle + " (" + prix + " €) - " + cP.getNom().toUpperCase());
 	}
-	
+
 	/**
-	 * Fonction permettant un formatage particulier afin de l'enregistrer
-	 * dans un fichier .txt pour la persistance des données.
+	 * Fonction permettant un formatage particulier afin de l'enregistrer dans un
+	 * fichier .txt pour la persistance des données.
+	 * 
 	 * @return
 	 */
-	public String toSave ()
+	public String toSave()
 	{
 		return (id + "," + code + "," + libelle + "," + prix + "," + cP.getNom().toUpperCase());
 	}
 
 	/**
 	 * Getter
+	 * 
 	 * @return the id
 	 */
 	public int getId()
@@ -191,6 +198,7 @@ public class Pizza
 
 	/**
 	 * Setter
+	 * 
 	 * @param id the id to set
 	 */
 	public void setId(int id)
@@ -200,6 +208,7 @@ public class Pizza
 
 	/**
 	 * Getter
+	 * 
 	 * @return the code
 	 */
 	public String getCode()
@@ -209,6 +218,7 @@ public class Pizza
 
 	/**
 	 * Setter
+	 * 
 	 * @param code the code to set
 	 */
 	public void setCode(String code)
@@ -218,6 +228,7 @@ public class Pizza
 
 	/**
 	 * Getter
+	 * 
 	 * @return the libelle
 	 */
 	public String getLibelle()
@@ -227,6 +238,7 @@ public class Pizza
 
 	/**
 	 * Setter
+	 * 
 	 * @param libelle the libelle to set
 	 */
 	public void setLibelle(String libelle)
@@ -236,6 +248,7 @@ public class Pizza
 
 	/**
 	 * Getter
+	 * 
 	 * @return the prix
 	 */
 	public double getPrix()
@@ -245,6 +258,7 @@ public class Pizza
 
 	/**
 	 * Setter
+	 * 
 	 * @param prix the prix to set
 	 */
 	public void setPrix(double prix)

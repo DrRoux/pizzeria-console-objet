@@ -11,13 +11,15 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.MappedSuperclass;
 
+import fr.pizzeria.logger.ILogger;
+
 /**
  *
  * @author BIRABEN-BIANCHI Hugo
  */
 @MappedSuperclass
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Personne
+public abstract class Personne implements ILogger
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,54 +28,65 @@ public abstract class Personne
 	String nom;
 	@Column
 	String prenom;
-	
-	public void displayComplet ()
+
+	public void displayComplet()
 	{
 		System.out.println("Id : " + id + " - " + nom + " " + prenom);
 	}
-	
+
 	/**
 	 * Getter
+	 * 
 	 * @return the id
 	 */
 	public int getId()
 	{
 		return id;
 	}
+
 	/**
 	 * Setter
+	 * 
 	 * @param id the id to set
 	 */
 	public void setId(int id)
 	{
 		this.id = id;
 	}
+
 	/**
 	 * Getter
+	 * 
 	 * @return the nom
 	 */
 	public String getNom()
 	{
 		return nom;
 	}
+
 	/**
 	 * Setter
+	 * 
 	 * @param nom the nom to set
 	 */
 	public void setNom(String nom)
 	{
 		this.nom = nom;
 	}
+
 	/**
 	 * Getter
+	 * 
 	 * @return the prenom
 	 */
 	public String getPrenom()
 	{
 		return prenom;
 	}
+
 	/**
 	 * Setter
+	 * 
 	 * @param prenom the prenom to set
 	 */
 	public void setPrenom(String prenom)

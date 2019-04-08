@@ -3,20 +3,22 @@
  */
 package fr.pizzeria.exception;
 
+import fr.pizzeria.logger.ILogger;
+
 /**
  *
  * @author BIRABEN-BIANCHI Hugo
  */
-public class PersonnalSqlException extends RuntimeException
+public class PersonnalSqlException extends RuntimeException implements ILogger
 {
 	private static final long serialVersionUID = -8898974333236523950L;
-	
-	public PersonnalSqlException(String msg) 
+
+	public PersonnalSqlException(String msg)
 	{
 		super(msg);
 	}
-	
-	public PersonnalSqlException(Exception e) 
+
+	public PersonnalSqlException(Exception e)
 	{
 		super(e);
 	}
@@ -38,7 +40,5 @@ public class PersonnalSqlException extends RuntimeException
 		super(arg0);
 		// TODO Auto-generated constructor stub
 	}
-	
-	
 
 }

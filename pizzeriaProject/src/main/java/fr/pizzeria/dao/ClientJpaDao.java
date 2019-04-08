@@ -3,6 +3,7 @@
  */
 package fr.pizzeria.dao;
 
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import org.slf4j.LoggerFactory;
@@ -35,7 +36,18 @@ public class ClientJpaDao extends JpaDao
 				Client.class);
 		query.setParameter(1, login);
 		query.setParameter(2, password);
-		Client client = query.getSingleResult();
+
+		Client client = null;
+
+		try
+		{
+			client = query.getSingleResult();
+		}
+		catch (NoResultException e)
+		{
+			LOGGER.error(e.getMessage());
+		}
+
 		closeConnexionBdd();
 
 		return client;

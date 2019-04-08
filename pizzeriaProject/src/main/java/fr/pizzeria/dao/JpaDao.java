@@ -11,13 +11,14 @@ import javax.persistence.Persistence;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import fr.pizzeria.logger.ILogger;
+
 /**
  *
  * @author BIRABEN-BIANCHI Hugo
  */
-public abstract class JpaDao
+public abstract class JpaDao implements ILogger
 {
-
 	protected static Logger LOGGER = LoggerFactory.getLogger(JpaDao.class);
 
 	String driverName = null;

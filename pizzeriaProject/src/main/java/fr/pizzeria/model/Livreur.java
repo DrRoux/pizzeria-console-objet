@@ -15,24 +15,24 @@ import javax.persistence.Table;
  * @author BIRABEN-BIANCHI Hugo
  */
 @Entity
-@Table (name="livreur")
+@Table(name = "livreur")
 public class Livreur extends Personne
 {
-	@OneToMany (mappedBy = "livreur_id")
+	@OneToMany(mappedBy = "livreur_id")
 	private List<Commande> commandesLivreur;
-	
-	public Livreur ()
+
+	public Livreur()
 	{
-		commandesLivreur = new ArrayList <Commande> ();
+		commandesLivreur = new ArrayList<Commande>();
 	}
-	
+
 	public Livreur(String nom, String prenom)
 	{
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
 	}
-	
+
 	public Livreur(int id, String nom, String prenom)
 	{
 		super();

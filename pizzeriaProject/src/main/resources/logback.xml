@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration>
-<!-- redirection des logs vers la sortir Console Standard -->
-	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-		<encoder>
-			<pattern>%msg%n</pattern>
-		</encoder>
-	</appender>
-	
+<configuration>	
 	<!-- redirection vers un fichier -->
 	<appender name="JPA-StackTrace" class="ch.qos.logback.core.FileAppender">
 		<file>app.log</file>
@@ -29,12 +22,13 @@
 	</appender>
 	
 	<!-- politique de log pour les classes du package dev.console -->
-	<logger name="fr.pizzeria.dao" level="INFO">
-		<appender-ref ref="JPA-StackTrace" />
+	<logger name="fr.pizzeria" level="ERROR" additivity="false">
+		<appender-ref ref="EXCEPT" />
 	</logger>
 	
 	<!-- Afficher les erros dans un fichier -->
-	<root level="ERROR">
-		<appender-ref ref="EXCEPT" />
-	</root>
+	<logger name="org.hibernate" level="INFO" additivity="false">
+		<appender-ref ref="JPA-StackTrace" />
+	</logger>
+	
 </configuration>
