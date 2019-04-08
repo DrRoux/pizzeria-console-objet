@@ -1,6 +1,3 @@
-/**
- * 
- */
 package dev;
 
 import static org.junit.Assert.assertEquals;
