@@ -10,6 +10,7 @@ import java.util.Scanner;
 import fr.pizzeria.dao.CommandesJpaDao;
 import fr.pizzeria.dao.LivreurJpaDao;
 import fr.pizzeria.exception.StockageException;
+import fr.pizzeria.model.Commande;
 import fr.pizzeria.model.Livreur;
 
 /**
@@ -25,8 +26,11 @@ public class AjouterLivreurService extends MenuService
 	public void executeUC(Scanner scanner) throws StockageException
 	{
 		clean ();
+		
 		int choiceCommande = -1;
-		while (choiceCommande == -1)
+		boolean sortir = false;
+		
+		while (choiceCommande == -1 && sortir == false)
 		{
 			try
 			{
@@ -35,6 +39,20 @@ public class AjouterLivreurService extends MenuService
 				l.executeUC(scanner);
 				System.out.println("Veuillez saisir le numero de la commande");
 				choiceCommande = Integer.parseInt(scanner.nextLine());
+				
+				List <Commande> listeCommande = cJpaDao.listerCommandesAttente();
+				for (Commande c : listeCommande)
+				{
+					if (c.getId() == choiceCommande)
+					{
+						sortir = true;
+						break;
+					}
+					else
+					{
+						choiceCommande = -1;
+					}
+				}
 			}
 			catch (NumberFormatException e)
 			{
@@ -42,8 +60,9 @@ public class AjouterLivreurService extends MenuService
 			}
 		}
 		
+		sortir = false;
 		int choiceLivreur = -1;
-		while (choiceLivreur == -1)
+		while (choiceLivreur == -1 && sortir == false)
 		{
 			try
 			{
@@ -52,6 +71,20 @@ public class AjouterLivreurService extends MenuService
 				listLivreur.forEach(t -> t.displayComplet ());
 				System.out.println("Veuillez attribuer un livreur à la commande");
 				choiceLivreur = Integer.parseInt(scanner.nextLine());
+				
+				for (Livreur l : listLivreur)
+				{
+					if (l.getId() == choiceLivreur)
+					{
+						sortir = true;
+						break;
+					}
+					else
+					{
+						choiceLivreur = -1;
+					}
+				}
+				
 			}
 			catch (NumberFormatException e)
 			{
