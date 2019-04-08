@@ -25,17 +25,39 @@ public class AjouterLivreurService extends MenuService
 	public void executeUC(Scanner scanner) throws StockageException
 	{
 		clean ();
-		ListerCommandesAttenteService l = new ListerCommandesAttenteService ();
-		l.removePrecision();
-		l.executeUC(scanner);
-		System.out.println("Veuillez saisir le numero de la commande");
-		int choiceCommande = Integer.parseInt(scanner.nextLine());
+		int choiceCommande = -1;
+		while (choiceCommande == -1)
+		{
+			try
+			{
+				ListerCommandesAttenteService l = new ListerCommandesAttenteService ();
+				l.removePrecision();
+				l.executeUC(scanner);
+				System.out.println("Veuillez saisir le numero de la commande");
+				choiceCommande = Integer.parseInt(scanner.nextLine());
+			}
+			catch (NumberFormatException e)
+			{
+				choiceCommande = -1;
+			}
+		}
 		
-		List<Livreur> listLivreur = new ArrayList <> ();
-		listLivreur = lJpaDao.listLivreur();
-		listLivreur.forEach(t -> t.displayComplet ());
-		System.out.println("Veuillez attribuer un livreur à la commande");
-		int choiceLivreur = Integer.parseInt(scanner.nextLine());
+		int choiceLivreur = -1;
+		while (choiceLivreur == -1)
+		{
+			try
+			{
+				List<Livreur> listLivreur = new ArrayList <> ();
+				listLivreur = lJpaDao.listLivreur();
+				listLivreur.forEach(t -> t.displayComplet ());
+				System.out.println("Veuillez attribuer un livreur à la commande");
+				choiceLivreur = Integer.parseInt(scanner.nextLine());
+			}
+			catch (NumberFormatException e)
+			{
+				choiceLivreur = -1;
+			}
+		}
 		
 		cJpaDao.associerLivreurCommande(choiceCommande, choiceLivreur);
 	}
