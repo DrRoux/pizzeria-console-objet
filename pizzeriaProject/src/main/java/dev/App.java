@@ -64,7 +64,7 @@ public class App
 			}
 			catch (Exception e)
 			{
-				LOG.error(e.getLocalizedMessage());
+				LOG.error(e.getMessage());
 			}
 		}
 
