@@ -30,7 +30,12 @@ public class App
 
 		while (sortiBoucle == false)
 		{
-			System.out.println("***** Pizzeria Administration *****");
+			for (int i = 0; i < 40; i++)
+			{
+				System.out.println(" ");
+			}
+			
+			System.out.println("***** Accueil de la pizzeria *****");
 			System.out.println("1.  Client ");
 			System.out.println("2.  Administration");
 			System.out.println("99. Quitter l'application");

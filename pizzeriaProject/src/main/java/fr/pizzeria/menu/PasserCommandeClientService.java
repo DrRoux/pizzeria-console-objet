@@ -34,6 +34,8 @@ public class PasserCommandeClientService extends MenuService
 
 		while (sortiBoucle == false)
 		{
+			clean ();
+			
 			System.out.println("***** Commande en cours *****");
 			System.out.println("1.  Commander une pizza");
 			System.out.println("2.  Consulter sa commande en cours");
@@ -56,18 +58,36 @@ public class PasserCommandeClientService extends MenuService
 						System.out.println("Veuillez choisir le code de la pizza à commander : ");
 						choice2 = scanner.nextLine().toUpperCase();
 					}
-
-					commande.setListComPiz(getGestionnairePizza().findPizzaByCode(choice2));
-
+					
+					boolean doublon = false;
+					
+					for (Pizza p : commande.getListComPiz())
+					{
+						if (p.getCode().equals(choice2))
+						{
+							doublon = true;
+							break;
+						}
+					}
+					
+					if (doublon == false)
+					{
+						commande.setListComPiz(getGestionnairePizza().findPizzaByCode(choice2));
+					}
+					else
+					{
+						System.out.println("Impossible d'ajouter une pizza en double !");
+					}
 				}
 				else if (Integer.parseInt(choice) == 2)
 				{
 					commande.afficherCommandesClient();
+					System.out.println("Veuillez presser la touche entrée pour continuer");
+					scanner.nextLine();
 				}
 				else if (Integer.parseInt(choice) == 99)
 				{
 					sortiBoucle = true;
-					// TODO : Empecher que l'application plante si l'on ajoute 2 fois la même pizza.
 					cJpaDao.ajoutCommande(client, commande);
 				}
 				else
