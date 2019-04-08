@@ -3,15 +3,17 @@
  */
 package fr.pizzeria.exception;
 
-import fr.pizzeria.logger.ILogger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
  * @author BIRABEN-BIANCHI Hugo
  */
-public class PersonnalSqlException extends RuntimeException implements ILogger
+public class PersonnalSqlException extends RuntimeException
 {
 	private static final long serialVersionUID = -8898974333236523950L;
+	protected static Logger LOGGER = LoggerFactory.getLogger(PersonnalSqlException.class);
 
 	public PersonnalSqlException(String msg)
 	{

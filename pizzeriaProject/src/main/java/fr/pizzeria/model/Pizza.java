@@ -14,8 +14,11 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedAttributeNode;
 import javax.persistence.NamedEntityGraph;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
-import fr.pizzeria.logger.ILogger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import fr.pizzeria.utils.ToString;
 
 /**
@@ -26,8 +29,11 @@ import fr.pizzeria.utils.ToString;
 @Entity
 @Table(name = "pizza")
 @NamedEntityGraph(name = "graph.Pizza.listComPiz", attributeNodes = @NamedAttributeNode("listComPiz"))
-public class Pizza implements ILogger
+public class Pizza
 {
+	@Transient
+	static Logger LOG = LoggerFactory.getLogger(Pizza.class);
+
 	/** id : int */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

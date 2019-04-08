@@ -10,8 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Transient;
 
-import fr.pizzeria.logger.ILogger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -19,8 +21,11 @@ import fr.pizzeria.logger.ILogger;
  */
 @MappedSuperclass
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Personne implements ILogger
+public abstract class Personne
 {
+	@Transient
+	static Logger LOG = LoggerFactory.getLogger(Personne.class);
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int id;

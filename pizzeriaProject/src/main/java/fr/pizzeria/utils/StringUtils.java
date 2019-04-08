@@ -5,13 +5,11 @@ package fr.pizzeria.utils;
 
 import java.lang.reflect.Field;
 
-import fr.pizzeria.logger.ILogger;
-
 /**
  *
  * @author BIRABEN-BIANCHI Hugo
  */
-public class StringUtils<T> implements ILogger
+public class StringUtils<T>
 {
 	private T attribut;
 
@@ -50,7 +48,8 @@ public class StringUtils<T> implements ILogger
 						if (uppercase == true)
 						{
 							retour += f.get(attribut).toString().toUpperCase();
-						} else
+						}
+						else
 						{
 							retour += f.get(attribut);
 						}

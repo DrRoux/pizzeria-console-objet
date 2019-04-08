@@ -2,9 +2,11 @@ package dev;
 
 import java.util.Scanner;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import fr.pizzeria.console.PizzeriaAdminConsoleApp;
 import fr.pizzeria.console.PizzeriaClientConsoleApp;
-import fr.pizzeria.logger.ILogger;
 
 /**
  * App : Classe contenant le point d'entrée du programme (main). Propose un menu
@@ -13,10 +15,11 @@ import fr.pizzeria.logger.ILogger;
  * 
  * @author BIRABEN-BIANCHI Hugo
  */
-public class App implements ILogger
+public class App
 {
 	private static PizzeriaAdminConsoleApp appAdmin = new PizzeriaAdminConsoleApp();
 	private static PizzeriaClientConsoleApp appClient = new PizzeriaClientConsoleApp();
+	private static Logger LOG = LoggerFactory.getLogger(App.class);
 
 	public static void main(String[] args)
 	{
@@ -40,14 +43,17 @@ public class App implements ILogger
 				if (Integer.parseInt(choice) == 1)
 				{
 					appClient.display(userChoice);
-				} else if (Integer.parseInt(choice) == 2)
+				}
+				else if (Integer.parseInt(choice) == 2)
 				{
 					appAdmin.display(userChoice);
-				} else if (Integer.parseInt(choice) == 99)
+				}
+				else if (Integer.parseInt(choice) == 99)
 				{
 					System.out.println("Aurevoir ☻");
 					sortiBoucle = true;
-				} else
+				}
+				else
 				{
 					System.out.println("Choix invalide, veuillez recommencer !");
 				}
@@ -55,6 +61,10 @@ public class App implements ILogger
 			catch (NumberFormatException e)
 			{
 				choice = "0";
+			}
+			catch (Exception e)
+			{
+				LOG.error(e.getLocalizedMessage());
 			}
 		}
 
