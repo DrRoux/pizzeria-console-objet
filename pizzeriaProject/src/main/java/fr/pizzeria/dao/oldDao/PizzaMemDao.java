@@ -57,12 +57,9 @@ public class PizzaMemDao implements IPizzaDao
 	{
 		for (Pizza p : tabPizza)
 		{
-			if (p != null)
+			if (p.getCode().equals(codePizza))
 			{
-				if (p.getCode().equals(codePizza))
-				{
-					p.modifPizza(pizza);
-				}
+				p.modifPizza(pizza);
 			}
 		}
 	}
