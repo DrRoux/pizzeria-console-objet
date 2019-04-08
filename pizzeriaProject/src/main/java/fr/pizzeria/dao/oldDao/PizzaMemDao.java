@@ -1,6 +1,7 @@
 package fr.pizzeria.dao.oldDao;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.model.Pizza;
@@ -11,52 +12,47 @@ import fr.pizzeria.model.Pizza;
  */
 public class PizzaMemDao implements IPizzaDao
 {
-	//private Pizza [] tabPizza;
-	private List <Pizza> tabPizza;
-	
-	public PizzaMemDao ()
+	// private Pizza [] tabPizza;
+	private List<Pizza> tabPizza;
+
+	public PizzaMemDao()
 	{
-		tabPizza = new ArrayList <Pizza> ();
-		initialisation ();
+		tabPizza = new ArrayList<Pizza>();
+		initialisation();
 	}
-	
-	public void initialisation ()
+
+	public void initialisation()
 	{
-		if (tabPizza.size () > 8)
+		if (tabPizza.size() < 8)
 		{
-			tabPizza.add(new Pizza ("PEP",  "Pépéroni", 	 12.50));
-			tabPizza.add(new Pizza ("MAR",  "Margherita", 	 14.00));
-			tabPizza.add(new Pizza ("REIN", "La Reine", 	 11.50));
-			tabPizza.add(new Pizza ("FRO",  "La 4 Fromage",  12.00));
-			tabPizza.add(new Pizza ("CAN",  "La cannibale",  12.50));
-			tabPizza.add(new Pizza ("SAV",  "La savoyarde",  13.00));
-			tabPizza.add(new Pizza ("ORI",  "L’orientale",   13.50));
-			tabPizza.add(new Pizza ("IND",  "L’indienne", 	 14.00));
+			tabPizza.add(new Pizza("PEP", "Pépéroni", 12.50));
+			tabPizza.add(new Pizza("MAR", "Margherita", 14.00));
+			tabPizza.add(new Pizza("REIN", "La Reine", 11.50));
+			tabPizza.add(new Pizza("FRO", "La 4 Fromage", 12.00));
+			tabPizza.add(new Pizza("CAN", "La cannibale", 12.50));
+			tabPizza.add(new Pizza("SAV", "La savoyarde", 13.00));
+			tabPizza.add(new Pizza("ORI", "L’orientale", 13.50));
+			tabPizza.add(new Pizza("IND", "L’indienne", 14.00));
 		}
 		else
 		{
 			System.out.println("Taille du tableau insuffisante pour l'initialisation !");
 		}
 	}
-	
-	public List <Pizza> findAllPizzas()
+
+	@Override
+	public List<Pizza> findAllPizzas()
 	{
 		return tabPizza;
 	}
 
+	@Override
 	public void saveNewPizza(Pizza pizza)
 	{
-		for (int i = 0; i < tabPizza.size (); i++)
-		{
-			if (tabPizza.get(i) == null)
-			{
-				tabPizza.add(new Pizza ());
-				tabPizza.get(i).modifPizza (pizza);
-				break;
-			}
-		}
+		tabPizza.add(pizza);
 	}
 
+	@Override
 	public void updatePizza(String codePizza, Pizza pizza)
 	{
 		for (Pizza p : tabPizza)
@@ -65,12 +61,13 @@ public class PizzaMemDao implements IPizzaDao
 			{
 				if (p.getCode().equals(codePizza))
 				{
-					p.modifPizza (pizza);
+					p.modifPizza(pizza);
 				}
 			}
 		}
 	}
 
+	@Override
 	public void deletePizza(String codePizza)
 	{
 		for (Pizza p : tabPizza)
@@ -78,12 +75,12 @@ public class PizzaMemDao implements IPizzaDao
 			if (p.getCode().equals(codePizza))
 			{
 				System.out.println(p.getId());
-				tabPizza.remove (p);
+				tabPizza.remove(p);
 				break;
 			}
 		}
-		
-		for (int i = 0; i < tabPizza.size (); i++)
+
+		for (int i = 0; i < tabPizza.size(); i++)
 		{
 			if (tabPizza.get(i).getId() != i)
 			{
@@ -92,6 +89,7 @@ public class PizzaMemDao implements IPizzaDao
 		}
 	}
 
+	@Override
 	public Pizza findPizzaByCode(String codePizza)
 	{
 		for (Pizza pizza : tabPizza)
@@ -101,14 +99,15 @@ public class PizzaMemDao implements IPizzaDao
 				return pizza;
 			}
 		}
-		
+
 		return null;
 	}
 
+	@Override
 	public boolean pizzaExists(String codePizza)
 	{
 		boolean exist = false;
-		
+
 		for (Pizza pizza : tabPizza)
 		{
 			if (pizza.getCode().equals(codePizza))
@@ -117,7 +116,7 @@ public class PizzaMemDao implements IPizzaDao
 				break;
 			}
 		}
-		
+
 		return exist;
 	}
 }
