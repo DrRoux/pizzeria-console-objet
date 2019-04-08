@@ -16,7 +16,7 @@ public abstract class MenuService
 {
 	static Logger LOG = LoggerFactory.getLogger(MenuService.class);
 
-	protected static IPizzaDao gestionnairePizza = new PizzaJpaDao();
+	private static IPizzaDao gestionnairePizza = new PizzaJpaDao();
 
 	public abstract void executeUC(Scanner scanner) throws StockageException;
 
@@ -26,5 +26,23 @@ public abstract class MenuService
 		{
 			System.out.println(" ");
 		}
+	}
+
+	/**
+	 * Getter
+	 * @return the gestionnairePizza
+	 */
+	public static IPizzaDao getGestionnairePizza()
+	{
+		return gestionnairePizza;
+	}
+
+	/**
+	 * Setter
+	 * @param gestionnairePizza the gestionnairePizza to set
+	 */
+	public static void setGestionnairePizza(IPizzaDao gestionnairePizza)
+	{
+		MenuService.gestionnairePizza = gestionnairePizza;
 	}
 }

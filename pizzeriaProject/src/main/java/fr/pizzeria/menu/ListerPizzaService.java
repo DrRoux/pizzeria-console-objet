@@ -20,7 +20,7 @@ public class ListerPizzaService extends MenuService
 	{
 		System.out.println("Liste des pizzas : ");
 
-		List<Pizza> pizzas = gestionnairePizza.findAllPizzas();
+		List<Pizza> pizzas = getGestionnairePizza().findAllPizzas();
 		
 		for (Pizza pi : pizzas)
 		{

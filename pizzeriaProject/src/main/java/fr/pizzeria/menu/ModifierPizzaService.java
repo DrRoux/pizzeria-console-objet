@@ -20,7 +20,7 @@ public class ModifierPizzaService extends MenuService
 		String choice = null;
 		System.out.println("Modification d'une pizza : ");
 		
-		while (gestionnairePizza.pizzaExists(choice) == false)
+		while (getGestionnairePizza().pizzaExists(choice) == false)
 		{	
 			System.out.println("Veuillez choisir le code de la pizza à modifier : ");
 			choice = scanner.nextLine().toUpperCase();
@@ -61,7 +61,7 @@ public class ModifierPizzaService extends MenuService
 			choicePrice = 0;
 		}
 		
-		gestionnairePizza.updatePizza(choice, new Pizza (choiceCode, choiceLibelle, choicePrice));
+		getGestionnairePizza().updatePizza(choice, new Pizza (choiceCode, choiceLibelle, choicePrice));
 
 	}
 	

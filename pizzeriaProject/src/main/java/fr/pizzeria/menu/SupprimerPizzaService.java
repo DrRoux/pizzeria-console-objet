@@ -19,13 +19,13 @@ public class SupprimerPizzaService extends MenuService
 		String choice = null;
 		System.out.println("Suppression d'une pizza : ");
 		
-		while (gestionnairePizza.pizzaExists(choice) == false)
+		while (getGestionnairePizza().pizzaExists(choice) == false)
 		{
 			System.out.println("Veuillez choisir le code de la pizza à supprimer : ");
 			choice = scanner.nextLine().toUpperCase();
 		}
 		
-		gestionnairePizza.deletePizza(choice);	
+		getGestionnairePizza().deletePizza(choice);	
 		
 	}
 

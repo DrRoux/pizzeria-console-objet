@@ -28,7 +28,7 @@ public class PasserCommandeClientService extends MenuService
 		Commande commande = new Commande();
 		String choice = "0";
 
-		List<Pizza> listPizza = gestionnairePizza.findAllPizzas();
+		List<Pizza> listPizza = getGestionnairePizza().findAllPizzas();
 
 		boolean sortiBoucle = false;
 
@@ -51,13 +51,13 @@ public class PasserCommandeClientService extends MenuService
 
 					listPizza.forEach(t -> t.afficherPizza());
 
-					while (gestionnairePizza.pizzaExists(choice2) != true)
+					while (getGestionnairePizza().pizzaExists(choice2) != true)
 					{
 						System.out.println("Veuillez choisir le code de la pizza à commander : ");
 						choice2 = scanner.nextLine().toUpperCase();
 					}
 
-					commande.setListComPiz(gestionnairePizza.findPizzaByCode(choice2));
+					commande.setListComPiz(getGestionnairePizza().findPizzaByCode(choice2));
 
 				}
 				else if (Integer.parseInt(choice) == 2)
