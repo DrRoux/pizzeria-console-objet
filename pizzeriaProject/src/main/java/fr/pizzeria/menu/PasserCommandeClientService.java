@@ -19,19 +19,19 @@ import fr.pizzeria.model.Pizza;
  */
 public class PasserCommandeClientService extends MenuService
 {
-	CommandesJpaDao cJpaDao = new CommandesJpaDao ();
+	CommandesJpaDao cJpaDao = new CommandesJpaDao();
 	static Client client;
-	
+
 	@Override
 	public void executeUC(Scanner scanner) throws StockageException
 	{
-		Commande commande = new Commande ();
+		Commande commande = new Commande();
 		String choice = "0";
-		
-		List <Pizza> listPizza = gestionnairePizza.findAllPizzas();
-		
+
+		List<Pizza> listPizza = gestionnairePizza.findAllPizzas();
+
 		boolean sortiBoucle = false;
-		
+
 		while (sortiBoucle == false)
 		{
 			System.out.println("***** Commande en cours *****");
@@ -39,34 +39,35 @@ public class PasserCommandeClientService extends MenuService
 			System.out.println("2.  Consulter sa commande en cours");
 			System.out.println("99. Finaliser votre commande");
 			System.out.println("\nVeuillez saisir votre choix : ");
-			
+
 			choice = scanner.nextLine();
-			
+
 			try
 			{
 				if (Integer.parseInt(choice) == 1)
 				{
 					String choice2 = null;
 					System.out.println("Choix d'une pizza : ");
-					
-					listPizza.forEach(t -> t.afficherPizza ());
-					
+
+					listPizza.forEach(t -> t.afficherPizza());
+
 					while (gestionnairePizza.pizzaExists(choice2) != true)
-					{	
+					{
 						System.out.println("Veuillez choisir le code de la pizza à commander : ");
 						choice2 = scanner.nextLine().toUpperCase();
 					}
-					
+
 					commande.setListComPiz(gestionnairePizza.findPizzaByCode(choice2));
-					
+
 				}
 				else if (Integer.parseInt(choice) == 2)
 				{
-					System.out.println(commande);
+					commande.afficherCommandesClient();
 				}
 				else if (Integer.parseInt(choice) == 99)
 				{
 					sortiBoucle = true;
+					// TODO : Empecher que l'application plante si l'on ajoute 2 fois la même pizza.
 					cJpaDao.ajoutCommande(client, commande);
 				}
 				else
@@ -78,14 +79,14 @@ public class PasserCommandeClientService extends MenuService
 			{
 				choice = "0";
 			}
-			catch (PersonnalSqlException e) 
+			catch (PersonnalSqlException e)
 			{
 				System.out.println(e.getMessage());
 			}
 		}
 	}
-	
-	public void set (Client c)
+
+	public void set(Client c)
 	{
 		client = c;
 	}
