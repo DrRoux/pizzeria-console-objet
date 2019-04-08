@@ -87,15 +87,16 @@ public class PizzaMemDao implements IPizzaDao
 	@Override
 	public Pizza findPizzaByCode(String codePizza)
 	{
+		Pizza p = null;
 		for (Pizza pizza : tabPizza)
 		{
 			if (pizza.getCode().equals(codePizza.toUpperCase()))
 			{
-				return pizza;
+				p = pizza;
 			}
 		}
 
-		return null;
+		return p;
 	}
 
 	@Override

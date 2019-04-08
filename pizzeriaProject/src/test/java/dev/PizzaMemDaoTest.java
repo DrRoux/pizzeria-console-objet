@@ -58,4 +58,18 @@ public class PizzaMemDaoTest
 		assertEquals(0, p.findAllPizzas().size());
 	}
 
+	@Test
+	public void pizzaFindPizzaByCodeNull()
+	{
+		p = new PizzaMemDao();
+		assertEquals(null, p.findPizzaByCode("PizzaQuiNExistePas"));
+	}
+
+	@Test
+	public void pizzaExistsPas()
+	{
+		p = new PizzaMemDao();
+		assertEquals(false, p.pizzaExists("PizzaQuiNExistePas"));
+	}
+
 }
