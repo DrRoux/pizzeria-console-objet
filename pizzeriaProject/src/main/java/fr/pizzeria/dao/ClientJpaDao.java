@@ -45,7 +45,7 @@ public class ClientJpaDao extends JpaDao
 		}
 		catch (NoResultException e)
 		{
-			LOGGER.error(e.getMessage());
+			client = null;
 		}
 
 		closeConnexionBdd();
