@@ -19,7 +19,7 @@ public class PizzaMemDaoTest
 	PizzaMemDao p;
 
 	@Test
-	public void saveOnePizza()
+	public void savePizza_AddOnePizza()
 	{
 		p = new PizzaMemDao();
 
@@ -31,7 +31,7 @@ public class PizzaMemDaoTest
 	}
 
 	@Test
-	public void deleteOnePizzaIND()
+	public void deletePizza_DeleteOnePizzaIND()
 	{
 		p = new PizzaMemDao();
 
@@ -43,7 +43,7 @@ public class PizzaMemDaoTest
 	}
 
 	@Test
-	public void deletePizzaAll()
+	public void deletePizza_All()
 	{
 		p = new PizzaMemDao();
 
@@ -56,14 +56,14 @@ public class PizzaMemDaoTest
 	}
 
 	@Test
-	public void pizzaFindPizzaByCodeNull()
+	public void pizzaFindByCode_WhereCodeisNull()
 	{
 		p = new PizzaMemDao();
 		assertEquals(null, p.findPizzaByCode("PizzaQuiNExistePas"));
 	}
 
 	@Test
-	public void pizzaExistsPas()
+	public void pizzaExists_Not()
 	{
 		p = new PizzaMemDao();
 		assertEquals(false, p.pizzaExists("PizzaQuiNExistePas"));

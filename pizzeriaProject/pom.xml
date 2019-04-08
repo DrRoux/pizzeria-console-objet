@@ -100,6 +100,7 @@
 			<version>1.12</version>
 		</dependency>
 		
+		<!-- Outils de logging -->
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
@@ -107,12 +108,14 @@
 			<scope>runtime</scope>
 		</dependency>
 		
+		<!-- Outils de logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>1.7.25</version>
 		</dependency>
 		
+		<!--  Injecte du code dans un scanner (utile pour les tests unitaires) -->
 		<dependency>
 			<groupId>com.github.stefanbirkner</groupId>
 			<artifactId>system-rules</artifactId>
