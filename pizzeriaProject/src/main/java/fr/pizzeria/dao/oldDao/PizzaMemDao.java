@@ -1,6 +1,7 @@
 package fr.pizzeria.dao.oldDao;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import fr.pizzeria.dao.IPizzaDao;
@@ -49,7 +50,11 @@ public class PizzaMemDao implements IPizzaDao
 	@Override
 	public void saveNewPizza(Pizza pizza)
 	{
-		tabPizza.add(pizza);
+		if (pizzaExists(pizza.getCode()) == false)
+		{
+			tabPizza.add(pizza);
+		}
+
 	}
 
 	@Override
@@ -67,21 +72,14 @@ public class PizzaMemDao implements IPizzaDao
 	@Override
 	public void deletePizza(String codePizza)
 	{
-		for (Pizza p : tabPizza)
+		Iterator<Pizza> it = tabPizza.iterator();
+
+		while (it.hasNext())
 		{
+			Pizza p = it.next();
 			if (p.getCode().equals(codePizza))
 			{
-				System.out.println(p.getId());
-				tabPizza.remove(p);
-				break;
-			}
-		}
-
-		for (int i = 0; i < tabPizza.size(); i++)
-		{
-			if (tabPizza.get(i).getId() != i)
-			{
-				tabPizza.get(i).setId(i);
+				it.remove();
 			}
 		}
 	}
