@@ -6,6 +6,7 @@ import fr.pizzeria.exception.PersonnalSqlException;
 import fr.pizzeria.exception.StockageException;
 import fr.pizzeria.menu.ListerCommandesClientService;
 import fr.pizzeria.menu.MenuFactory;
+import fr.pizzeria.menu.PasserCommandeClientService;
 import fr.pizzeria.model.Client;
 
 public class PizzeriaClientConnecteConsoleApp implements IPizzeriaConsole
@@ -34,7 +35,7 @@ public class PizzeriaClientConnecteConsoleApp implements IPizzeriaConsole
 			{
 				if (Integer.parseInt(choice) == 1)
 				{
-					ListerCommandesClientService c =(ListerCommandesClientService) menu.create("passerCommandeClient");
+					PasserCommandeClientService c =(PasserCommandeClientService) menu.create("passerCommandeClient");
 					c.set(client);
 					c.executeUC(questionUser);
 				}
