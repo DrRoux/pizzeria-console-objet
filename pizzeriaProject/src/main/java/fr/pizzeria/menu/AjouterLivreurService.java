@@ -48,10 +48,11 @@ public class AjouterLivreurService extends MenuService
 						sortir = true;
 						break;
 					}
-					else
-					{
-						choiceCommande = -1;
-					}
+				}
+				
+				if (sortir == false)
+				{
+					choiceCommande = -1;
 				}
 			}
 			catch (NumberFormatException e)
@@ -79,12 +80,12 @@ public class AjouterLivreurService extends MenuService
 						sortir = true;
 						break;
 					}
-					else
-					{
-						choiceLivreur = -1;
-					}
 				}
 				
+				if (sortir == false)
+				{
+					choiceLivreur = -1;
+				}
 			}
 			catch (NumberFormatException e)
 			{
