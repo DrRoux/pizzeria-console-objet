@@ -7,7 +7,6 @@ import static org.junit.contrib.java.lang.system.TextFromStandardInputStream.emp
 
 import java.util.Scanner;
 
-import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
@@ -29,19 +28,12 @@ public class ConnecterClientServiceTest
 	public TextFromStandardInputStream systemInMock = emptyStandardInputStream();
 
 	@Test
-	public void executeUC_clientExist()
+	public void executeUC_clientExist() throws StockageException
 	{
 		systemInMock.provideLines("a", "a", "99");
 		ConnecterClientService c = new ConnecterClientService();
-		try
-		{
-			c.executeUC(new Scanner(System.in));
-		}
-		catch (StockageException e)
-		{
-			e.printStackTrace();
-			Assert.fail();
-		}
+
+		c.executeUC(new Scanner(System.in));
 	}
 
 	@Test
