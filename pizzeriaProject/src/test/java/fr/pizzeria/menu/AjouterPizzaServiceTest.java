@@ -13,7 +13,6 @@ import org.junit.Test;
 import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
 
 import fr.pizzeria.exception.SavePizzaException;
-import fr.pizzeria.menu.AjouterPizzaService;
 
 /**
  *
@@ -31,10 +30,12 @@ public class AjouterPizzaServiceTest
 	@Test
 	public void executeUC_addPizza() throws SavePizzaException
 	{
-		systemInMock.provideLines("AAA", "La Pizza des A", "99");
 		AjouterPizzaService c = new AjouterPizzaService();
 		int sizeBefore = AjouterPizzaService.getGestionnairePizza().findAllPizzas().size();
+
 		c.executeUC(new Scanner(System.in));
+		systemInMock.provideLines("AAA", "La Pizza des A", "12.5");
+
 		int sizeAfter = AjouterPizzaService.getGestionnairePizza().findAllPizzas().size();
 		Assert.assertEquals(sizeBefore + 1, sizeAfter);
 	}

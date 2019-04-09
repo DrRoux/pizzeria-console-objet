@@ -20,7 +20,7 @@ import fr.pizzeria.model.Pizza;
  */
 public class PizzaMemDaoTest
 {
-	protected static Logger LOGGER = LoggerFactory.getLogger(PizzaMemDaoTest.class);
+	protected static Logger LOGGER = LoggerFactory.getLogger("loggerTest");
 	PizzaMemDao p;
 
 	@Rule
@@ -29,7 +29,7 @@ public class PizzaMemDaoTest
 	@Before
 	public void init()
 	{
-		LOGGER.info("Etant donné une instance de PizzaMemDao");
+		LOGGER.info("\nEtant donné une instance de PizzaMemDao");
 		p = new PizzaMemDao();
 	}
 

@@ -3,6 +3,8 @@
  */
 package fr.pizzeria.model;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -97,5 +99,40 @@ public abstract class Personne
 	public void setPrenom(String prenom)
 	{
 		this.prenom = prenom;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode()
+	{
+		return Objects.hash(id, nom, prenom);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj)
+	{
+		if (this == obj)
+		{
+			return true;
+		}
+		if (obj == null)
+		{
+			return false;
+		}
+		if (getClass() != obj.getClass())
+		{
+			return false;
+		}
+		Personne other = (Personne) obj;
+		return id == other.id && Objects.equals(nom, other.nom) && Objects.equals(prenom, other.prenom);
 	}
 }

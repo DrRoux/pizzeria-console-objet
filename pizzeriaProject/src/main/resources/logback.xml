@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE xml>
 <configuration>	
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%msg%n</pattern>
+		</encoder>
+	</appender>
+
 	<!-- redirection vers un fichier -->
 	<appender name="JPA-StackTrace" class="ch.qos.logback.core.FileAppender">
 		<file>app.log</file>
@@ -19,6 +26,11 @@
 			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
 		</encoder>
 	</appender>
+	
+	<!-- politique de log pour les classes du package dev.console -->
+	<logger name="loggerTest" level="INFO" additivity="false">
+		<appender-ref ref="STDOUT" />
+	</logger>
 	
 	<!-- politique de log pour les classes du package dev.console -->
 	<logger name="fr.pizzeria" level="ERROR">
