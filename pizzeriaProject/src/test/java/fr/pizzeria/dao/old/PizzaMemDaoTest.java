@@ -1,4 +1,4 @@
-package dev;
+package fr.pizzeria.dao.old;
 
 import static org.junit.Assert.assertEquals;
 
@@ -12,7 +12,6 @@ import org.junit.rules.TestName;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import fr.pizzeria.dao.oldDao.PizzaMemDao;
 import fr.pizzeria.model.Pizza;
 
 /**

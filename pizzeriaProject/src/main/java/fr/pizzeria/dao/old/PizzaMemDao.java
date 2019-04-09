@@ -1,4 +1,4 @@
-package fr.pizzeria.dao.oldDao;
+package fr.pizzeria.dao.old;
 
 import java.util.ArrayList;
 import java.util.Iterator;

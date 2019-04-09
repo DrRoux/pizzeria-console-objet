@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fr.pizzeria.dao.oldDao;
+package fr.pizzeria.dao.old;
 
 import java.io.*;
 import java.util.*;

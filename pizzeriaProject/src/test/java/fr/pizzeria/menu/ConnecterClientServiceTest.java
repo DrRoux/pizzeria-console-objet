@@ -1,7 +1,7 @@
 /**
  * 
  */
-package dev;
+package fr.pizzeria.menu;
 
 import static org.junit.contrib.java.lang.system.TextFromStandardInputStream.emptyStandardInputStream;
 
