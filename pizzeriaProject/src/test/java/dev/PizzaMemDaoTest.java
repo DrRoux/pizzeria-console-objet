@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestName;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,17 +24,20 @@ public class PizzaMemDaoTest
 	protected static Logger LOGGER = LoggerFactory.getLogger(PizzaMemDaoTest.class);
 	PizzaMemDao p;
 
+	@Rule
+	public TestName pTest = new TestName();
+
 	@Before
 	public void init()
 	{
-		LOGGER.info("Etant donné une nouvelle instance de PizzaMemDao");
+		LOGGER.info("Etant donné une instance de PizzaMemDao");
 		p = new PizzaMemDao();
 	}
 
 	@Test
 	public void savePizza_AddOnePizza()
 	{
-		init();
+		LOGGER.info("Exécution de la méthode {}", pTest.getMethodName());
 
 		Pizza pizzaTemp = new Pizza();
 		int size = p.findAllPizzas().size();
@@ -47,7 +52,7 @@ public class PizzaMemDaoTest
 	@Test
 	public void deletePizza_DeleteOnePizzaIND()
 	{
-		init();
+		LOGGER.info("Exécution de la méthode {}", pTest.getMethodName());
 
 		String pizzaCode = "XOX";
 		p.saveNewPizza(new Pizza(pizzaCode, "XOX", 12.4));
@@ -61,9 +66,8 @@ public class PizzaMemDaoTest
 	@Test
 	public void deletePizza_All()
 	{
-		init();
+		LOGGER.info("Exécution de la méthode {}", pTest.getMethodName());
 
-		System.out.println(p.findAllPizzas().size());
 		List<String> listPizza = p.findAllPizzas().stream().map(t -> t.getCode()).collect(Collectors.toList());
 
 		listPizza.forEach(t -> p.deletePizza(t));
@@ -74,14 +78,14 @@ public class PizzaMemDaoTest
 	@Test
 	public void pizzaFindByCode_WhereCodeisNull()
 	{
-		init();
+		LOGGER.info("Exécution de la méthode {}", pTest.getMethodName());
 		assertEquals(null, p.findPizzaByCode("PizzaQuiNExistePas"));
 	}
 
 	@Test
 	public void pizzaExists_Not()
 	{
-		init();
+		LOGGER.info("Exécution de la méthode {}", pTest.getMethodName());
 		assertEquals(false, p.pizzaExists("PizzaQuiNExistePas"));
 	}
 
