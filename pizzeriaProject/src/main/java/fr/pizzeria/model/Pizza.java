@@ -2,6 +2,7 @@ package fr.pizzeria.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -280,6 +281,33 @@ public class Pizza
 	public void setcP(CategoriePizza cP)
 	{
 		this.cP = cP;
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return Objects.hash(cP, code, libelle, listComPiz, prix);
+	}
+
+	@Override
+	public boolean equals(Object obj)
+	{
+		if (this == obj)
+		{
+			return true;
+		}
+		if (obj == null)
+		{
+			return false;
+		}
+		if (getClass() != obj.getClass())
+		{
+			return false;
+		}
+		Pizza other = (Pizza) obj;
+		return cP == other.cP && Objects.equals(code, other.code) && Objects.equals(libelle, other.libelle)
+				&& Objects.equals(listComPiz, other.listComPiz)
+				&& Double.doubleToLongBits(prix) == Double.doubleToLongBits(other.prix);
 	}
 
 }
