@@ -14,7 +14,7 @@ import fr.pizzeria.exception.StockageException;
  */
 public abstract class MenuService
 {
-	static Logger LOG = LoggerFactory.getLogger(MenuService.class);
+	static Logger logger = LoggerFactory.getLogger(MenuService.class);
 
 	private static IPizzaDao gestionnairePizza = new PizzaJpaDao();
 

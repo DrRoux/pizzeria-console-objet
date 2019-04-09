@@ -33,7 +33,7 @@ import fr.pizzeria.utils.ToString;
 public class Pizza
 {
 	@Transient
-	static Logger LOG = LoggerFactory.getLogger(Pizza.class);
+	static Logger logger = LoggerFactory.getLogger(Pizza.class);
 
 	/** id : int */
 	@Id

@@ -19,7 +19,7 @@ public class LivreurJpaDao extends JpaDao
 {
 	public LivreurJpaDao()
 	{
-		LOGGER = LoggerFactory.getLogger(LivreurJpaDao.class);
+		logger = LoggerFactory.getLogger(LivreurJpaDao.class);
 	}
 
 	public List<Livreur> listLivreur()

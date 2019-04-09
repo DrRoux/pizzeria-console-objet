@@ -22,7 +22,7 @@ public class PizzaJpaDao extends JpaDao implements IPizzaDao
 
 	public PizzaJpaDao()
 	{
-		LOGGER = LoggerFactory.getLogger(PizzaJpaDao.class);
+		logger = LoggerFactory.getLogger(PizzaJpaDao.class);
 	}
 
 	@Override

@@ -26,7 +26,7 @@ import org.slf4j.LoggerFactory;
 public abstract class Personne
 {
 	@Transient
-	static Logger LOG = LoggerFactory.getLogger(Personne.class);
+	static Logger logger = LoggerFactory.getLogger(Personne.class);
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

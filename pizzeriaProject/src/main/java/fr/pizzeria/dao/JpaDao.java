@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory;
  */
 public abstract class JpaDao
 {
-	protected static Logger LOGGER = LoggerFactory.getLogger(JpaDao.class);
+	protected static Logger logger = LoggerFactory.getLogger(JpaDao.class);
 
 	String driverName = null;
 	String jdbcUrl = null;
@@ -28,7 +28,7 @@ public abstract class JpaDao
 
 	JpaDao()
 	{
-		LOGGER.info("Démarrage de JPA");
+		logger.info("Démarrage de JPA");
 	}
 
 	public void beginConnexionBdd()

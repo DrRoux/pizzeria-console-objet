@@ -34,23 +34,23 @@ import org.slf4j.LoggerFactory;
 public class Commande
 {
 	@Transient
-	static Logger LOG = LoggerFactory.getLogger(Commande.class);
+	static Logger logger = LoggerFactory.getLogger(Commande.class);
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column
-	private int numero_commande;
+	@Column(name = "numero_commande")
+	private int numeroCommande;
 	@Column
 	private int status;
-	@Column
-	private LocalDateTime date_commande;
+	@Column(name = "date_commande")
+	private LocalDateTime dateCommande;
 	@ManyToOne
 	@JoinColumn(name = "livreur_id")
-	private Livreur livreur_id;
+	private Livreur livreurId;
 	@ManyToOne
 	@JoinColumn(name = "client_id")
-	private Client client_id;
+	private Client clientId;
 
 	@ManyToMany
 	@JoinTable(name = "commande_pizza", joinColumns = @JoinColumn(name = "commande_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "pizza_id", referencedColumnName = "id"))
@@ -58,31 +58,31 @@ public class Commande
 
 	public Commande()
 	{
-		numero_commande = id;
+		numeroCommande = id;
 		status = 0;
-		date_commande = LocalDateTime.now();
+		dateCommande = LocalDateTime.now();
 	}
 
-	public Commande(int numero_commande, int statut, LocalDateTime date_commande, Livreur livreur_id, Client client_id)
+	public Commande(int numeroCommande, int statut, LocalDateTime dateCommande, Livreur livreurId, Client clientId)
 	{
 		super();
-		this.numero_commande = numero_commande;
+		this.numeroCommande = numeroCommande;
 		this.status = statut;
-		this.date_commande = date_commande;
-		this.livreur_id = livreur_id;
-		this.client_id = client_id;
+		this.dateCommande = dateCommande;
+		this.livreurId = livreurId;
+		this.clientId = clientId;
 	}
 
-	public Commande(int id, int numero_commande, int statut, LocalDateTime date_commande, Livreur livreur_id,
-			Client client_id)
+	public Commande(int id, int numeroCommande, int statut, LocalDateTime dateCommande, Livreur livreurId,
+			Client clientId)
 	{
 		super();
 		this.id = id;
-		this.numero_commande = numero_commande;
+		this.numeroCommande = numeroCommande;
 		this.status = statut;
-		this.date_commande = date_commande;
-		this.livreur_id = livreur_id;
-		this.client_id = client_id;
+		this.dateCommande = dateCommande;
+		this.livreurId = livreurId;
+		this.clientId = clientId;
 	}
 
 	/**
@@ -93,15 +93,15 @@ public class Commande
 	{
 		for (Pizza p : listComPiz)
 		{
-			System.out.println(date_commande + " - " + client_id + " : " + p);
+			System.out.println(dateCommande + " - " + clientId + " : " + p);
 		}
 		System.out.println("---------------------------------------------------------");
 	}
 
 	public void afficherListeAttente()
 	{
-		String livreur = livreur_id == null ? "Pas de livreur associé" : livreur_id.stringComplet();
-		System.out.println(id + " " + date_commande + " - " + client_id.afficherClient() + " - " + livreur);
+		String livreur = livreurId == null ? "Pas de livreur associé" : livreurId.stringComplet();
+		System.out.println(id + " " + dateCommande + " - " + clientId.afficherClient() + " - " + livreur);
 	}
 
 	/**
@@ -129,9 +129,9 @@ public class Commande
 	 * 
 	 * @return the numero_commande
 	 */
-	public int getNumero_commande()
+	public int getNumeroCommande()
 	{
-		return numero_commande;
+		return numeroCommande;
 	}
 
 	/**
@@ -139,9 +139,9 @@ public class Commande
 	 * 
 	 * @param numero_commande the numero_commande to set
 	 */
-	public void setNumero_commande(int numero_commande)
+	public void setNumeroCommande(int numeroCommande)
 	{
-		this.numero_commande = numero_commande;
+		this.numeroCommande = numeroCommande;
 	}
 
 	/**
@@ -169,9 +169,9 @@ public class Commande
 	 * 
 	 * @return the date_commande
 	 */
-	public LocalDateTime getDate_commande()
+	public LocalDateTime getDateCommande()
 	{
-		return date_commande;
+		return dateCommande;
 	}
 
 	/**
@@ -179,9 +179,9 @@ public class Commande
 	 * 
 	 * @param date_commande the date_commande to set
 	 */
-	public void setDate_commande(LocalDateTime date_commande)
+	public void setDateCommande(LocalDateTime dateCommande)
 	{
-		this.date_commande = date_commande;
+		this.dateCommande = dateCommande;
 	}
 
 	/**
@@ -189,9 +189,9 @@ public class Commande
 	 * 
 	 * @return the livreur_id
 	 */
-	public Livreur getLivreur_id()
+	public Livreur getLivreurId()
 	{
-		return livreur_id;
+		return livreurId;
 	}
 
 	/**
@@ -199,9 +199,9 @@ public class Commande
 	 * 
 	 * @param livreur_id the livreur_id to set
 	 */
-	public void setLivreur_id(Livreur livreur_id)
+	public void setLivreurId(Livreur livreurId)
 	{
-		this.livreur_id = livreur_id;
+		this.livreurId = livreurId;
 	}
 
 	/**
@@ -209,9 +209,9 @@ public class Commande
 	 * 
 	 * @return the client_id
 	 */
-	public Client getClient_id()
+	public Client getClientId()
 	{
-		return client_id;
+		return clientId;
 	}
 
 	/**
@@ -219,9 +219,9 @@ public class Commande
 	 * 
 	 * @param client_id the client_id to set
 	 */
-	public void setClient_id(Client client_id)
+	public void setClientId(Client clientId)
 	{
-		this.client_id = client_id;
+		this.clientId = clientId;
 	}
 
 	/**
@@ -242,13 +242,5 @@ public class Commande
 	public void setListComPiz(Pizza pizza)
 	{
 		this.listComPiz.add(pizza);
-	}
-
-	/**
-	 * @param l
-	 */
-	public void setLivreur(Livreur l)
-	{
-		this.livreur_id = l;
 	}
 }

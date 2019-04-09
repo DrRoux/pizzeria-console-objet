@@ -19,7 +19,7 @@ public class App
 {
 	private static PizzeriaAdminConsoleApp appAdmin = new PizzeriaAdminConsoleApp();
 	private static PizzeriaClientConsoleApp appClient = new PizzeriaClientConsoleApp();
-	private static Logger LOG = LoggerFactory.getLogger(App.class);
+	private static Logger logger = LoggerFactory.getLogger(App.class);
 
 	public static void main(String[] args)
 	{
@@ -69,7 +69,7 @@ public class App
 			}
 			catch (Exception e)
 			{
-				LOG.error(e.getMessage());
+				logger.error(e.getMessage());
 			}
 		}
 

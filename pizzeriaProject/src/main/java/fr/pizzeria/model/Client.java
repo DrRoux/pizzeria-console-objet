@@ -25,7 +25,7 @@ public class Client extends Personne
 	@Column(name = "mot_de_passe")
 	private String motDePasse;
 
-	@OneToMany(mappedBy = "client_id")
+	@OneToMany(mappedBy = "clientId")
 	private List<Commande> commandesClient;
 
 	public String afficherClient()
@@ -44,23 +44,23 @@ public class Client extends Personne
 		commandesClient = new ArrayList<>();
 	}
 
-	public Client(String nom, String prenom, String email, String mot_de_passe)
+	public Client(String nom, String prenom, String email, String motDePasse)
 	{
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
-		this.motDePasse = mot_de_passe;
+		this.motDePasse = motDePasse;
 	}
 
-	public Client(int id, String nom, String prenom, String email, String mot_de_passe)
+	public Client(int id, String nom, String prenom, String email, String motDePasse)
 	{
 		super();
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
-		this.motDePasse = mot_de_passe;
+		this.motDePasse = motDePasse;
 	}
 
 	public String getEmail()

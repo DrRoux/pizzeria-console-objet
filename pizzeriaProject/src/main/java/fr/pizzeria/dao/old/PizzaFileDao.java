@@ -102,7 +102,7 @@ public class PizzaFileDao implements IPizzaDao
 	{
 		for (Pizza pizza : listPizzas)
 		{
-			if (pizza.getCode().equals(codePizza.toUpperCase()))
+			if (pizza.getCode().equalsIgnoreCase(codePizza))
 			{
 				return pizza;
 			}

@@ -27,7 +27,7 @@ public class StringUtils<T>
 	{
 		Class<? extends Object> classe = attribut.getClass();
 		Field[] fields = classe.getDeclaredFields();
-		String retour = "";
+		StringBuilder retour = new StringBuilder();
 
 		for (Field f : fields)
 		{
@@ -42,19 +42,19 @@ public class StringUtils<T>
 					String separateurAv = annotation.separateurAv();
 					String separateurAp = annotation.separateurAp();
 
-					retour += separateurAv;
+					retour.append(separateurAv);
 					if (display)
 					{
 						if (uppercase)
 						{
-							retour += f.get(attribut).toString().toUpperCase();
+							retour.append(f.get(attribut).toString().toUpperCase());
 						}
 						else
 						{
-							retour += f.get(attribut);
+							retour.append(f.get(attribut));
 						}
 					}
-					retour += separateurAp;
+					retour.append(separateurAp);
 
 				}
 				catch (IllegalArgumentException | IllegalAccessException e)
@@ -64,7 +64,7 @@ public class StringUtils<T>
 			}
 		}
 
-		return retour;
+		return retour.toString();
 	}
 
 	public T getAttribut()

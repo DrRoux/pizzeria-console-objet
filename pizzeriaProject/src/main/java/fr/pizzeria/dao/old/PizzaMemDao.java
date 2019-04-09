@@ -89,7 +89,7 @@ public class PizzaMemDao implements IPizzaDao
 		Pizza p = null;
 		for (Pizza pizza : listPizzas)
 		{
-			if (pizza.getCode().equals(codePizza.toUpperCase()))
+			if (pizza.getCode().equalsIgnoreCase(codePizza))
 			{
 				p = pizza;
 			}

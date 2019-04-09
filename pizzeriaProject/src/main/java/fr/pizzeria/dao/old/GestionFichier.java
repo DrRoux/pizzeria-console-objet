@@ -38,7 +38,12 @@ public class GestionFichier
 
 			if (!file.exists())
 			{
-				file.createNewFile();
+				boolean result = file.createNewFile();
+
+				if (!result)
+				{
+					System.out.println("Ouverture du fichier échoué");
+				}
 			}
 		}
 		catch (IOException e)

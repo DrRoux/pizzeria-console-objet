@@ -20,7 +20,7 @@ public class CommandesJpaDao extends JpaDao
 
 	public CommandesJpaDao()
 	{
-		LOGGER = LoggerFactory.getLogger(CommandesJpaDao.class);
+		logger = LoggerFactory.getLogger(CommandesJpaDao.class);
 	}
 
 	public List<Commande> listerCommandesClient(Client client)
@@ -54,8 +54,8 @@ public class CommandesJpaDao extends JpaDao
 	public void ajoutCommande(Client client, Commande commande)
 	{
 		beginConnexionBdd();
-		commande.setClient_id(client);
-		commande.setLivreur_id(null);
+		commande.setClientId(client);
+		commande.setLivreurId(null);
 		ajout(commande);
 		closeConnexionBdd();
 	}
@@ -65,7 +65,7 @@ public class CommandesJpaDao extends JpaDao
 		beginConnexionBdd();
 		Livreur l = lJpaDao.findLivreur(livreur);
 		Commande c = em.find(Commande.class, commande);
-		c.setLivreur(l);
+		c.setLivreurId(l);
 		modif(c);
 		closeConnexionBdd();
 	}

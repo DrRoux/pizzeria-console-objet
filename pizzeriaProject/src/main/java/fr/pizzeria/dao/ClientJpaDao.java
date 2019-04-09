@@ -16,7 +16,7 @@ public class ClientJpaDao extends JpaDao
 
 	public ClientJpaDao()
 	{
-		LOGGER = LoggerFactory.getLogger(ClientJpaDao.class);
+		logger = LoggerFactory.getLogger(ClientJpaDao.class);
 	}
 
 	public void addNewClient(Client client)

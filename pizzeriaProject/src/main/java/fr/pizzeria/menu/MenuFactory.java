@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
  */
 public class MenuFactory
 {
-	static Logger LOG = LoggerFactory.getLogger(MenuFactory.class);
+	static Logger logger = LoggerFactory.getLogger(MenuFactory.class);
 
 	public MenuService create(String typeMenu)
 	{
