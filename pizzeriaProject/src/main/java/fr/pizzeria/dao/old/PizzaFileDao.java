@@ -3,6 +3,9 @@ package fr.pizzeria.dao.old;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
@@ -15,6 +18,7 @@ import fr.pizzeria.model.Pizza;
  */
 public class PizzaFileDao implements IPizzaDao
 {
+	private static Logger logger = LoggerFactory.getLogger(PizzaFileDao.class);
 	private List<Pizza> listPizzas;
 	private GestionFichier gestionFichier;
 
@@ -80,7 +84,8 @@ public class PizzaFileDao implements IPizzaDao
 		{
 			if (p.getCode().equals(codePizza))
 			{
-				System.out.println(p.getId());
+				String string = String.valueOf(p.getId ());
+				logger.info(string);
 				listPizzas.remove(p);
 				break;
 			}

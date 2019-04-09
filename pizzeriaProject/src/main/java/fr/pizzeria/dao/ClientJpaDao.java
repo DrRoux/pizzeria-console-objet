@@ -13,7 +13,6 @@ import fr.pizzeria.model.Client;
  */
 public class ClientJpaDao extends JpaDao
 {
-
 	public ClientJpaDao()
 	{
 		logger = LoggerFactory.getLogger(ClientJpaDao.class);

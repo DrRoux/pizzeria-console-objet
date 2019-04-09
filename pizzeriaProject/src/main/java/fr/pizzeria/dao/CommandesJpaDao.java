@@ -15,7 +15,6 @@ import fr.pizzeria.model.Livreur;
 
 public class CommandesJpaDao extends JpaDao
 {
-
 	LivreurJpaDao lJpaDao = new LivreurJpaDao();
 
 	public CommandesJpaDao()

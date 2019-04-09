@@ -65,7 +65,8 @@ public class Pizza
 
 	public void afficherPizza()
 	{
-		System.out.println(code + " -> " + libelle + " (" + prix + " €) - " + cP.getNom().toUpperCase());
+		String affichePizza = code + " -> " + libelle + " (" + prix + " €) - " + cP.getNom().toUpperCase();
+		logger.info(affichePizza);
 	}
 
 	/**

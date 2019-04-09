@@ -32,14 +32,14 @@ public class App
 		{
 			for (int i = 0; i < 40; i++)
 			{
-				System.out.println(" ");
+				logger.info("\n");
 			}
 
-			System.out.println("***** Accueil de la pizzeria *****");
-			System.out.println("1.  Client ");
-			System.out.println("2.  Administration");
-			System.out.println("99. Quitter l'application");
-			System.out.println("\nVeuillez saisir votre choix : ");
+			logger.info("***** Accueil de la pizzeria *****");
+			logger.info("1.  Client ");
+			logger.info("2.  Administration");
+			logger.info("99. Quitter l'application");
+			logger.info("\nVeuillez saisir votre choix : ");
 
 			choice = userChoice.nextLine();
 
@@ -55,12 +55,12 @@ public class App
 				}
 				else if (Integer.parseInt(choice) == 99)
 				{
-					System.out.println("Aurevoir ☻");
+					logger.info("Aurevoir ☻");
 					sortiBoucle = true;
 				}
 				else
 				{
-					System.out.println("Choix invalide, veuillez recommencer !");
+					logger.info("Choix invalide, veuillez recommencer !");
 				}
 			}
 			catch (NumberFormatException e)
@@ -73,6 +73,6 @@ public class App
 			}
 		}
 
-		System.out.println("FIN DE L'APPLICATION AVEC SUCCES !");
+		logger.info("FIN DE L'APPLICATION AVEC SUCCES !");
 	}
 }

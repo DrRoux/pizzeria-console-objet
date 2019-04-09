@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.model.Pizza;
 
@@ -13,6 +16,7 @@ import fr.pizzeria.model.Pizza;
  */
 public class PizzaMemDao implements IPizzaDao
 {
+	private static Logger logger = LoggerFactory.getLogger(PizzaMemDao.class);
 	private List<Pizza> listPizzas;
 
 	public PizzaMemDao()
@@ -36,7 +40,7 @@ public class PizzaMemDao implements IPizzaDao
 		}
 		else
 		{
-			System.out.println("Taille du tableau insuffisante pour l'initialisation !");
+			logger.info("Taille du tableau insuffisante pour l'initialisation !");
 		}
 	}
 
@@ -53,7 +57,6 @@ public class PizzaMemDao implements IPizzaDao
 		{
 			listPizzas.add(pizza);
 		}
-
 	}
 
 	@Override

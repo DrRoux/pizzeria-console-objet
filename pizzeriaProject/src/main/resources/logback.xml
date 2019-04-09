@@ -28,12 +28,16 @@
 	</appender>
 	
 	<!-- politique de log pour les classes du package dev.console -->
-	<logger name="loggerTest" level="INFO" additivity="false">
+	<logger name="fr.pizzeria" level="INFO">
+		<appender-ref ref="STDOUT" />
+	</logger>
+	
+	<logger name="dev" level="INFO">
 		<appender-ref ref="STDOUT" />
 	</logger>
 	
 	<!-- politique de log pour les classes du package dev.console -->
-	<logger name="fr.pizzeria" level="ERROR">
+	<logger name="fr.pizzeria" level="ERROR" additivity="false">
 		<appender-ref ref="EXCEPT" />
 	</logger>
 	

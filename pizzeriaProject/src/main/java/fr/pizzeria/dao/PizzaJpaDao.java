@@ -17,7 +17,6 @@ import fr.pizzeria.model.Pizza;
  */
 public class PizzaJpaDao extends JpaDao implements IPizzaDao
 {
-
 	private static final String SELECT_ONE_PIZZA_WITH_MATCH = "SELECT p FROM Pizza p WHERE code= ?1";
 
 	public PizzaJpaDao()

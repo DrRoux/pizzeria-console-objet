@@ -19,11 +19,11 @@ public class ModifierPizzaService extends MenuService
 	public void executeUC(Scanner scanner) throws UpdatePizzaException
 	{
 		String choice = null;
-		System.out.println("Modification d'une pizza : ");
+		logger.info("Modification d'une pizza : ");
 
 		while (!getGestionnairePizza().pizzaExists(choice))
 		{
-			System.out.println("Veuillez choisir le code de la pizza à modifier : ");
+			logger.info("Veuillez choisir le code de la pizza à modifier : ");
 			choice = scanner.nextLine().toUpperCase();
 		}
 
@@ -32,17 +32,17 @@ public class ModifierPizzaService extends MenuService
 
 		while (lengthCode < 3 || lengthCode > 5)
 		{
-			System.out.println("Veuillez saisir le code :");
+			logger.info("Veuillez saisir le code :");
 			choiceCode = scanner.nextLine();
 			lengthCode = choiceCode.length();
 
 			if (lengthCode < 3 || lengthCode > 5)
 			{
-				System.out.println("CODE INVALIDE ! Il doit faire entre 3 et 5 caractères !");
+				logger.info("CODE INVALIDE ! Il doit faire entre 3 et 5 caractères !");
 			}
 		}
 
-		System.out.println("Veuillez saisir le nom :");
+		logger.info("Veuillez saisir le nom :");
 		String choiceLibelle = scanner.nextLine();
 
 		double choicePrice = 0;
@@ -51,14 +51,14 @@ public class ModifierPizzaService extends MenuService
 		{
 			while (choicePrice == 0)
 			{
-				System.out.println("Veuillez saisir le prix :");
+				logger.info("Veuillez saisir le prix :");
 				String choiceTempString = scanner.nextLine();
 				choicePrice = Double.parseDouble(choiceTempString);
 			}
 		}
 		catch (NumberFormatException e)
 		{
-			System.out.println("Veuillez saisir une nombre valide !");
+			logger.info("Veuillez saisir une nombre valide !");
 			choicePrice = 0;
 		}
 

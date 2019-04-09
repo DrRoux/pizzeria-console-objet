@@ -5,6 +5,11 @@ package fr.pizzeria.console;
 
 import java.util.Scanner;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import dev.App;
+
 /**
  * IPizzeriaConsole : Interface de gestion des menus. Sert aux affichages
  * utilisateurs.
@@ -13,6 +18,8 @@ import java.util.Scanner;
  */
 public interface IPizzeriaConsole
 {
+	public Logger logger = LoggerFactory.getLogger(App.class);
+	
 	/**
 	 * Fonction d'affichage contenant les différents menus (Client, ClientConnecte
 	 * et Administrateur)
@@ -27,7 +34,7 @@ public interface IPizzeriaConsole
 	{
 		for (int i = 0; i < 40; i++)
 		{
-			System.out.println(" ");
+			logger.info(" ");
 		}
 	}
 }

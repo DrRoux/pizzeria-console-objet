@@ -5,6 +5,9 @@ package fr.pizzeria.console;
 
 import java.util.Scanner;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import fr.pizzeria.exception.PersonnalSqlException;
 import fr.pizzeria.exception.StockageException;
 import fr.pizzeria.menu.MenuFactory;
@@ -15,6 +18,8 @@ import fr.pizzeria.menu.MenuFactory;
  */
 public class PizzeriaClientConsoleApp implements IPizzeriaConsole
 {
+	protected static Logger logger = LoggerFactory.getLogger(PizzeriaClientConsoleApp.class);
+	
 	@Override
 	public void display(Scanner questionUser)
 	{
@@ -25,11 +30,11 @@ public class PizzeriaClientConsoleApp implements IPizzeriaConsole
 		while (!sortiBoucle)
 		{
 			clean();
-			System.out.println("***** Pizzeria Client *****");
-			System.out.println("1.  S'inscrire ");
-			System.out.println("2.  Se connecter");
-			System.out.println("99. Quitter l'application");
-			System.out.println("\nVeuillez saisir votre choix : ");
+			logger.info("***** Pizzeria Client *****");
+			logger.info("1.  S'inscrire ");
+			logger.info("2.  Se connecter");
+			logger.info("99. Quitter l'application");
+			logger.info("\nVeuillez saisir votre choix : ");
 
 			choice = questionUser.nextLine();
 
@@ -49,7 +54,7 @@ public class PizzeriaClientConsoleApp implements IPizzeriaConsole
 				}
 				else
 				{
-					System.out.println("Choix invalide, veuillez recommencer !");
+					logger.info("Choix invalide, veuillez recommencer !");
 				}
 			}
 			catch (NumberFormatException e)
@@ -58,7 +63,7 @@ public class PizzeriaClientConsoleApp implements IPizzeriaConsole
 			}
 			catch (StockageException | PersonnalSqlException e)
 			{
-				System.out.println(e.getMessage());
+				logger.info(e.getMessage());
 			}
 		}
 	}

@@ -24,23 +24,23 @@ public class InscrireClientService extends MenuService
 	@Override
 	public void executeUC(Scanner scanner) throws StockageException
 	{
-		System.out.println("Inscription : ");
+		logger.info("Inscription : ");
 		
 		String choiceNom = null;
 		String choicePrenom = null;
 		String choiceMail = null;
 		String choicePswd = null;
 		
-		System.out.println("Veuillez saisir votre nom :");
+		logger.info("Veuillez saisir votre nom :");
 		choiceNom = scanner.nextLine();
 		
-		System.out.println("Veuillez saisir votre prénom:");
+		logger.info("Veuillez saisir votre prénom:");
 		choicePrenom = scanner.nextLine();
 		
-		System.out.println("Veuillez saisir votre adresse email:");
+		logger.info("Veuillez saisir votre adresse email:");
 		choiceMail = scanner.nextLine();
 		
-		System.out.println("Veuillez saisir votre mot de passe:");
+		logger.info("Veuillez saisir votre mot de passe:");
 		choicePswd = new DigestUtils(SHA_512).digestAsHex(scanner.nextLine());
 		
 		Client client = new Client (choiceNom, choicePrenom, choiceMail, choicePswd);

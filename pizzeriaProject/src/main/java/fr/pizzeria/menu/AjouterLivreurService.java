@@ -36,7 +36,7 @@ public class AjouterLivreurService extends MenuService
 				ListerCommandesAttenteService l = new ListerCommandesAttenteService();
 				ListerCommandesAttenteService.removePrecision();
 				l.executeUC(scanner);
-				System.out.println("Veuillez saisir le numero de la commande");
+				logger.info("Veuillez saisir le numero de la commande");
 				choiceCommande = Integer.parseInt(scanner.nextLine());
 
 				List<Commande> listeCommande = cJpaDao.listerCommandesAttente();
@@ -68,7 +68,7 @@ public class AjouterLivreurService extends MenuService
 			{
 				List<Livreur> listLivreur = lJpaDao.listLivreur();
 				listLivreur.forEach(t -> t.displayComplet());
-				System.out.println("Veuillez attribuer un livreur à la commande");
+				logger.info("Veuillez attribuer un livreur à la commande");
 				choiceLivreur = Integer.parseInt(scanner.nextLine());
 
 				for (Livreur l : listLivreur)

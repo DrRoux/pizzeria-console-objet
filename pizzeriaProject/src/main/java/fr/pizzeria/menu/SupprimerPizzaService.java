@@ -18,11 +18,11 @@ public class SupprimerPizzaService extends MenuService
 	public void executeUC(Scanner scanner) throws DeletePizzaException
 	{
 		String choice = null;
-		System.out.println("Suppression d'une pizza : ");
+		logger.info("Suppression d'une pizza : ");
 
 		while (!getGestionnairePizza().pizzaExists(choice))
 		{
-			System.out.println("Veuillez choisir le code de la pizza à supprimer : ");
+			logger.info("Veuillez choisir le code de la pizza à supprimer : ");
 			choice = scanner.nextLine().toUpperCase();
 		}
 

@@ -27,9 +27,9 @@ public class ListerCommandesAttenteService extends MenuService
 		else
 		{
 			clean();
-			System.out.println("Voici la liste des commandes en attente !");
+			logger.info("Voici la liste des commandes en attente !");
 			cJpaDao.listerCommandesAttente().forEach(t -> t.afficherListeAttente());
-			System.out.println("Veuillez presser la touche entrée pour continuer");
+			logger.info("Veuillez presser la touche entrée pour continuer");
 			scanner.nextLine();
 		}
 	}

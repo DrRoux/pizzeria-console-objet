@@ -38,7 +38,8 @@ public abstract class Personne
 
 	public void displayComplet()
 	{
-		System.out.println("Id : " + id + " - " + nom + " " + prenom);
+		String string = "Id : " + id + " - " + nom + " " + prenom;
+		logger.info(string);
 	}
 
 	/**

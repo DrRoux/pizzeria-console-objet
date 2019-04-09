@@ -91,17 +91,22 @@ public class Commande
 	 */
 	public void afficherCommandesClient()
 	{
+		StringBuilder stringBuilder = new StringBuilder ();
 		for (Pizza p : listComPiz)
 		{
-			System.out.println(dateCommande + " - " + clientId + " : " + p);
+			stringBuilder.append(dateCommande).append(" - ").append(clientId).append(" : ").append(p);
+			String string = stringBuilder.toString();
+			logger.info(string);
+			stringBuilder.setLength(0);
 		}
-		System.out.println("---------------------------------------------------------");
+		logger.info("---------------------------------------------------------");
 	}
 
 	public void afficherListeAttente()
 	{
 		String livreur = livreurId == null ? "Pas de livreur associé" : livreurId.stringComplet();
-		System.out.println(id + " " + dateCommande + " - " + clientId.afficherClient() + " - " + livreur);
+		String inInfo = " " + id + " " + dateCommande + " - " + clientId.afficherClient() + " - " + livreur;
+		logger.info(inInfo);
 	}
 
 	/**

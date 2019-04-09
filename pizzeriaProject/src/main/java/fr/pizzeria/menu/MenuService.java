@@ -24,7 +24,7 @@ public abstract class MenuService
 	{
 		for (int i = 0; i < 40; i++)
 		{
-			System.out.println(" ");
+			logger.info("\n");
 		}
 	}
 

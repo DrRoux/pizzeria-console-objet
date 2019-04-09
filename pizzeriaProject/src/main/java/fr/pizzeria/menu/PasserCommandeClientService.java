@@ -36,11 +36,11 @@ public class PasserCommandeClientService extends MenuService
 		{
 			clean();
 
-			System.out.println("***** Commande en cours *****");
-			System.out.println("1.  Commander une pizza");
-			System.out.println("2.  Consulter sa commande en cours");
-			System.out.println("99. Finaliser votre commande");
-			System.out.println("\nVeuillez saisir votre choix : ");
+			logger.info("***** Commande en cours *****");
+			logger.info("1.  Commander une pizza");
+			logger.info("2.  Consulter sa commande en cours");
+			logger.info("99. Finaliser votre commande");
+			logger.info("\nVeuillez saisir votre choix : ");
 
 			choice = scanner.nextLine();
 
@@ -49,13 +49,13 @@ public class PasserCommandeClientService extends MenuService
 				if (Integer.parseInt(choice) == 1)
 				{
 					String choice2 = null;
-					System.out.println("Choix d'une pizza : ");
+					logger.info("Choix d'une pizza : ");
 
 					listPizza.forEach(t -> t.afficherPizza());
 
 					while (!getGestionnairePizza().pizzaExists(choice2))
 					{
-						System.out.println("Veuillez choisir le code de la pizza à commander : ");
+						logger.info("Veuillez choisir le code de la pizza à commander : ");
 						choice2 = scanner.nextLine().toUpperCase();
 					}
 
@@ -76,13 +76,13 @@ public class PasserCommandeClientService extends MenuService
 					}
 					else
 					{
-						System.out.println("Impossible d'ajouter une pizza en double !");
+						logger.info("Impossible d'ajouter une pizza en double !");
 					}
 				}
 				else if (Integer.parseInt(choice) == 2)
 				{
 					commande.afficherCommandesClient();
-					System.out.println("Veuillez presser la touche entrée pour continuer");
+					logger.info("Veuillez presser la touche entrée pour continuer");
 					scanner.nextLine();
 				}
 				else if (Integer.parseInt(choice) == 99)
@@ -92,7 +92,7 @@ public class PasserCommandeClientService extends MenuService
 				}
 				else
 				{
-					System.out.println("Choix invalide, veuillez recommencer !");
+					logger.info("Choix invalide, veuillez recommencer !");
 				}
 			}
 			catch (NumberFormatException e)
@@ -101,7 +101,7 @@ public class PasserCommandeClientService extends MenuService
 			}
 			catch (PersonnalSqlException e)
 			{
-				System.out.println(e.getMessage());
+				logger.info(e.getMessage());
 			}
 		}
 	}

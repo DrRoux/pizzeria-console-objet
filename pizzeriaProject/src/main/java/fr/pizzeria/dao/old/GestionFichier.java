@@ -12,6 +12,9 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import fr.pizzeria.exception.TechnicalException;
 
 /**
@@ -23,6 +26,7 @@ import fr.pizzeria.exception.TechnicalException;
  */
 public class GestionFichier
 {
+	static Logger logger = LoggerFactory.getLogger(GestionFichier.class);
 	private File file;
 	private PrintWriter fileWriter;
 	private BufferedReader fileReader;
@@ -42,7 +46,7 @@ public class GestionFichier
 
 				if (!result)
 				{
-					System.out.println("Ouverture du fichier échoué");
+					logger.info("Ouverture du fichier échoué");
 				}
 			}
 		}

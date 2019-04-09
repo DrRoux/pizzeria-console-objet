@@ -18,16 +18,17 @@ public class ListerPizzaService extends MenuService
 	@Override
 	public void executeUC(Scanner scanner)
 	{
-		System.out.println("Liste des pizzas : ");
+		logger.info("Liste des pizzas : ");
 
 		List<Pizza> pizzas = getGestionnairePizza().findAllPizzas();
 
 		for (Pizza pi : pizzas)
 		{
-			System.out.println(pi);
+			String string = pi.toString();
+			logger.info(string);
 		}
 
-		System.out.println(" ");
+		logger.info(" ");
 	}
 
 }

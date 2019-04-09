@@ -5,12 +5,16 @@ package fr.pizzeria.utils;
 
 import java.lang.reflect.Field;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  *
  * @author BIRABEN-BIANCHI Hugo
  */
 public class StringUtils<T>
 {
+	private static Logger logger = LoggerFactory.getLogger(StringUtils.class);
 	private T attribut;
 
 	public StringUtils()
@@ -59,7 +63,7 @@ public class StringUtils<T>
 				}
 				catch (IllegalArgumentException | IllegalAccessException e)
 				{
-					e.printStackTrace();
+					logger.info(e.getMessage());
 				}
 			}
 		}

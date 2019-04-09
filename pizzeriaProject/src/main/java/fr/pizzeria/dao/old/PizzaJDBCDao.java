@@ -8,6 +8,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.exception.PersonnalSqlException;
 import fr.pizzeria.model.CategoriePizza;
@@ -19,6 +22,7 @@ import fr.pizzeria.model.Pizza;
  */
 public class PizzaJDBCDao implements IPizzaDao
 {
+	static Logger logger = LoggerFactory.getLogger(PizzaJDBCDao.class);
 	private String driverName = null;
 	private String jdbcUrl = null;
 	private String userName = null;
@@ -47,7 +51,7 @@ public class PizzaJDBCDao implements IPizzaDao
 		}
 		catch (ClassNotFoundException e)
 		{
-			e.printStackTrace();
+			logger.info(e.getMessage());
 		}
 		catch (SQLException e)
 		{

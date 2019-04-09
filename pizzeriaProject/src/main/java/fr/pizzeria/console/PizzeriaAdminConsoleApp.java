@@ -2,6 +2,9 @@ package fr.pizzeria.console;
 
 import java.util.Scanner;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import fr.pizzeria.exception.PersonnalSqlException;
 import fr.pizzeria.exception.SavePizzaException;
 import fr.pizzeria.exception.StockageException;
@@ -16,6 +19,8 @@ import fr.pizzeria.menu.MenuFactory;
  */
 public class PizzeriaAdminConsoleApp implements IPizzeriaConsole
 {
+	protected static Logger logger = LoggerFactory.getLogger(PizzeriaAdminConsoleApp.class);
+	
 	@Override
 	public void display(Scanner questionUser)
 	{
@@ -24,8 +29,8 @@ public class PizzeriaAdminConsoleApp implements IPizzeriaConsole
 		boolean sortiBoucle = false;
 
 		clean();
-		System.out.println("Veuillez saisir le mot de passe pour rentrer dans la partie administrateur !");
-		System.out.println("(le mot de passe est admin)");
+		logger.info("Veuillez saisir le mot de passe pour rentrer dans la partie administrateur !");
+		logger.info("(le mot de passe est admin)");
 		choice = questionUser.nextLine();
 
 		if (choice.equals("admin"))
@@ -33,16 +38,16 @@ public class PizzeriaAdminConsoleApp implements IPizzeriaConsole
 			while (!sortiBoucle)
 			{
 				clean();
-				System.out.println("***** Pizzeria Administration *****");
-				System.out.println("1.  Lister les pizzas ");
-				System.out.println("2.  Ajouter une nouvelle pizza");
-				System.out.println("3.  Mettre à jour une pizza");
-				System.out.println("4.  Supprimer une pizza");
-				System.out.println("5.  Lister toutes les commandes non traitées");
-				System.out.println("6.  Ajouter un livreur à une livraison");
-				System.out.println("7.  Expédier toutes les commandes");
-				System.out.println("99. Quitter l'application");
-				System.out.println("Veuillez saisir votre choix : ");
+				logger.info("***** Pizzeria Administration *****");
+				logger.info("1.  Lister les pizzas ");
+				logger.info("2.  Ajouter une nouvelle pizza");
+				logger.info("3.  Mettre à jour une pizza");
+				logger.info("4.  Supprimer une pizza");
+				logger.info("5.  Lister toutes les commandes non traitées");
+				logger.info("6.  Ajouter un livreur à une livraison");
+				logger.info("7.  Expédier toutes les commandes");
+				logger.info("99. Quitter l'application");
+				logger.info("Veuillez saisir votre choix : ");
 
 				choice = questionUser.nextLine();
 
@@ -85,7 +90,7 @@ public class PizzeriaAdminConsoleApp implements IPizzeriaConsole
 					}
 					else
 					{
-						System.out.println("Choix invalide, veuillez recommencer !");
+						logger.info("Choix invalide, veuillez recommencer !");
 					}
 				}
 				catch (NumberFormatException e)
@@ -94,16 +99,16 @@ public class PizzeriaAdminConsoleApp implements IPizzeriaConsole
 				}
 				catch (SavePizzaException e)
 				{
-					System.out.println(e.getMessage());
+					logger.info(e.getMessage());
 
 					if (e.getMessage().equals("codeTropCourt"))
 					{
-						System.out.println();
+						logger.info("code trop court");
 					}
 				}
 				catch (StockageException | PersonnalSqlException e)
 				{
-					System.out.println(e.getMessage());
+					logger.info(e.getMessage());
 				}
 			}
 		}

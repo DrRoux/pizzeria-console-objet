@@ -32,7 +32,7 @@ public class ConnecterClientService extends MenuService
 	public void executeUC(Scanner scanner) throws StockageException
 	{
 		clean();
-		System.out.println("Connexion : ");
+		logger.info("Connexion : ");
 
 		String choiceMail = null;
 		String choicePswd = null;
@@ -40,10 +40,10 @@ public class ConnecterClientService extends MenuService
 
 		while (client == null)
 		{
-			System.out.println("Veuillez saisir votre adresse email:");
+			logger.info("Veuillez saisir votre adresse email:");
 			choiceMail = scanner.nextLine();
 
-			System.out.println("Veuillez saisir votre mot de passe:");
+			logger.info("Veuillez saisir votre mot de passe:");
 			choicePswd = new DigestUtils(SHA_512).digestAsHex(scanner.nextLine());
 
 			cJpaDao.beginConnexionBdd();
