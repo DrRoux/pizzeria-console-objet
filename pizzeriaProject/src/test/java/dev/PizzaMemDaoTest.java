@@ -35,7 +35,9 @@ public class PizzaMemDaoTest
 	{
 		p = new PizzaMemDao();
 
-		String pizzaCode = "IND";
+		String pizzaCode = "XOX";
+		p.saveNewPizza(new Pizza(pizzaCode, "XOX", 12.4));
+
 		int size = p.findAllPizzas().size();
 		p.deletePizza(pizzaCode);
 
