@@ -5,7 +5,10 @@ import static org.junit.Assert.assertEquals;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.junit.Before;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import fr.pizzeria.dao.oldDao.PizzaMemDao;
 import fr.pizzeria.model.Pizza;
@@ -16,24 +19,35 @@ import fr.pizzeria.model.Pizza;
  */
 public class PizzaMemDaoTest
 {
+	protected static Logger LOGGER = LoggerFactory.getLogger(PizzaMemDaoTest.class);
 	PizzaMemDao p;
+
+	@Before
+	public void init()
+	{
+		LOGGER.info("Etant donné une nouvelle instance de PizzaMemDao");
+		p = new PizzaMemDao();
+	}
 
 	@Test
 	public void savePizza_AddOnePizza()
 	{
-		p = new PizzaMemDao();
+		init();
 
 		Pizza pizzaTemp = new Pizza();
 		int size = p.findAllPizzas().size();
+
+		LOGGER.info("Lorsqu'on insère une nouvelle pizza dans la liste");
 		p.saveNewPizza(pizzaTemp);
 
+		LOGGER.info("Alors on doit avoir une liste plus grande de 1");
 		assertEquals(size + 1, p.findAllPizzas().size());
 	}
 
 	@Test
 	public void deletePizza_DeleteOnePizzaIND()
 	{
-		p = new PizzaMemDao();
+		init();
 
 		String pizzaCode = "XOX";
 		p.saveNewPizza(new Pizza(pizzaCode, "XOX", 12.4));
@@ -47,7 +61,7 @@ public class PizzaMemDaoTest
 	@Test
 	public void deletePizza_All()
 	{
-		p = new PizzaMemDao();
+		init();
 
 		System.out.println(p.findAllPizzas().size());
 		List<String> listPizza = p.findAllPizzas().stream().map(t -> t.getCode()).collect(Collectors.toList());
@@ -60,14 +74,14 @@ public class PizzaMemDaoTest
 	@Test
 	public void pizzaFindByCode_WhereCodeisNull()
 	{
-		p = new PizzaMemDao();
+		init();
 		assertEquals(null, p.findPizzaByCode("PizzaQuiNExistePas"));
 	}
 
 	@Test
 	public void pizzaExists_Not()
 	{
-		p = new PizzaMemDao();
+		init();
 		assertEquals(false, p.pizzaExists("PizzaQuiNExistePas"));
 	}
 
