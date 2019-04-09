@@ -1,6 +1,3 @@
-/**
- * 
- */
 package fr.pizzeria.dao;
 
 import javax.persistence.NoResultException;

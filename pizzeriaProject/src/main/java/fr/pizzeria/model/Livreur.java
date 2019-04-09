@@ -23,7 +23,7 @@ public class Livreur extends Personne
 
 	public Livreur()
 	{
-		commandesLivreur = new ArrayList<Commande>();
+		commandesLivreur = new ArrayList<>();
 	}
 
 	public Livreur(String nom, String prenom)

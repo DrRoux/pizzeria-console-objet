@@ -3,10 +3,12 @@
  */
 package fr.pizzeria.menu;
 
+import static org.apache.commons.codec.digest.MessageDigestAlgorithms.SHA_512;
 import static org.junit.contrib.java.lang.system.TextFromStandardInputStream.emptyStandardInputStream;
 
 import java.util.Scanner;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
@@ -35,14 +37,16 @@ public class ConnecterClientServiceTest
 		String login = "a";
 		String mdp = "a";
 		ClientJpaDao mockedDao = Mockito.mock(ClientJpaDao.class);
-		Mockito.when(mockedDao.getClient(login, mdp)).thenReturn(new Client());
+		Mockito.when(mockedDao.getClient(login, new DigestUtils(SHA_512).digestAsHex(mdp)))
+				.thenReturn(new Client("a", "a", "a", "a"));
 
 		ConnecterClientService c = new ConnecterClientService();
 
 		systemInMock.provideLines(login, mdp, "99");
+		c.setcJpaDao(mockedDao);
 		c.executeUC(new Scanner(System.in));
 
-		Mockito.verify(mockedDao).getClient(login, mdp);
+		Mockito.verify(mockedDao).getClient(login, new DigestUtils(SHA_512).digestAsHex(mdp));
 	}
 
 	@Test
@@ -52,15 +56,19 @@ public class ConnecterClientServiceTest
 		String mdp = "m";
 		String loginPassant = "a";
 		String mdpPassant = "a";
+		String mdpHash = new DigestUtils(SHA_512).digestAsHex(mdp);
+		String mdpPHash = new DigestUtils(SHA_512).digestAsHex(mdpPassant);
 
 		ClientJpaDao mockedDao = Mockito.mock(ClientJpaDao.class);
-		Mockito.when(mockedDao.getClient(login, mdp)).thenReturn(null);
-		Mockito.when(mockedDao.getClient(loginPassant, mdpPassant)).thenReturn(new Client());
+		Mockito.when(mockedDao.getClient(login, mdpHash)).thenReturn(null);
+		Mockito.when(mockedDao.getClient(loginPassant, mdpPHash)).thenReturn(new Client("a", "a", "a", "a"));
 
 		systemInMock.provideLines(login, mdp, loginPassant, mdpPassant, "99");
 		ConnecterClientService c = new ConnecterClientService();
+		c.setcJpaDao(mockedDao);
 		c.executeUC(new Scanner(System.in));
 
-		Mockito.verify(mockedDao).getClient(login, mdp);
+		Mockito.verify(mockedDao).getClient(login, mdpHash);
+		Mockito.verify(mockedDao).getClient(loginPassant, mdpPHash);
 	}
 }

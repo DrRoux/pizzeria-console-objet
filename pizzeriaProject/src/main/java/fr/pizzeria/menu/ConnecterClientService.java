@@ -20,8 +20,13 @@ import fr.pizzeria.model.Client;
  */
 public class ConnecterClientService extends MenuService
 {
-	ClientJpaDao cJpaDao = new ClientJpaDao();
+	private ClientJpaDao cJpaDao;
 	PizzeriaClientConnecteConsoleApp console = new PizzeriaClientConnecteConsoleApp();
+
+	public ConnecterClientService()
+	{
+		cJpaDao = new ClientJpaDao();
+	}
 
 	@Override
 	public void executeUC(Scanner scanner) throws StockageException
@@ -48,6 +53,26 @@ public class ConnecterClientService extends MenuService
 
 		console.set(client);
 		console.display(scanner);
+	}
+
+	/**
+	 * Getter
+	 * 
+	 * @return the cJpaDao
+	 */
+	public ClientJpaDao getcJpaDao()
+	{
+		return cJpaDao;
+	}
+
+	/**
+	 * Setter
+	 * 
+	 * @param cJpaDao the cJpaDao to set
+	 */
+	public void setcJpaDao(ClientJpaDao cJpaDao)
+	{
+		this.cJpaDao = cJpaDao;
 	}
 
 }

@@ -3,7 +3,6 @@
  */
 package fr.pizzeria.menu;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -19,28 +18,28 @@ import fr.pizzeria.model.Livreur;
  */
 public class AjouterLivreurService extends MenuService
 {
-	CommandesJpaDao cJpaDao = new CommandesJpaDao ();
-	LivreurJpaDao lJpaDao = new LivreurJpaDao ();
-	
+	CommandesJpaDao cJpaDao = new CommandesJpaDao();
+	LivreurJpaDao lJpaDao = new LivreurJpaDao();
+
 	@Override
 	public void executeUC(Scanner scanner) throws StockageException
 	{
-		clean ();
-		
+		clean();
+
 		int choiceCommande = -1;
 		boolean sortir = false;
-		
-		while (choiceCommande == -1 && sortir == false)
+
+		while (choiceCommande == -1 && !sortir)
 		{
 			try
 			{
-				ListerCommandesAttenteService l = new ListerCommandesAttenteService ();
+				ListerCommandesAttenteService l = new ListerCommandesAttenteService();
 				l.removePrecision();
 				l.executeUC(scanner);
 				System.out.println("Veuillez saisir le numero de la commande");
 				choiceCommande = Integer.parseInt(scanner.nextLine());
-				
-				List <Commande> listeCommande = cJpaDao.listerCommandesAttente();
+
+				List<Commande> listeCommande = cJpaDao.listerCommandesAttente();
 				for (Commande c : listeCommande)
 				{
 					if (c.getId() == choiceCommande)
@@ -49,8 +48,8 @@ public class AjouterLivreurService extends MenuService
 						break;
 					}
 				}
-				
-				if (sortir == false)
+
+				if (!sortir)
 				{
 					choiceCommande = -1;
 				}
@@ -60,19 +59,18 @@ public class AjouterLivreurService extends MenuService
 				choiceCommande = -1;
 			}
 		}
-		
+
 		sortir = false;
 		int choiceLivreur = -1;
-		while (choiceLivreur == -1 && sortir == false)
+		while (choiceLivreur == -1 && !sortir)
 		{
 			try
 			{
-				List<Livreur> listLivreur = new ArrayList <> ();
-				listLivreur = lJpaDao.listLivreur();
-				listLivreur.forEach(t -> t.displayComplet ());
+				List<Livreur> listLivreur = lJpaDao.listLivreur();
+				listLivreur.forEach(t -> t.displayComplet());
 				System.out.println("Veuillez attribuer un livreur à la commande");
 				choiceLivreur = Integer.parseInt(scanner.nextLine());
-				
+
 				for (Livreur l : listLivreur)
 				{
 					if (l.getId() == choiceLivreur)
@@ -81,8 +79,8 @@ public class AjouterLivreurService extends MenuService
 						break;
 					}
 				}
-				
-				if (sortir == false)
+
+				if (!sortir)
 				{
 					choiceLivreur = -1;
 				}
@@ -92,7 +90,7 @@ public class AjouterLivreurService extends MenuService
 				choiceLivreur = -1;
 			}
 		}
-		
+
 		cJpaDao.associerLivreurCommande(choiceCommande, choiceLivreur);
 	}
 
