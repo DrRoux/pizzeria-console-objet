@@ -30,6 +30,7 @@ public abstract class MenuService
 
 	/**
 	 * Getter
+	 * 
 	 * @return the gestionnairePizza
 	 */
 	public static IPizzaDao getGestionnairePizza()
@@ -39,6 +40,7 @@ public abstract class MenuService
 
 	/**
 	 * Setter
+	 * 
 	 * @param gestionnairePizza the gestionnairePizza to set
 	 */
 	public static void setGestionnairePizza(IPizzaDao gestionnairePizza)
