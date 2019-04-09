@@ -227,26 +227,6 @@ public class Commande
 	/**
 	 * Getter
 	 * 
-	 * @return the status
-	 */
-	public int getStatus()
-	{
-		return status;
-	}
-
-	/**
-	 * Setter
-	 * 
-	 * @param status the status to set
-	 */
-	public void setStatus(int status)
-	{
-		this.status = status;
-	}
-
-	/**
-	 * Getter
-	 * 
 	 * @return the listComPiz
 	 */
 	public List<Pizza> getListComPiz()

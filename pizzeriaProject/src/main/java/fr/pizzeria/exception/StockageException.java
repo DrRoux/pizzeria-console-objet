@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 public class StockageException extends Exception
 {
 	private static final long serialVersionUID = -1030966979133115038L;
-	protected static Logger LOGGER = LoggerFactory.getLogger(StockageException.class);
+	protected static final Logger LOGGER = LoggerFactory.getLogger(StockageException.class);
 
 	public StockageException(String msg)
 	{

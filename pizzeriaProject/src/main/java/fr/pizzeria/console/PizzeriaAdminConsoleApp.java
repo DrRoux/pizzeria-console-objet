@@ -19,7 +19,7 @@ public class PizzeriaAdminConsoleApp implements IPizzeriaConsole
 	@Override
 	public void display(Scanner questionUser)
 	{
-		String choice = "0";
+		String choice;
 		MenuFactory menu = new MenuFactory();
 		boolean sortiBoucle = false;
 
@@ -30,7 +30,7 @@ public class PizzeriaAdminConsoleApp implements IPizzeriaConsole
 
 		if (choice.equals("admin"))
 		{
-			while (sortiBoucle == false)
+			while (!sortiBoucle)
 			{
 				clean();
 				System.out.println("***** Pizzeria Administration *****");
@@ -51,38 +51,46 @@ public class PizzeriaAdminConsoleApp implements IPizzeriaConsole
 					if (Integer.parseInt(choice) == 1)
 					{
 						menu.create("list").executeUC(questionUser);
-					} else if (Integer.parseInt(choice) == 2)
+					}
+					else if (Integer.parseInt(choice) == 2)
 					{
 						menu.create("ajout").executeUC(questionUser);
-					} else if (Integer.parseInt(choice) == 3)
+					}
+					else if (Integer.parseInt(choice) == 3)
 					{
 						menu.create("modif").executeUC(questionUser);
-					} else if (Integer.parseInt(choice) == 4)
+					}
+					else if (Integer.parseInt(choice) == 4)
 					{
 						menu.create("suppr").executeUC(questionUser);
-					} else if (Integer.parseInt(choice) == 5)
+					}
+					else if (Integer.parseInt(choice) == 5)
 					{
 						ListerCommandesAttenteService l = (ListerCommandesAttenteService) menu
 								.create("listerCommandesAttente");
-						l.addPrecision();
+						ListerCommandesAttenteService.addPrecision();
 						l.executeUC(questionUser);
-					} else if (Integer.parseInt(choice) == 6)
+					}
+					else if (Integer.parseInt(choice) == 6)
 					{
 						menu.create("ajouterLivreur").executeUC(questionUser);
-					} else if (Integer.parseInt(choice) == 7)
+					}
+					else if (Integer.parseInt(choice) == 7)
 					{
 						menu.create("expedierCommande").executeUC(questionUser);
-					} else if (Integer.parseInt(choice) == 99)
+					}
+					else if (Integer.parseInt(choice) == 99)
 					{
 						sortiBoucle = true;
-					} else
+					}
+					else
 					{
 						System.out.println("Choix invalide, veuillez recommencer !");
 					}
 				}
 				catch (NumberFormatException e)
 				{
-					choice = "0";
+					// Fait boucler le programme sans interaction de l'utilisateur
 				}
 				catch (SavePizzaException e)
 				{
@@ -93,11 +101,7 @@ public class PizzeriaAdminConsoleApp implements IPizzeriaConsole
 						System.out.println();
 					}
 				}
-				catch (StockageException e)
-				{
-					System.out.println(e.getMessage());
-				}
-				catch (PersonnalSqlException e)
+				catch (StockageException | PersonnalSqlException e)
 				{
 					System.out.println(e.getMessage());
 				}

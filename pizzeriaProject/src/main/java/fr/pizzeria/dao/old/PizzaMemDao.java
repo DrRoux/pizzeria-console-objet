@@ -13,12 +13,11 @@ import fr.pizzeria.model.Pizza;
  */
 public class PizzaMemDao implements IPizzaDao
 {
-	// private Pizza [] tabPizza;
 	private List<Pizza> listPizzas;
 
 	public PizzaMemDao()
 	{
-		listPizzas = new ArrayList<Pizza>();
+		listPizzas = new ArrayList<>();
 		initialisation();
 	}
 
@@ -50,7 +49,7 @@ public class PizzaMemDao implements IPizzaDao
 	@Override
 	public void saveNewPizza(Pizza pizza)
 	{
-		if (pizzaExists(pizza.getCode()) == false)
+		if (!pizzaExists(pizza.getCode()))
 		{
 			listPizzas.add(pizza);
 		}

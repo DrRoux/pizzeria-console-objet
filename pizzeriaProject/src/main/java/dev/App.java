@@ -28,13 +28,13 @@ public class App
 
 		boolean sortiBoucle = false;
 
-		while (sortiBoucle == false)
+		while (!sortiBoucle)
 		{
 			for (int i = 0; i < 40; i++)
 			{
 				System.out.println(" ");
 			}
-			
+
 			System.out.println("***** Accueil de la pizzeria *****");
 			System.out.println("1.  Client ");
 			System.out.println("2.  Administration");
@@ -65,7 +65,7 @@ public class App
 			}
 			catch (NumberFormatException e)
 			{
-				choice = "0";
+				// Fait boucler le programme sans interaction de l'utilisateur
 			}
 			catch (Exception e)
 			{

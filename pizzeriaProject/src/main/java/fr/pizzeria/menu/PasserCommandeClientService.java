@@ -26,16 +26,16 @@ public class PasserCommandeClientService extends MenuService
 	public void executeUC(Scanner scanner) throws StockageException
 	{
 		Commande commande = new Commande();
-		String choice = "0";
+		String choice;
 
 		List<Pizza> listPizza = getGestionnairePizza().findAllPizzas();
 
 		boolean sortiBoucle = false;
 
-		while (sortiBoucle == false)
+		while (!sortiBoucle)
 		{
-			clean ();
-			
+			clean();
+
 			System.out.println("***** Commande en cours *****");
 			System.out.println("1.  Commander une pizza");
 			System.out.println("2.  Consulter sa commande en cours");
@@ -53,14 +53,14 @@ public class PasserCommandeClientService extends MenuService
 
 					listPizza.forEach(t -> t.afficherPizza());
 
-					while (getGestionnairePizza().pizzaExists(choice2) != true)
+					while (!getGestionnairePizza().pizzaExists(choice2))
 					{
 						System.out.println("Veuillez choisir le code de la pizza à commander : ");
 						choice2 = scanner.nextLine().toUpperCase();
 					}
-					
+
 					boolean doublon = false;
-					
+
 					for (Pizza p : commande.getListComPiz())
 					{
 						if (p.getCode().equals(choice2))
@@ -69,8 +69,8 @@ public class PasserCommandeClientService extends MenuService
 							break;
 						}
 					}
-					
-					if (doublon == false)
+
+					if (!doublon)
 					{
 						commande.setListComPiz(getGestionnairePizza().findPizzaByCode(choice2));
 					}
@@ -97,7 +97,7 @@ public class PasserCommandeClientService extends MenuService
 			}
 			catch (NumberFormatException e)
 			{
-				choice = "0";
+				// Fait boucler le programme sans interaction de l'utilisateur
 			}
 			catch (PersonnalSqlException e)
 			{
@@ -106,7 +106,7 @@ public class PasserCommandeClientService extends MenuService
 		}
 	}
 
-	public void set(Client c)
+	public static void set(Client c)
 	{
 		client = c;
 	}

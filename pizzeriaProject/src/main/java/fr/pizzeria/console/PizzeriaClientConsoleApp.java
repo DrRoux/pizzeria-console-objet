@@ -16,23 +16,23 @@ import fr.pizzeria.menu.MenuFactory;
 public class PizzeriaClientConsoleApp implements IPizzeriaConsole
 {
 	@Override
-	public void display(Scanner questionUser) 
+	public void display(Scanner questionUser)
 	{
-		String choice = "0";
-		MenuFactory menu = new MenuFactory ();
+		String choice;
+		MenuFactory menu = new MenuFactory();
 		boolean sortiBoucle = false;
-		
-		while (sortiBoucle == false)
+
+		while (!sortiBoucle)
 		{
-			clean ();
+			clean();
 			System.out.println("***** Pizzeria Client *****");
 			System.out.println("1.  S'inscrire ");
 			System.out.println("2.  Se connecter");
 			System.out.println("99. Quitter l'application");
 			System.out.println("\nVeuillez saisir votre choix : ");
-			
+
 			choice = questionUser.nextLine();
-			
+
 			try
 			{
 				if (Integer.parseInt(choice) == 1)
@@ -54,13 +54,9 @@ public class PizzeriaClientConsoleApp implements IPizzeriaConsole
 			}
 			catch (NumberFormatException e)
 			{
-				choice = "0";
+				// Fait boucler le programme sans interaction de l'utilisateur
 			}
-			catch (StockageException e)
-			{
-				System.out.println(e.getMessage());
-			}
-			catch (PersonnalSqlException e) 
+			catch (StockageException | PersonnalSqlException e)
 			{
 				System.out.println(e.getMessage());
 			}

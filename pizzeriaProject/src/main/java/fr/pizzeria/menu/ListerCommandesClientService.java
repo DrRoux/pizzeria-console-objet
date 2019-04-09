@@ -8,20 +8,20 @@ import fr.pizzeria.model.Client;
 
 public class ListerCommandesClientService extends MenuService
 {
-	CommandesJpaDao cJpaDao = new CommandesJpaDao ();
+	CommandesJpaDao cJpaDao = new CommandesJpaDao();
 	static Client client;
-	
+
 	@Override
-	public void executeUC (Scanner scanner) throws StockageException 
+	public void executeUC(Scanner scanner) throws StockageException
 	{
-		clean ();
+		clean();
 		System.out.println("Voici la liste détaillée de vos commandes !");
-		cJpaDao.listerCommandesClient (client).forEach(t->t.afficherCommandesClient());
+		cJpaDao.listerCommandesClient(client).forEach(t -> t.afficherCommandesClient());
 		System.out.println("Veuillez presser la touche entrée pour continuer");
 		scanner.nextLine();
 	}
-	
-	public void set (Client c)
+
+	public static void set(Client c)
 	{
 		client = c;
 	}

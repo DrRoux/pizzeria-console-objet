@@ -22,8 +22,8 @@ public class Client extends Personne
 {
 	@Column
 	private String email;
-	@Column
-	private String mot_de_passe;
+	@Column(name = "mot_de_passe")
+	private String motDePasse;
 
 	@OneToMany(mappedBy = "client_id")
 	private List<Commande> commandesClient;
@@ -41,7 +41,7 @@ public class Client extends Personne
 
 	public Client()
 	{
-		commandesClient = new ArrayList<Commande>();
+		commandesClient = new ArrayList<>();
 	}
 
 	public Client(String nom, String prenom, String email, String mot_de_passe)
@@ -50,7 +50,7 @@ public class Client extends Personne
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
-		this.mot_de_passe = mot_de_passe;
+		this.motDePasse = mot_de_passe;
 	}
 
 	public Client(int id, String nom, String prenom, String email, String mot_de_passe)
@@ -60,7 +60,7 @@ public class Client extends Personne
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
-		this.mot_de_passe = mot_de_passe;
+		this.motDePasse = mot_de_passe;
 	}
 
 	public String getEmail()
@@ -73,14 +73,14 @@ public class Client extends Personne
 		this.email = email;
 	}
 
-	public String getMot_de_passe()
+	public String getMotDePasse()
 	{
-		return mot_de_passe;
+		return motDePasse;
 	}
 
-	public void setMot_de_passe(String mot_de_passe)
+	public void setMotDePasse(String motDePasse)
 	{
-		this.mot_de_passe = mot_de_passe;
+		this.motDePasse = motDePasse;
 	}
 
 	/*
@@ -91,7 +91,7 @@ public class Client extends Personne
 	@Override
 	public int hashCode()
 	{
-		return Objects.hash(commandesClient, email, mot_de_passe);
+		return Objects.hash(commandesClient, email, motDePasse);
 	}
 
 	/*
@@ -116,6 +116,6 @@ public class Client extends Personne
 		}
 		Client other = (Client) obj;
 		return Objects.equals(commandesClient, other.commandesClient) && Objects.equals(email, other.email)
-				&& Objects.equals(mot_de_passe, other.mot_de_passe);
+				&& Objects.equals(motDePasse, other.motDePasse);
 	}
 }

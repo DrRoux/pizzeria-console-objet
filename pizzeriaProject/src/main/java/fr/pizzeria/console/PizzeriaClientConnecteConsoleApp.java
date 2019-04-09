@@ -12,37 +12,38 @@ import fr.pizzeria.model.Client;
 public class PizzeriaClientConnecteConsoleApp implements IPizzeriaConsole
 {
 	static Client client = null;
-	
+
 	@Override
-	public void display(Scanner questionUser) 
+	public void display(Scanner questionUser)
 	{
-		String choice = "0";
-		MenuFactory menu = new MenuFactory ();
+		String choice;
+		MenuFactory menu = new MenuFactory();
 		boolean sortiBoucle = false;
-		
-		while (sortiBoucle == false)
+
+		while (!sortiBoucle)
 		{
-			clean ();
+			clean();
 			System.out.println("***** Pizzeria Client Connecté *****");
 			System.out.println("1.  Passer une nouvelle commande");
 			System.out.println("2.  Lister ses commandes");
 			System.out.println("99. Quitter l'application");
 			System.out.println("\nVeuillez saisir votre choix : ");
-			
+
 			choice = questionUser.nextLine();
-			
+
 			try
 			{
 				if (Integer.parseInt(choice) == 1)
 				{
-					PasserCommandeClientService c =(PasserCommandeClientService) menu.create("passerCommandeClient");
-					c.set(client);
+					PasserCommandeClientService c = (PasserCommandeClientService) menu.create("passerCommandeClient");
+					PasserCommandeClientService.set(client);
 					c.executeUC(questionUser);
 				}
 				else if (Integer.parseInt(choice) == 2)
 				{
-					ListerCommandesClientService l = (ListerCommandesClientService) menu.create("listerCommandesClient");
-					l.set(client);
+					ListerCommandesClientService l = (ListerCommandesClientService) menu
+							.create("listerCommandesClient");
+					ListerCommandesClientService.set(client);
 					l.executeUC(questionUser);
 				}
 				else if (Integer.parseInt(choice) == 99)
@@ -56,20 +57,16 @@ public class PizzeriaClientConnecteConsoleApp implements IPizzeriaConsole
 			}
 			catch (NumberFormatException e)
 			{
-				choice = "0";
+				// Fait boucler le programme sans interaction de l'utilisateur
 			}
-			catch (StockageException e)
-			{
-				System.out.println(e.getMessage());
-			}
-			catch (PersonnalSqlException e) 
+			catch (StockageException | PersonnalSqlException e)
 			{
 				System.out.println(e.getMessage());
 			}
 		}
 	}
-	
-	public void set (Client c)
+
+	public static void set(Client c)
 	{
 		client = c;
 	}

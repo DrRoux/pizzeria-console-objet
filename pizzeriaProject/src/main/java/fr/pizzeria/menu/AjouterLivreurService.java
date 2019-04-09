@@ -34,7 +34,7 @@ public class AjouterLivreurService extends MenuService
 			try
 			{
 				ListerCommandesAttenteService l = new ListerCommandesAttenteService();
-				l.removePrecision();
+				ListerCommandesAttenteService.removePrecision();
 				l.executeUC(scanner);
 				System.out.println("Veuillez saisir le numero de la commande");
 				choiceCommande = Integer.parseInt(scanner.nextLine());

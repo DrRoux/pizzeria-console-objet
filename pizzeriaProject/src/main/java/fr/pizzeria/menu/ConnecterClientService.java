@@ -51,7 +51,7 @@ public class ConnecterClientService extends MenuService
 			cJpaDao.closeConnexionBdd();
 		}
 
-		console.set(client);
+		PizzeriaClientConnecteConsoleApp.set(client);
 		console.display(scanner);
 	}
 

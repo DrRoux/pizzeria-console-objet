@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 public class PersonnalSqlException extends RuntimeException
 {
 	private static final long serialVersionUID = -8898974333236523950L;
-	protected static Logger LOGGER = LoggerFactory.getLogger(PersonnalSqlException.class);
+	protected static final Logger LOGGER = LoggerFactory.getLogger(PersonnalSqlException.class);
 
 	public PersonnalSqlException(String msg)
 	{
@@ -28,19 +28,16 @@ public class PersonnalSqlException extends RuntimeException
 	public PersonnalSqlException()
 	{
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public PersonnalSqlException(String arg0, Throwable arg1)
 	{
 		super(arg0, arg1);
-		// TODO Auto-generated constructor stub
 	}
 
 	public PersonnalSqlException(Throwable arg0)
 	{
 		super(arg0);
-		// TODO Auto-generated constructor stub
 	}
 
 }

@@ -43,9 +43,9 @@ public class StringUtils<T>
 					String separateurAp = annotation.separateurAp();
 
 					retour += separateurAv;
-					if (display == true)
+					if (display)
 					{
-						if (uppercase == true)
+						if (uppercase)
 						{
 							retour += f.get(attribut).toString().toUpperCase();
 						}
@@ -57,13 +57,8 @@ public class StringUtils<T>
 					retour += separateurAp;
 
 				}
-				catch (IllegalArgumentException e)
+				catch (IllegalArgumentException | IllegalAccessException e)
 				{
-					e.printStackTrace();
-				}
-				catch (IllegalAccessException e)
-				{
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

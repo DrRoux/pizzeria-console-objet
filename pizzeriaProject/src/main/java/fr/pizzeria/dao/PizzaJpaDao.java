@@ -17,6 +17,9 @@ import fr.pizzeria.model.Pizza;
  */
 public class PizzaJpaDao extends JpaDao implements IPizzaDao
 {
+
+	private static final String SELECT_ONE_PIZZA_WITH_MATCH = "SELECT p FROM Pizza p WHERE code= ?1";
+
 	public PizzaJpaDao()
 	{
 		LOGGER = LoggerFactory.getLogger(PizzaJpaDao.class);
@@ -68,7 +71,7 @@ public class PizzaJpaDao extends JpaDao implements IPizzaDao
 		{
 			beginConnexionBdd();
 
-			Pizza query = em.createQuery("SELECT p FROM Pizza p WHERE code= ?1", Pizza.class).setParameter(1, codePizza)
+			Pizza query = em.createQuery(SELECT_ONE_PIZZA_WITH_MATCH, Pizza.class).setParameter(1, codePizza)
 					.getSingleResult();
 			suppr(query);
 
@@ -84,7 +87,7 @@ public class PizzaJpaDao extends JpaDao implements IPizzaDao
 		{
 			beginConnexionBdd();
 
-			TypedQuery<Pizza> query = em.createQuery("SELECT p FROM Pizza p WHERE code= ?1", Pizza.class);
+			TypedQuery<Pizza> query = em.createQuery(SELECT_ONE_PIZZA_WITH_MATCH, Pizza.class);
 			query.setParameter(1, codePizza);
 			p = query.getSingleResult();
 
@@ -100,7 +103,7 @@ public class PizzaJpaDao extends JpaDao implements IPizzaDao
 
 		beginConnexionBdd();
 
-		TypedQuery<Pizza> query = em.createQuery("SELECT p FROM Pizza p WHERE code= ?1", Pizza.class);
+		TypedQuery<Pizza> query = em.createQuery(SELECT_ONE_PIZZA_WITH_MATCH, Pizza.class);
 		query.setParameter(1, codePizza);
 
 		if (query.getResultList().size() == 1)
