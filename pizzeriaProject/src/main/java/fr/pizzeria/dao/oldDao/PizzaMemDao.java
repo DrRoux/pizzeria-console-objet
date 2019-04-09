@@ -14,26 +14,26 @@ import fr.pizzeria.model.Pizza;
 public class PizzaMemDao implements IPizzaDao
 {
 	// private Pizza [] tabPizza;
-	private List<Pizza> tabPizza;
+	private List<Pizza> listPizzas;
 
 	public PizzaMemDao()
 	{
-		tabPizza = new ArrayList<Pizza>();
+		listPizzas = new ArrayList<Pizza>();
 		initialisation();
 	}
 
 	public void initialisation()
 	{
-		if (tabPizza.size() < 8)
+		if (listPizzas.size() < 8)
 		{
-			tabPizza.add(new Pizza("PEP", "Pépéroni", 12.50));
-			tabPizza.add(new Pizza("MAR", "Margherita", 14.00));
-			tabPizza.add(new Pizza("REIN", "La Reine", 11.50));
-			tabPizza.add(new Pizza("FRO", "La 4 Fromage", 12.00));
-			tabPizza.add(new Pizza("CAN", "La cannibale", 12.50));
-			tabPizza.add(new Pizza("SAV", "La savoyarde", 13.00));
-			tabPizza.add(new Pizza("ORI", "L’orientale", 13.50));
-			tabPizza.add(new Pizza("IND", "L’indienne", 14.00));
+			listPizzas.add(new Pizza("PEP", "Pépéroni", 12.50));
+			listPizzas.add(new Pizza("MAR", "Margherita", 14.00));
+			listPizzas.add(new Pizza("REIN", "La Reine", 11.50));
+			listPizzas.add(new Pizza("FRO", "La 4 Fromage", 12.00));
+			listPizzas.add(new Pizza("CAN", "La cannibale", 12.50));
+			listPizzas.add(new Pizza("SAV", "La savoyarde", 13.00));
+			listPizzas.add(new Pizza("ORI", "L’orientale", 13.50));
+			listPizzas.add(new Pizza("IND", "L’indienne", 14.00));
 		}
 		else
 		{
@@ -44,7 +44,7 @@ public class PizzaMemDao implements IPizzaDao
 	@Override
 	public List<Pizza> findAllPizzas()
 	{
-		return tabPizza;
+		return listPizzas;
 	}
 
 	@Override
@@ -52,7 +52,7 @@ public class PizzaMemDao implements IPizzaDao
 	{
 		if (pizzaExists(pizza.getCode()) == false)
 		{
-			tabPizza.add(pizza);
+			listPizzas.add(pizza);
 		}
 
 	}
@@ -60,7 +60,7 @@ public class PizzaMemDao implements IPizzaDao
 	@Override
 	public void updatePizza(String codePizza, Pizza pizza)
 	{
-		for (Pizza p : tabPizza)
+		for (Pizza p : listPizzas)
 		{
 			if (p.getCode().equals(codePizza))
 			{
@@ -72,7 +72,7 @@ public class PizzaMemDao implements IPizzaDao
 	@Override
 	public void deletePizza(String codePizza)
 	{
-		Iterator<Pizza> it = tabPizza.iterator();
+		Iterator<Pizza> it = listPizzas.iterator();
 
 		while (it.hasNext())
 		{
@@ -88,7 +88,7 @@ public class PizzaMemDao implements IPizzaDao
 	public Pizza findPizzaByCode(String codePizza)
 	{
 		Pizza p = null;
-		for (Pizza pizza : tabPizza)
+		for (Pizza pizza : listPizzas)
 		{
 			if (pizza.getCode().equals(codePizza.toUpperCase()))
 			{
@@ -104,7 +104,7 @@ public class PizzaMemDao implements IPizzaDao
 	{
 		boolean exist = false;
 
-		for (Pizza pizza : tabPizza)
+		for (Pizza pizza : listPizzas)
 		{
 			if (pizza.getCode().equals(codePizza))
 			{
