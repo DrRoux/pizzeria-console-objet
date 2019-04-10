@@ -53,7 +53,8 @@ public class Commande
 	private Client clientId;
 
 	@ManyToMany
-	@JoinTable(name = "commande_pizza", joinColumns = @JoinColumn(name = "commande_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "pizza_id", referencedColumnName = "id"))
+	@JoinTable(name = "commande_pizza", joinColumns = @JoinColumn(name = "commande_id", referencedColumnName = "id"), 
+	inverseJoinColumns = @JoinColumn(name = "pizza_id", referencedColumnName = "id"))
 	private List<Pizza> listComPiz = new ArrayList<>();
 
 	public Commande()
