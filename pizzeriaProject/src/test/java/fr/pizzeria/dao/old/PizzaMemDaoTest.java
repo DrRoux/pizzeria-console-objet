@@ -52,13 +52,17 @@ public class PizzaMemDaoTest
 	public void deletePizza_DeleteOnePizzaIND()
 	{
 		LOGGER.info("Exécution de la méthode {}", pTest.getMethodName());
-
+		
+		LOGGER.info("On insère une pizza fictive pour s'assurer qu'elle est bien supprimer,"
+					+ " peut importe l'état de la liste précédent le test");
 		String pizzaCode = "XOX";
 		p.saveNewPizza(new Pizza(pizzaCode, "XOX", 12.4));
-
 		int size = p.findAllPizzas().size();
+		
+		LOGGER.info("Lorsqu'on supprime une nouvelle pizza dans la liste");
 		p.deletePizza(pizzaCode);
 
+		LOGGER.info("Alors on doit avoir une liste plus petite de 1");
 		assertEquals(size - 1, p.findAllPizzas().size());
 	}
 
@@ -69,8 +73,10 @@ public class PizzaMemDaoTest
 
 		List<String> listPizza = p.findAllPizzas().stream().map(t -> t.getCode()).collect(Collectors.toList());
 
+		LOGGER.info("Lorsqu'on supprime toutes les nouvelles pizzas dans la liste");
 		listPizza.forEach(t -> p.deletePizza(t));
 
+		LOGGER.info("Alors on doit avoir une liste de taille 0");
 		assertEquals(0, p.findAllPizzas().size());
 	}
 
@@ -78,6 +84,8 @@ public class PizzaMemDaoTest
 	public void pizzaFindByCode_WhereCodeisNull()
 	{
 		LOGGER.info("Exécution de la méthode {}", pTest.getMethodName());
+		LOGGER.info("Lorsqu'on cherche une pizza dans la liste avec un code non valide");
+		LOGGER.info("Alors on doit un retour null");
 		assertEquals(null, p.findPizzaByCode("PizzaQuiNExistePas"));
 	}
 
@@ -85,6 +93,8 @@ public class PizzaMemDaoTest
 	public void pizzaExists_Not()
 	{
 		LOGGER.info("Exécution de la méthode {}", pTest.getMethodName());
+		LOGGER.info("Lorsqu'on cherche à savoir si une pizza existe en donnant un code non valide");
+		LOGGER.info("Alors on doit un retour faux");
 		assertEquals(false, p.pizzaExists("PizzaQuiNExistePas"));
 	}
 
