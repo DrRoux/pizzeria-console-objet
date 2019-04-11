@@ -8,8 +8,6 @@ import java.util.Scanner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import dev.App;
-
 /**
  * IPizzeriaConsole : Interface de gestion des menus. Sert aux affichages
  * utilisateurs.
@@ -17,9 +15,7 @@ import dev.App;
  * @author BIRABEN-BIANCHI Hugo
  */
 public interface IPizzeriaConsole
-{
-	public Logger logger = LoggerFactory.getLogger(App.class);
-	
+{	
 	/**
 	 * Fonction d'affichage contenant les différents menus (Client, ClientConnecte
 	 * et Administrateur)
@@ -30,8 +26,10 @@ public interface IPizzeriaConsole
 	 * Nettoyage de la console en affichant un grand nombre de ligne vide pour
 	 * accroître la lisibilité de l'application
 	 */
-	default void clean()
+	static void clean()
 	{
+		Logger logger = LoggerFactory.getLogger(IPizzeriaConsole.class);
+		
 		for (int i = 0; i < 40; i++)
 		{
 			logger.info(" ");

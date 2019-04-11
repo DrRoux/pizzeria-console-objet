@@ -29,7 +29,7 @@ public class PizzeriaClientConsoleApp implements IPizzeriaConsole
 
 		while (!sortiBoucle)
 		{
-			clean();
+			IPizzeriaConsole.clean();
 			logger.info("***** Pizzeria Client *****");
 			logger.info("1.  S'inscrire ");
 			logger.info("2.  Se connecter");

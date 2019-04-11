@@ -26,7 +26,7 @@ public class PizzeriaClientConnecteConsoleApp implements IPizzeriaConsole
 
 		while (!sortiBoucle)
 		{
-			clean();
+			IPizzeriaConsole.clean();
 			logger.info("***** Pizzeria Client Connecté *****");
 			logger.info("1.  Passer une nouvelle commande");
 			logger.info("2.  Lister ses commandes");

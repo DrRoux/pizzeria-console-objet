@@ -21,11 +21,8 @@ public class AjouterLivreurService extends MenuService
 	CommandesJpaDao cJpaDao = new CommandesJpaDao();
 	LivreurJpaDao lJpaDao = new LivreurJpaDao();
 
-	@Override
-	public void executeUC(Scanner scanner) throws StockageException
+	public int choixCommande (Scanner scanner)
 	{
-		clean();
-
 		int choiceCommande = -1;
 		boolean sortir = false;
 
@@ -54,13 +51,18 @@ public class AjouterLivreurService extends MenuService
 					choiceCommande = -1;
 				}
 			}
-			catch (NumberFormatException e)
+			catch (NumberFormatException | StockageException e)
 			{
 				choiceCommande = -1;
 			}
 		}
-
-		sortir = false;
+		
+		return choiceCommande;
+	}
+	
+	public int choixLivreur (Scanner scanner)
+	{
+		boolean sortir = false;
 		int choiceLivreur = -1;
 		while (choiceLivreur == -1 && !sortir)
 		{
@@ -90,6 +92,18 @@ public class AjouterLivreurService extends MenuService
 				choiceLivreur = -1;
 			}
 		}
+		
+		return choiceLivreur;
+	}
+	
+	@Override
+	public void executeUC(Scanner scanner) throws StockageException
+	{
+		clean();
+
+		int choiceCommande = choixCommande (scanner);
+
+		int choiceLivreur = choixLivreur (scanner);
 
 		cJpaDao.associerLivreurCommande(choiceCommande, choiceLivreur);
 	}
