@@ -3,6 +3,7 @@ package fr.pizzeria.dao.old;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +23,6 @@ public class PizzaMemDao implements IPizzaDao
 	public PizzaMemDao()
 	{
 		listPizzas = new ArrayList<>();
-		initialisation();
 	}
 
 	public void initialisation()
@@ -62,12 +62,11 @@ public class PizzaMemDao implements IPizzaDao
 	@Override
 	public void updatePizza(String codePizza, Pizza pizza)
 	{
-		for (Pizza p : listPizzas)
+		Optional<Pizza> p = listPizzas.stream().filter(t -> t.getCode().equals(codePizza)).findFirst();		
+		
+		if (p.isPresent())
 		{
-			if (p.getCode().equals(codePizza))
-			{
-				p.modifPizza(pizza);
-			}
+			p.get().modifPizza (pizza);
 		}
 	}
 

@@ -47,9 +47,25 @@ public class PizzaMemDaoTest
 		LOGGER.info("Alors on doit avoir une liste plus grande de 1");
 		assertEquals(size + 1, p.findAllPizzas().size());
 	}
+	
+	@Test
+	public void updatePizza_ChangeOnePizza()
+	{
+		LOGGER.info("Exécution de la méthode {}", pTest.getMethodName());
+
+		p.initialisation();
+		Pizza pizzaTemp = new Pizza("LIG", "Ligurienne", 12);
+		String codePizzaModif = "IND";
+
+		LOGGER.info("Lorsqu'on insère une nouvelle pizza dans la liste");
+		p.updatePizza(codePizzaModif, pizzaTemp);
+
+		LOGGER.info("Alors on doit avoir une liste plus grande de 1");
+		assertEquals(true, p.pizzaExists("LIG"));
+	}
 
 	@Test
-	public void deletePizza_DeleteOnePizzaIND()
+	public void deletePizza_DeleteOnePizza()
 	{
 		LOGGER.info("Exécution de la méthode {}", pTest.getMethodName());
 		
@@ -71,6 +87,7 @@ public class PizzaMemDaoTest
 	{
 		LOGGER.info("Exécution de la méthode {}", pTest.getMethodName());
 
+		p.initialisation();
 		List<String> listPizza = p.findAllPizzas().stream().map(t -> t.getCode()).collect(Collectors.toList());
 
 		LOGGER.info("Lorsqu'on supprime toutes les nouvelles pizzas dans la liste");
@@ -96,6 +113,17 @@ public class PizzaMemDaoTest
 		LOGGER.info("Lorsqu'on cherche à savoir si une pizza existe en donnant un code non valide");
 		LOGGER.info("Alors on doit un retour faux");
 		assertEquals(false, p.pizzaExists("PizzaQuiNExistePas"));
+	}
+	
+	@Test
+	public void initialisation()
+	{
+		LOGGER.info("Exécution de la méthode {}", pTest.getMethodName());
+		LOGGER.info("Lorsqu'on cherche à savoir si l'initialisation fonctionne");
+		p.initialisation();
+		
+		LOGGER.info("Alors on doit avoir un retour égal à 8");
+		assertEquals(8, p.findAllPizzas().size());
 	}
 
 }

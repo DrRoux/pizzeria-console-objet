@@ -69,7 +69,7 @@ public class AjouterLivreurService extends MenuService
 			try
 			{
 				List<Livreur> listLivreur = lJpaDao.listLivreur();
-				listLivreur.forEach(t -> t.displayComplet());
+				listLivreur.forEach(Livreur::displayComplet);
 				logger.info("Veuillez attribuer un livreur à la commande");
 				choiceLivreur = Integer.parseInt(scanner.nextLine());
 
@@ -102,7 +102,6 @@ public class AjouterLivreurService extends MenuService
 		clean();
 
 		int choiceCommande = choixCommande (scanner);
-
 		int choiceLivreur = choixLivreur (scanner);
 
 		cJpaDao.associerLivreurCommande(choiceCommande, choiceLivreur);

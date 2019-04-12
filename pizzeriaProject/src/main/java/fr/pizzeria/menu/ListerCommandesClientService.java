@@ -5,6 +5,7 @@ import java.util.Scanner;
 import fr.pizzeria.dao.CommandesJpaDao;
 import fr.pizzeria.exception.StockageException;
 import fr.pizzeria.model.Client;
+import fr.pizzeria.model.Commande;
 
 public class ListerCommandesClientService extends MenuService
 {
@@ -16,7 +17,7 @@ public class ListerCommandesClientService extends MenuService
 	{
 		clean();
 		logger.info("Voici la liste détaillée de vos commandes !");
-		cJpaDao.listerCommandesClient(client).forEach(t -> t.afficherCommandesClient());
+		cJpaDao.listerCommandesClient(client).forEach(Commande::afficherCommandesClient);
 		logger.info("Veuillez presser la touche entrée pour continuer");
 		scanner.nextLine();
 	}

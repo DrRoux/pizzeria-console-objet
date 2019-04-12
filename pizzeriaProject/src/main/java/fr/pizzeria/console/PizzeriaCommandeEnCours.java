@@ -60,7 +60,7 @@ public class PizzeriaCommandeEnCours implements IPizzeriaConsole
 			
 			logger.info("Choix d'une pizza : ");
 
-			listPizza.forEach(t -> t.afficherPizza());
+			listPizza.forEach(Pizza::afficherPizza);
 
 			while (pizzaInListEqualsCode (listPizza))
 			{
