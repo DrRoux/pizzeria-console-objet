@@ -17,47 +17,22 @@ public class PizzeriaClientConnecteConsoleApp implements IPizzeriaConsole
 	protected static Logger logger = LoggerFactory.getLogger(PizzeriaClientConnecteConsoleApp.class);
 	static Client client = null;
 
+	static String choice = null;
+	static MenuFactory menu = new MenuFactory();
+	static boolean sortiBoucle = false;
+	
 	@Override
 	public void display(Scanner questionUser)
 	{
-		String choice;
-		MenuFactory menu = new MenuFactory();
-		boolean sortiBoucle = false;
-
 		while (!sortiBoucle)
 		{
-			IPizzeriaConsole.clean();
-			logger.info("***** Pizzeria Client Connecté *****");
-			logger.info("1.  Passer une nouvelle commande");
-			logger.info("2.  Lister ses commandes");
-			logger.info("99. Quitter l'application");
-			logger.info("\nVeuillez saisir votre choix : ");
+			displayMenu ();
 
 			choice = questionUser.nextLine();
 
 			try
 			{
-				if (Integer.parseInt(choice) == 1)
-				{
-					PasserCommandeClientService c = (PasserCommandeClientService) menu.create("passerCommandeClient");
-					PasserCommandeClientService.set(client);
-					c.executeUC(questionUser);
-				}
-				else if (Integer.parseInt(choice) == 2)
-				{
-					ListerCommandesClientService l = (ListerCommandesClientService) menu
-							.create("listerCommandesClient");
-					ListerCommandesClientService.set(client);
-					l.executeUC(questionUser);
-				}
-				else if (Integer.parseInt(choice) == 99)
-				{
-					sortiBoucle = true;
-				}
-				else
-				{
-					logger.info("Choix invalide, veuillez recommencer !");
-				}
+				choixMenu (questionUser);
 			}
 			catch (NumberFormatException e)
 			{
@@ -69,10 +44,53 @@ public class PizzeriaClientConnecteConsoleApp implements IPizzeriaConsole
 			}
 		}
 	}
+	
+	@Override
+	public void displayException (String e)
+	{
+		logger.info(e);
+	}
 
 	public static void set(Client c)
 	{
 		client = c;
+	}
+
+	@Override
+	public void displayMenu()
+	{
+		IPizzeriaConsole.clean();
+		logger.info("***** Pizzeria Client Connecté *****");
+		logger.info("1.  Passer une nouvelle commande");
+		logger.info("2.  Lister ses commandes");
+		logger.info("99. Quitter l'application");
+		logger.info("\nVeuillez saisir votre choix : ");
+	}
+
+	@Override
+	public void choixMenu(Scanner questionUser) throws StockageException
+	{
+		if (Integer.parseInt(choice) == 1)
+		{
+			PasserCommandeClientService c = (PasserCommandeClientService) menu.create("passerCommandeClient");
+			PasserCommandeClientService.set(client);
+			c.executeUC(questionUser);
+		}
+		else if (Integer.parseInt(choice) == 2)
+		{
+			ListerCommandesClientService l = (ListerCommandesClientService) menu
+					.create("listerCommandesClient");
+			ListerCommandesClientService.set(client);
+			l.executeUC(questionUser);
+		}
+		else if (Integer.parseInt(choice) == 99)
+		{
+			sortiBoucle = true;
+		}
+		else
+		{
+			logger.info("Choix invalide, veuillez recommencer !");
+		}
 	}
 
 }

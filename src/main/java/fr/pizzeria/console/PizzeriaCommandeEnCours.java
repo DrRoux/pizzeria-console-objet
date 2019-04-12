@@ -25,6 +25,7 @@ public class PizzeriaCommandeEnCours implements IPizzeriaConsole
 	boolean sortiBoucle = false;
 	Commande commande = new Commande();
 	
+	@Override
 	public void displayMenu ()
 	{
 		IPizzeriaConsole.clean();
@@ -53,6 +54,7 @@ public class PizzeriaCommandeEnCours implements IPizzeriaConsole
 		return p.stream().filter(t -> t.getCode().equals(choice2)).collect(Collectors.counting()) < 1;
 	}
 	
+	@Override
 	public void choixMenu (Scanner scanner)
 	{
 		if (Integer.parseInt(choice) == 1)
@@ -116,6 +118,12 @@ public class PizzeriaCommandeEnCours implements IPizzeriaConsole
 				logger.info(e.getMessage());
 			}
 		}
+	}
+	
+	@Override
+	public void displayException (String e)
+	{
+		logger.info(e);
 	}
 
 	public CommandesJpaDao getcJpaDao()

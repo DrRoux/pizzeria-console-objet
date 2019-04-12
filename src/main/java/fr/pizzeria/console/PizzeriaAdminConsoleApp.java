@@ -25,6 +25,7 @@ public class PizzeriaAdminConsoleApp implements IPizzeriaConsole
 	static boolean sortiBoucle = false;
 	static boolean password = false;
 	
+	@Override
 	public void displayMenu ()
 	{
 		IPizzeriaConsole.clean();
@@ -53,7 +54,8 @@ public class PizzeriaAdminConsoleApp implements IPizzeriaConsole
 		}
 	}
 	
-	public static void manageMenu (Scanner questionUser) throws StockageException
+	@Override
+	public void choixMenu (Scanner questionUser) throws StockageException
 	{
 		if (Integer.parseInt(choice) == 1)
 		{
@@ -113,7 +115,7 @@ public class PizzeriaAdminConsoleApp implements IPizzeriaConsole
 
 			try
 			{
-				manageMenu (questionUser);
+				choixMenu (questionUser);
 			}
 			catch (NumberFormatException e)
 			{

@@ -19,43 +19,23 @@ import fr.pizzeria.menu.MenuFactory;
 public class PizzeriaClientConsoleApp implements IPizzeriaConsole
 {
 	protected static Logger logger = LoggerFactory.getLogger(PizzeriaClientConsoleApp.class);
+	String choice;
+	MenuFactory menu = new MenuFactory();
+	boolean sortiBoucle = false;
+	
 	
 	@Override
 	public void display(Scanner questionUser)
 	{
-		String choice;
-		MenuFactory menu = new MenuFactory();
-		boolean sortiBoucle = false;
-
 		while (!sortiBoucle)
 		{
-			IPizzeriaConsole.clean();
-			logger.info("***** Pizzeria Client *****");
-			logger.info("1.  S'inscrire ");
-			logger.info("2.  Se connecter");
-			logger.info("99. Quitter l'application");
-			logger.info("\nVeuillez saisir votre choix : ");
+			displayMenu ();
 
 			choice = questionUser.nextLine();
 
 			try
 			{
-				if (Integer.parseInt(choice) == 1)
-				{
-					menu.create("inscription").executeUC(questionUser);
-				}
-				else if (Integer.parseInt(choice) == 2)
-				{
-					menu.create("connexionClient").executeUC(questionUser);
-				}
-				else if (Integer.parseInt(choice) == 99)
-				{
-					sortiBoucle = true;
-				}
-				else
-				{
-					logger.info("Choix invalide, veuillez recommencer !");
-				}
+				choixMenu (questionUser);
 			}
 			catch (NumberFormatException e)
 			{
@@ -65,6 +45,44 @@ public class PizzeriaClientConsoleApp implements IPizzeriaConsole
 			{
 				logger.info(e.getMessage());
 			}
+		}
+	}
+
+	@Override
+	public void displayMenu()
+	{
+		IPizzeriaConsole.clean();
+		logger.info("***** Pizzeria Client *****");
+		logger.info("1.  S'inscrire ");
+		logger.info("2.  Se connecter");
+		logger.info("99. Quitter l'application");
+		logger.info("\nVeuillez saisir votre choix : ");
+	}
+	
+	@Override
+	public void displayException (String e)
+	{
+		logger.info(e);
+	}
+
+	@Override
+	public void choixMenu(Scanner questionUser) throws StockageException
+	{
+		if (Integer.parseInt(choice) == 1)
+		{
+			menu.create("inscription").executeUC(questionUser);
+		}
+		else if (Integer.parseInt(choice) == 2)
+		{
+			menu.create("connexionClient").executeUC(questionUser);
+		}
+		else if (Integer.parseInt(choice) == 99)
+		{
+			sortiBoucle = true;
+		}
+		else
+		{
+			logger.info("Choix invalide, veuillez recommencer !");
 		}
 	}
 }
