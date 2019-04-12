@@ -14,12 +14,11 @@ import fr.pizzeria.model.Client;
 
 public class PizzeriaClientConnecteConsoleApp implements IPizzeriaConsole
 {
-	protected static Logger logger = LoggerFactory.getLogger(PizzeriaClientConnecteConsoleApp.class);
-	static Client client = null;
-
-	static String choice = null;
-	static MenuFactory menu = new MenuFactory();
-	static boolean sortiBoucle = false;
+	private static Logger logger = LoggerFactory.getLogger(PizzeriaClientConnecteConsoleApp.class);
+	private static Client client = null;
+	private String choice = null;
+	private static MenuFactory menu = new MenuFactory();
+	private boolean sortiBoucle = false;
 	
 	@Override
 	public void display(Scanner questionUser)

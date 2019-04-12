@@ -16,14 +16,37 @@ import fr.pizzeria.model.Pizza;
 
 public class PizzeriaCommandeEnCours implements IPizzeriaConsole
 {
-	protected static Logger logger = LoggerFactory.getLogger(PizzeriaCommandeEnCours.class);
-	CommandesJpaDao cJpaDao = new CommandesJpaDao();
-	static Client client;
-	static List<Pizza> listPizza = new ArrayList <> ();
-	String choice = null;
-	String choice2 = null;
-	boolean sortiBoucle = false;
-	Commande commande = new Commande();
+	private static Logger logger = LoggerFactory.getLogger(PizzeriaCommandeEnCours.class);
+	private CommandesJpaDao cJpaDao = new CommandesJpaDao();
+	private static Client client;
+	private static List<Pizza> listPizza = new ArrayList <> ();
+	private String choice = null;
+	private String choice2 = null;
+	private boolean sortiBoucle = false;
+	private Commande commande = new Commande();
+	
+	@Override
+	public void display(Scanner scanner)
+	{
+		while (!sortiBoucle)
+		{
+			displayMenu ();
+			choice = scanner.nextLine();
+			
+			try
+			{
+				choixMenu (scanner);
+			}
+			catch (NumberFormatException e)
+			{
+				// Fait boucler le programme sans interaction de l'utilisateur
+			}
+			catch (PersonnalSqlException e)
+			{
+				logger.info(e.getMessage());
+			}
+		}
+	}
 	
 	@Override
 	public void displayMenu ()
@@ -94,29 +117,6 @@ public class PizzeriaCommandeEnCours implements IPizzeriaConsole
 		else
 		{
 			logger.info("Choix invalide, veuillez recommencer !");
-		}
-	}
-	
-	@Override
-	public void display(Scanner scanner)
-	{
-		while (!sortiBoucle)
-		{
-			displayMenu ();
-			choice = scanner.nextLine();
-			
-			try
-			{
-				choixMenu (scanner);
-			}
-			catch (NumberFormatException e)
-			{
-				// Fait boucler le programme sans interaction de l'utilisateur
-			}
-			catch (PersonnalSqlException e)
-			{
-				logger.info(e.getMessage());
-			}
 		}
 	}
 	

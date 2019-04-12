@@ -18,11 +18,10 @@ import fr.pizzeria.menu.MenuFactory;
  */
 public class PizzeriaClientConsoleApp implements IPizzeriaConsole
 {
-	protected static Logger logger = LoggerFactory.getLogger(PizzeriaClientConsoleApp.class);
-	String choice;
-	MenuFactory menu = new MenuFactory();
-	boolean sortiBoucle = false;
-	
+	private static Logger logger = LoggerFactory.getLogger(PizzeriaClientConsoleApp.class);
+	private String choice;
+	private MenuFactory menu = new MenuFactory();
+	private boolean sortiBoucle = false;
 	
 	@Override
 	public void display(Scanner questionUser)

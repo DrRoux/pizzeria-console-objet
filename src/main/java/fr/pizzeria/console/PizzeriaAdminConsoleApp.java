@@ -19,11 +19,45 @@ import fr.pizzeria.menu.MenuFactory;
  */
 public class PizzeriaAdminConsoleApp implements IPizzeriaConsole
 {
-	protected static Logger logger = LoggerFactory.getLogger(PizzeriaAdminConsoleApp.class);
-	static String choice = null;
-	static MenuFactory menu = new MenuFactory();
-	static boolean sortiBoucle = false;
-	static boolean password = false;
+	private static Logger logger = LoggerFactory.getLogger(PizzeriaAdminConsoleApp.class);
+	private static MenuFactory menu = new MenuFactory();
+	private static boolean password = false;
+	private static String choice = null;
+	private boolean sortiBoucle = false;
+	
+	@Override
+	public void display(Scanner questionUser)
+	{
+		enterPassword (questionUser);
+		
+		while (password && !sortiBoucle)
+		{
+			displayMenu ();
+			setChoice(questionUser.nextLine());
+
+			try
+			{
+				choixMenu (questionUser);
+			}
+			catch (NumberFormatException e)
+			{
+				// Fait boucler le programme sans interaction de l'utilisateur
+			}
+			catch (SavePizzaException e)
+			{
+				displayException (e.getMessage());
+
+				if (e.getMessage().equals("codeTropCourt"))
+				{
+					displayException ("Code trop court");
+				}
+			}
+			catch (StockageException | PersonnalSqlException e)
+			{
+				displayException (e.getMessage());
+			}
+		}
+	}
 	
 	@Override
 	public void displayMenu ()
@@ -98,43 +132,10 @@ public class PizzeriaAdminConsoleApp implements IPizzeriaConsole
 		}
 	}
 	
+	@Override
 	public void displayException (String e)
 	{
 		logger.info(e);
-	}
-	
-	@Override
-	public void display(Scanner questionUser)
-	{
-		enterPassword (questionUser);
-		
-		while (password && !sortiBoucle)
-		{
-			displayMenu ();
-			setChoice(questionUser.nextLine());
-
-			try
-			{
-				choixMenu (questionUser);
-			}
-			catch (NumberFormatException e)
-			{
-				// Fait boucler le programme sans interaction de l'utilisateur
-			}
-			catch (SavePizzaException e)
-			{
-				displayException (e.getMessage());
-
-				if (e.getMessage().equals("codeTropCourt"))
-				{
-					displayException ("Code trop court");
-				}
-			}
-			catch (StockageException | PersonnalSqlException e)
-			{
-				displayException (e.getMessage());
-			}
-		}
 	}
 
 	public static String getChoice()

@@ -18,16 +18,15 @@ import fr.pizzeria.exception.StockageException;
  */
 public interface IPizzeriaConsole
 {	
-	
-	void displayMenu ();
-	
-	void choixMenu (Scanner questionUser) throws StockageException;
-	
 	/**
 	 * Fonction d'affichage contenant les différents menus (Client, ClientConnecte
 	 * et Administrateur)
 	 */
 	void display(Scanner questionUser);
+	
+	void displayMenu ();
+	
+	void choixMenu (Scanner questionUser) throws StockageException;
 	
 	void displayException (String e);
 
