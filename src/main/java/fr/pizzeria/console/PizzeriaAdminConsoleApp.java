@@ -25,6 +25,9 @@ public class PizzeriaAdminConsoleApp implements IPizzeriaConsole
 	private static String choice = null;
 	private boolean sortiBoucle = false;
 	
+	/**
+	* @see fr.pizzeria.console.IPizzeriaConsole#display(java.util.Scanner)
+	*/
 	@Override
 	public void display(Scanner questionUser)
 	{
@@ -59,6 +62,9 @@ public class PizzeriaAdminConsoleApp implements IPizzeriaConsole
 		}
 	}
 	
+	/**
+	* @see fr.pizzeria.console.IPizzeriaConsole#displayMenu()
+	*/
 	@Override
 	public void displayMenu ()
 	{
@@ -75,6 +81,9 @@ public class PizzeriaAdminConsoleApp implements IPizzeriaConsole
 		logger.info("Veuillez saisir votre choix : ");
 	}
 	
+	/**
+	 * enterPassword @param questionUser
+	 */
 	public static void enterPassword (Scanner questionUser)
 	{
 		IPizzeriaConsole.clean();
@@ -88,6 +97,9 @@ public class PizzeriaAdminConsoleApp implements IPizzeriaConsole
 		}
 	}
 	
+	/**
+	* @see fr.pizzeria.console.IPizzeriaConsole#choixMenu(java.util.Scanner)
+	*/
 	@Override
 	public void choixMenu (Scanner questionUser) throws StockageException
 	{
@@ -132,17 +144,26 @@ public class PizzeriaAdminConsoleApp implements IPizzeriaConsole
 		}
 	}
 	
+	/**
+	* @see fr.pizzeria.console.IPizzeriaConsole#displayException(java.lang.String)
+	*/
 	@Override
 	public void displayException (String e)
 	{
 		logger.info(e);
 	}
 
+	/**
+	 * getChoice @return
+	 */
 	public static String getChoice()
 	{
 		return choice;
 	}
 
+	/**
+	 * setChoice @param choice
+	 */
 	public static void setChoice(String choice)
 	{
 		PizzeriaAdminConsoleApp.choice = choice;

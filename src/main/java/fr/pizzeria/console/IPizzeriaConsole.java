@@ -20,19 +20,31 @@ public interface IPizzeriaConsole
 {	
 	/**
 	 * Fonction d'affichage contenant les différents menus (Client, ClientConnecte
-	 * et Administrateur)
+	 * et Administrateur). ------------
+	 * display @param questionUser
 	 */
 	void display(Scanner questionUser);
 	
+	/**
+	 * displayMenu 
+	 */
 	void displayMenu ();
 	
+	/**
+	 * choixMenu @param questionUser
+	 * choixMenu @throws StockageException
+	 */
 	void choixMenu (Scanner questionUser) throws StockageException;
 	
+	/**
+	 * displayException @param e
+	 */
 	void displayException (String e);
 
 	/**
 	 * Nettoyage de la console en affichant un grand nombre de ligne vide pour
-	 * accroître la lisibilité de l'application
+	 * accroître la lisibilité de l'application.
+	 * clean 
 	 */
 	static void clean()
 	{

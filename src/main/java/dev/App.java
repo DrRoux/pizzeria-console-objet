@@ -17,10 +17,16 @@ import fr.pizzeria.console.PizzeriaClientConsoleApp;
  */
 public class App
 {
+	/**
+	 * PizzeriaAdminConsoleApp appAdmin : 
+	 */
 	private static PizzeriaAdminConsoleApp appAdmin = new PizzeriaAdminConsoleApp();
 	private static PizzeriaClientConsoleApp appClient = new PizzeriaClientConsoleApp();
 	private static Logger logger = LoggerFactory.getLogger(App.class);
 
+	/**
+	 * void main App 
+	 */
 	public static void main(String[] args)
 	{
 		Scanner userChoice = new Scanner(System.in);
