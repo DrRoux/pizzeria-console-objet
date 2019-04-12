@@ -1,2 +1,10 @@
+bin/
+target/
+diagrams/
+.settings/
+.classpath
 .project
-pizzeriaProject/src/main/java/fr/pizzeria/bdd/BddTest\.java
+README.md
+dependency-reduced-pom.xml
+exception.log
+app.log

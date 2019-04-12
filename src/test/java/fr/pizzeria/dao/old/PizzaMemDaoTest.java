@@ -53,14 +53,15 @@ public class PizzaMemDaoTest
 	{
 		LOGGER.info("Exécution de la méthode {}", pTest.getMethodName());
 
+		LOGGER.info("Soit l'initialisation comportant 8 elements, dont une pizza 'IND'");
 		p.initialisation();
 		Pizza pizzaTemp = new Pizza("LIG", "Ligurienne", 12);
 		String codePizzaModif = "IND";
 
-		LOGGER.info("Lorsqu'on insère une nouvelle pizza dans la liste");
+		LOGGER.info("Lorsqu'on met à jour une pizza dans la liste");
 		p.updatePizza(codePizzaModif, pizzaTemp);
 
-		LOGGER.info("Alors on doit avoir une liste plus grande de 1");
+		LOGGER.info("Alors on doit retrouver l'objet inséré dans la liste");
 		assertEquals(true, p.pizzaExists("LIG"));
 	}
 
@@ -75,7 +76,7 @@ public class PizzaMemDaoTest
 		p.saveNewPizza(new Pizza(pizzaCode, "XOX", 12.4));
 		int size = p.findAllPizzas().size();
 		
-		LOGGER.info("Lorsqu'on supprime une nouvelle pizza dans la liste");
+		LOGGER.info("Lorsqu'on supprime une pizza dans la liste");
 		p.deletePizza(pizzaCode);
 
 		LOGGER.info("Alors on doit avoir une liste plus petite de 1");
@@ -90,7 +91,7 @@ public class PizzaMemDaoTest
 		p.initialisation();
 		List<String> listPizza = p.findAllPizzas().stream().map(t -> t.getCode()).collect(Collectors.toList());
 
-		LOGGER.info("Lorsqu'on supprime toutes les nouvelles pizzas dans la liste");
+		LOGGER.info("Lorsqu'on supprime toutes les pizzas dans la liste");
 		listPizza.forEach(t -> p.deletePizza(t));
 
 		LOGGER.info("Alors on doit avoir une liste de taille 0");
