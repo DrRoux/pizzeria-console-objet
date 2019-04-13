@@ -7,12 +7,14 @@ import static org.junit.contrib.java.lang.system.TextFromStandardInputStream.emp
 
 import java.util.Scanner;
 
-import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
+import org.mockito.Mockito;
 
+import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.exception.SavePizzaException;
+import fr.pizzeria.model.Pizza;
 
 /**
  *
@@ -30,13 +32,18 @@ public class AjouterPizzaServiceTest
 	@Test
 	public void executeUC_addPizza() throws SavePizzaException
 	{
+		IPizzaDao mockedDao = Mockito.mock(IPizzaDao.class);
+		
+		String code = "AAA";
+		String libel = "La pizza des A";
+		String prix = "12.5";
+		
 		AjouterPizzaService c = new AjouterPizzaService();
-		int sizeBefore = AjouterPizzaService.getGestionnairePizza().findAllPizzas().size();
+		AjouterPizzaService.setGestionnairePizza(mockedDao);
 
+		systemInMock.provideLines(code, libel, prix);
 		c.executeUC(new Scanner(System.in));
-		systemInMock.provideLines("AAA", "La Pizza des A", "12.5");
 
-		int sizeAfter = AjouterPizzaService.getGestionnairePizza().findAllPizzas().size();
-		Assert.assertEquals(sizeBefore + 1, sizeAfter);
+		Mockito.verify(mockedDao).saveNewPizza(new Pizza (code, libel, Double.parseDouble(prix)));
 	}
 }

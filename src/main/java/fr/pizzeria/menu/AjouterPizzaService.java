@@ -14,7 +14,6 @@ import fr.pizzeria.model.Pizza;
  */
 public class AjouterPizzaService extends MenuService
 {
-
 	@Override
 	public void executeUC(Scanner scanner) throws SavePizzaException
 	{
