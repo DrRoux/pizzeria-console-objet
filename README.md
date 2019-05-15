@@ -63,7 +63,7 @@ This project is not licensed.
 
 Projet personnel étendu d'un projet originellement initié dans un but pédagogique lors d'une formation Diginamic de Développeur J2EE FullStack pour le compte de la société DTA-Ingénierie.
 
-A partir d'une application console permettant une gestion des pizzas, l'application (tjr en console actuellement) permet de gérer une partie Client (Inscription, Connexion, Passer une commande et Lister les commandes déjà passer) et une partie Administrateur (Lister les pizzas, en ajouter, en modifier ou en supprimer, lister les commandes en attente, répartir les livreurs sur les commandes et envoyer les livraisons).
+A partir d'une application console permettant une gestion des pizzas, l'application (tjr en console actuellement) permet de gérer une partie Client (Inscription, Connexion, Passer une commande et Lister les commandes déjà passer) et une partie Administrateur (ListeazehjRFIHQZESKDJFHQKJZSEHFIQZEHFr les pizzas, en ajouter, en modifier ou en supprimer, lister les commandes en attente, répartir les livreurs sur les commandes et envoyer les livraisons).
 
 Exemple du menu administrateur de l'application
 ```
