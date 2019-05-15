@@ -1,8 +1,20 @@
 # PizzeriaProject English Part
 
+
+
+
 Personnal project based on a training project made by following Diginamic FullStack J2EE Developper for DTA-Ingénierie company.
 
+
+
+
+
+
 Based on a commandline application to manage pizzas, this application allow to manage a Client part (Register, Connect, Make an order and List all your previous orders) and an Admin part (List all pizzas, add, update and delete, list all waiting orders, put delivery guy on waiting order and sending deliveries).
+
+
+
+
 
 Example of Admin menu
 ```
